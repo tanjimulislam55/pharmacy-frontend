@@ -23,6 +23,18 @@ export default function Sidebar() {
     {
       text: 'Add Medicine',
       endpoint: 'add_medicine'
+    },
+    {
+      text: 'Add Purchase',
+      endpoint: 'add_purchase'
+    },
+    {
+      text: 'Add Customer',
+      endpoint: 'add_customer'
+    },
+    {
+      text: 'Add Bill',
+      endpoint: 'add_bill'
     }
   ]
 

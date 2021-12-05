@@ -80,3 +80,9 @@ button{
   background: rgb(37, 82, 16);
   border-radius: 5px;
 }
+
+/* .purchase_lines{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+} */

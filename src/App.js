@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Login, Category, Type, Unit, Vendor, Medicine, Home } from './components'
+import { Login, Category, Type, Unit, Vendor, Medicine, Home, Purchase, Customer, Bill } from './components'
 
 function App() {
   return (
@@ -14,6 +14,9 @@ function App() {
         <Route path="/add_category" element={<Category/>} />
         <Route path="/add_unit" element={<Unit/>} />
         <Route path="/add_medicine" element={<Medicine/>} />
+        <Route path="/add_purchase" element={<Purchase/>} />
+        <Route path="/add_customer" element={<Customer/>} />
+        <Route path="/add_bill" element={<Bill/>} />
       </Routes>
     </BrowserRouter>
   );
