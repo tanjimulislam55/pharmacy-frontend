@@ -1,7 +1,5 @@
-import { Sidebar } from ".";
+import { Sidebar } from '.'
 
 export default function Home() {
-  return (
-    <Sidebar />
-  )
+    return <Sidebar />
 }
