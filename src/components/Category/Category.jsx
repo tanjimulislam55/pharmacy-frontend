@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react'
-import { Sidebar } from '.'
-import classes from '../App.module.css'
+import classes from '../../App.module.css'
+import Sidebar from '../Sidebar/Sidebar'
 
-export default function Type() {
+export default function Category() {
     const [name, setName] = useState('')
-    const [types, setTypes] = useState([])
+    const [categories, setCategories] = useState([])
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/types`)
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/categories`)
             const data = await response.json()
-            setTypes(data)
+            setCategories(data)
         }
         return fetchData()
     }, [])
@@ -20,7 +20,7 @@ export default function Type() {
         const details = {
             name,
         }
-        fetch(`${process.env.REACT_APP_API_URL}/add_type`, {
+        fetch(`${process.env.REACT_APP_API_URL}/add_category`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ export default function Type() {
             <Sidebar />
             <div className={classes.content}>
                 <form className={classes.item} onSubmit={handleSubmit}>
-                    <h2>Add Medicine Type</h2>
+                    <h2>Add Category Type</h2>
                     <input
                         placeholder="name"
                         name="name"
@@ -46,10 +46,10 @@ export default function Type() {
                 </form>
             </div>
             <div className={classes.content}>
-                {types &&
-                    types.map((type) => (
-                        <div className={classes.item} key={type.id}>
-                            <h4>{type.name}</h4>
+                {categories &&
+                    categories.map((category) => (
+                        <div className={classes.item} key={category.id}>
+                            <h4>{category.name}</h4>
                         </div>
                     ))}
             </div>

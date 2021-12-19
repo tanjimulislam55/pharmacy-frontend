@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import classes from '../App.module.css'
+import classes from '../../App.module.css'
 
 export default function Login() {
     const [username, setUsername] = useState('')

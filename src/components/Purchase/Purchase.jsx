@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-import { Sidebar, PurchaseLines } from '.'
-import classes from '../App.module.css'
+import classes from '../../App.module.css'
+import PurchaseLines from '../PurchaseLines/PurchaseLines'
+import Sidebar from '../Sidebar/Sidebar'
 
 const purchaseLineObj = {
     purchase_price: 0,
@@ -40,13 +41,13 @@ export default function Purchase() {
             purchase_line_in: purchaseLines,
         }
         console.log(details)
-        // fetch(`${process.env.REACT_APP_API_URL}/add_purchase`, {
-        //   method: 'POST',
-        //   headers: {
-        //     'Content-Type': 'application/json'
-        //   },
-        //   body: JSON.stringify(details)
-        // })
+        fetch(`${process.env.REACT_APP_API_URL}/add_purchase`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(details),
+        })
     }
 
     return (

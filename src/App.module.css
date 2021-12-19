@@ -1,84 +1,85 @@
-*{
-  margin: 0;
-  padding: 0;
-  text-decoration: none;
-  box-sizing: border-box;
-  font-family: 'Times New Roman', Times, serif;
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
 }
 
-.sidebar{
-  position: fixed;
-  left: 0;
-  width: 250px;
-  height: 100%;
-  background: rgb(14, 23, 33);
+.sidebar {
+    position: fixed;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background: rgb(14, 23, 33);
 }
 
-.sidebar header{
-  font-size: 25px;
-  color: rgb(0, 0, 0);
-  text-align: center;
-  line-height: 70px;
-  background: rgb(206, 206, 206);
+.sidebar header {
+    font-size: 25px;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    line-height: 70px;
+    background: rgb(206, 206, 206);
 }
 
-.sidebar ul i{
-  display: block;
-  height: 100%;
-  width: 100%;
-  line-height: 50px;
-  font-size: 20px;
-  color: rgb(255, 255, 255);
-  padding-left: 40px;
-  box-sizing: border-box;
-  border-bottom: 1px solid rgb(206, 206, 206);
-  border-top: 1px solid rgb(39, 40, 36);
-  transition: .4s;
+.sidebar ul i {
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 50px;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    padding-left: 40px;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgb(206, 206, 206);
+    border-top: 1px solid rgb(39, 40, 36);
+    transition: 0.4s;
 }
 
-ul li:hover i{
-  padding-left: 50px;
+ul li:hover i {
+    padding-left: 50px;
 }
 
-a{
-  text-decoration: none;
+a {
+    text-decoration: none;
 }
 
-.content{
-  margin-left: 250px;
-  background: rgb(245, 245, 245);
-  display: block;
-  height: 100%;
-  padding: 1rem;
+.content {
+    margin-left: 250px;
+    background: rgb(245, 245, 245);
+    display: block;
+    height: 100%;
+    padding: 1rem;
 }
 
-.content .item{
-  width: 20vw;
-  margin: 0 auto;
-  padding: 3px;
+.content .item {
+    width: 20vw;
+    margin: 0 auto;
+    padding: 3px;
 }
 
-.content .item input{
-  display: block;
-  width: 15vw;
-  padding: 4px;
-  margin: 5px 0;
+.content .item input {
+    display: block;
+    width: 15vw;
+    padding: 4px;
+    margin: 5px 0;
 }
 
-.content .item select, .content .item label{
-  padding: 2px;
-  display: inline-block;
-  width: 10vw;
-  margin: 0 auto;
+.content .item select,
+.content .item label {
+    padding: 2px;
+    display: inline-block;
+    width: 10vw;
+    margin: 0 auto;
 }
 
-button{
-  display: block;
-  margin: 5px 0;
-  padding: 5px;
-  color: white;
-  background: rgb(37, 82, 16);
-  border-radius: 5px;
+button {
+    display: block;
+    margin: 5px 0;
+    padding: 5px;
+    color: white;
+    background: rgb(37, 82, 16);
+    border-radius: 5px;
 }
 
 /* .purchase_lines{

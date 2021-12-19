@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { Sidebar } from '.'
-import classes from '../App.module.css'
+import classes from '../../App.module.css'
+import Sidebar from '../Sidebar/Sidebar'
 
 export default function Unit() {
     const [name, setName] = useState('')

@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react'
-import { Sidebar } from '.'
-import classes from '../App.module.css'
+import classes from '../../App.module.css'
+import Sidebar from '../Sidebar/Sidebar'
 
-export default function Category() {
+export default function Type() {
     const [name, setName] = useState('')
-    const [categories, setCategories] = useState([])
+    const [types, setTypes] = useState([])
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/categories`)
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/types`)
             const data = await response.json()
-            setCategories(data)
+            setTypes(data)
         }
         return fetchData()
     }, [])
@@ -20,7 +20,7 @@ export default function Category() {
         const details = {
             name,
         }
-        fetch(`${process.env.REACT_APP_API_URL}/add_category`, {
+        fetch(`${process.env.REACT_APP_API_URL}/add_type`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ export default function Category() {
             <Sidebar />
             <div className={classes.content}>
                 <form className={classes.item} onSubmit={handleSubmit}>
-                    <h2>Add Category Type</h2>
+                    <h2>Add Medicine Type</h2>
                     <input
                         placeholder="name"
                         name="name"
@@ -46,10 +46,10 @@ export default function Category() {
                 </form>
             </div>
             <div className={classes.content}>
-                {categories &&
-                    categories.map((category) => (
-                        <div className={classes.item} key={category.id}>
-                            <h4>{category.name}</h4>
+                {types &&
+                    types.map((type) => (
+                        <div className={classes.item} key={type.id}>
+                            <h4>{type.name}</h4>
                         </div>
                     ))}
             </div>

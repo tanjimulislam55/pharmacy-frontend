@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import classes from '../App.module.css'
-import Sidebar from './Sidebar'
+import classes from '../../App.module.css'
+import Sidebar from '../Sidebar/Sidebar'
 
 export default function Vendor() {
     const [vendors, setVendors] = useState([])

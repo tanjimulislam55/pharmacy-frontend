@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import classes from '../App.module.css'
+import classes from '../../App.module.css'
 
 export default function Sidebar() {
     const sideBarItems = [
