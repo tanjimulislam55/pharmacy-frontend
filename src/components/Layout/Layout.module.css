@@ -1,0 +1,9 @@
+.layout {
+    display: grid;
+    grid-template-columns: minmax(0, 15%) minmax(0, 85%);
+}
+
+.container {
+    display: block;
+    inset: 0;
+}
