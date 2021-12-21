@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import classes from '../../App.module.css'
 import PurchaseLines from '../PurchaseLines/PurchaseLines'
-import Sidebar from '../Sidebar/Sidebar'
+import Layout from '../Layout/Layout'
 
 const purchaseLineObj = {
     purchase_price: 0,
@@ -52,7 +52,7 @@ export default function Purchase() {
 
     return (
         <>
-            <Sidebar />
+            <Layout />
             <div className={classes.content}>
                 <form className={classes.item} onSubmit={handleSubmit}>
                     <h2>Add New Purchase</h2>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import classes from '../../App.module.css'
-import Sidebar from '../Sidebar/Sidebar'
+import Layout from '../Layout/Layout'
 
 export default function Medicine() {
     const [name, setName] = useState('')
@@ -102,7 +102,7 @@ export default function Medicine() {
 
     return (
         <>
-            <Sidebar />
+            <Layout />
             <div className={classes.content}>
                 <form className={classes.item} onSubmit={handleSubmit}>
                     <h2>Add New Medicine</h2>

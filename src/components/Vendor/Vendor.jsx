@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import classes from '../../App.module.css'
-import Sidebar from '../Sidebar/Sidebar'
+import Layout from '../Layout/Layout'
 
 export default function Vendor() {
     const [vendors, setVendors] = useState([])
@@ -35,7 +35,7 @@ export default function Vendor() {
 
     return (
         <>
-            <Sidebar />
+            <Layout />
             <div className={classes.content}>
                 <form className={classes.item} onSubmit={handleSubmit}>
                     <h2>Add New Vendor</h2>

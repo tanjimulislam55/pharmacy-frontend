@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import classes from '../../App.module.css'
-import Sidebar from '../Sidebar/Sidebar'
+import Layout from '../Layout/Layout'
 
 export default function Category() {
     const [name, setName] = useState('')
@@ -31,7 +31,7 @@ export default function Category() {
 
     return (
         <>
-            <Sidebar />
+            <Layout />
             <div className={classes.content}>
                 <form className={classes.item} onSubmit={handleSubmit}>
                     <h2>Add Category Type</h2>
