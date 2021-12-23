@@ -1,10 +1,4 @@
 {
-    "editor.tabSize": 4,
-    "editor.fontFamily": "Consolas, 'Courier New', monospace",
-    "files.autoSave": "afterDelay",
-    "prettier.jsxSingleQuote": true,
-    "prettier.tabWidth": 4,
-    "prettier.singleQuote": true,
-    "prettier.printWidth": 120,
-    "files.eol": "\n"
+    "python.linting.flake8Enabled": true,
+    "python.linting.enabled": true
 }
