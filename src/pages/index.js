@@ -1,0 +1,5 @@
+export { default as Home } from './Home'
+export { default as Bill } from './Bill'
+export { default as Customer } from './Customer'
+export { default as Medicine } from './Medicine'
+export { default as Vendor } from './Vendor'
