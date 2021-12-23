@@ -1,36 +1,29 @@
-import React from 'react'
+import { faBars, faBell, faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { SidebarContext } from '../../../contexts/sidebarContext'
 import classes from './Navbar.module.css'
 
 const Navbar = () => {
+    const { isOpenSidebar, setIsOpenSidebar } = useContext(SidebarContext)
     return (
-        <div className={classes.navigation}>
-            <div className={classes.navcontainer}>
-                <div className={classes.logo}>
-                    <Link to="#">Logo</Link>
+        <div className={classes.nav}>
+            <div className={classes.topNavbar}>
+                <div className={classes.hamburger}>
+                    <Link onClick={() => setIsOpenSidebar(!isOpenSidebar)} to="#">
+                        <FontAwesomeIcon icon={faBars} />
+                    </Link>
                 </div>
-                <div className={classes.login}>
-                    <Link to="#">Login</Link>
+
+                <div className={classes.navList}>
+                    <Link to="#">
+                        <FontAwesomeIcon icon={faBell} />
+                    </Link>
+                    <Link to="#">
+                        <FontAwesomeIcon icon={faUserCircle} />
+                    </Link>
                 </div>
-                <nav>
-                    <ul className={classes.navlist}>
-                        <li>
-                            <Link to="#">Home</Link>
-                        </li>
-                        <li>
-                            <Link to="#">Services</Link>
-                        </li>
-                        <li>
-                            <Link to="#">Pricing</Link>
-                        </li>
-                        <li>
-                            <Link to="#">Contact</Link>
-                        </li>
-                        <li>
-                            <Link to="#">About</Link>
-                        </li>
-                    </ul>
-                </nav>
             </div>
         </div>
     )

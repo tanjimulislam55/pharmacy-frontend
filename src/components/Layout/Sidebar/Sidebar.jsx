@@ -1,59 +1,89 @@
+import {
+    faChartLine,
+    faCog,
+    faDatabase,
+    faHandHoldingUsd,
+    faLayerGroup,
+    faShoppingBag,
+    faTachometerAlt,
+    faUserShield,
+} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { SidebarContext } from '../../../contexts/sidebarContext'
 import classes from './Sidebar.module.css'
 
 export default function Sidebar() {
-    const { isOpenSidebar, setIsOpenSidebar } = useContext(SidebarContext)
-    console.log(isOpenSidebar)
+    const { isOpenSidebar } = useContext(SidebarContext)
+
     const sideBarItems = [
         {
-            text: 'Add Vendor',
-            endpoint: 'add_vendor',
+            text: 'Dashboard',
+            endpoint: 'vendor',
+            icon: <FontAwesomeIcon icon={faTachometerAlt} />,
         },
         {
-            text: 'Add Type',
-            endpoint: 'add_type',
+            text: 'Medicine',
+            endpoint: 'type',
+            icon: <FontAwesomeIcon icon={faTachometerAlt} />,
         },
         {
-            text: 'Add Unit',
-            endpoint: 'add_unit',
+            text: 'Purchase',
+            endpoint: 'purchase',
+            icon: <FontAwesomeIcon icon={faShoppingBag} />,
         },
         {
-            text: 'Add Category',
-            endpoint: 'add_category',
+            text: 'Bill',
+            endpoint: 'bill',
+            icon: <FontAwesomeIcon icon={faHandHoldingUsd} />,
         },
         {
-            text: 'Add Medicine',
-            endpoint: 'add_medicine',
+            text: 'Stock',
+            endpoint: 'stock',
+            icon: <FontAwesomeIcon icon={faLayerGroup} />,
         },
         {
-            text: 'Add Purchase',
-            endpoint: 'add_purchase',
+            text: 'Expense',
+            endpoint: 'expense',
+            icon: <FontAwesomeIcon icon={faDatabase} />,
         },
         {
-            text: 'Add Customer',
-            endpoint: 'add_customer',
+            text: 'Report',
+            endpoint: 'reports',
+            icon: <FontAwesomeIcon icon={faChartLine} />,
         },
         {
-            text: 'Add Bill',
-            endpoint: 'add_bill',
+            text: 'Account',
+            endpoint: 'account',
+            icon: <FontAwesomeIcon icon={faUserShield} />,
+        },
+        {
+            text: 'Setting',
+            endpoint: 'setting',
+            icon: <FontAwesomeIcon icon={faCog} />,
         },
     ]
 
     return (
-        <div className={!isOpenSidebar ? classes.sidebar : classes.sidebar_hide}>
-            <header>Manage Inventory</header>
-            <button onClick={() => setIsOpenSidebar(!isOpenSidebar)}>toggle</button>
-            <ul>
-                {sideBarItems.map((item, i) => (
-                    <Link key={i} to={`/${item.endpoint}`}>
-                        <li>
-                            <i>{item.text}</i>
-                        </li>
-                    </Link>
-                ))}
-            </ul>
+        <div>
+            <div className={!isOpenSidebar ? classes.sidebar : classes.sidebarHide}>
+                <div className={classes.logo}>
+                    <h2>E-Pharmacy</h2>
+                </div>
+                <ul>
+                    <li>
+                        {sideBarItems.map((item, i) => (
+                            <Link key={i} to={`/${item.endpoint}`}>
+                                <span className={classes.icon}>
+                                    <i>{item.icon}</i>
+                                </span>
+                                {!isOpenSidebar && <span className={classes.item}>{item.text}</span>}
+                            </Link>
+                        ))}
+                    </li>
+                </ul>
+            </div>
         </div>
     )
 }

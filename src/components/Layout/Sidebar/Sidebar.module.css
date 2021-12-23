@@ -1,38 +1,101 @@
 .sidebar {
-    left: 0;
-    width: 250px;
-    height: 100vh;
-    background: rgb(14, 23, 33);
+    background: rgb(47, 50, 51);
+    position: fixed;
+    width: 225px;
+    height: 100%;
+    padding: 20px 0;
 }
 
-.sidebar header {
-    font-size: 25px;
-    color: rgb(0, 0, 0);
+.sidebar .logo {
+    margin-bottom: 30px;
     text-align: center;
-    line-height: 70px;
-    background: rgb(206, 206, 206);
 }
 
-.sidebar ul i {
+.sidebar .logo h2 {
+    color: #ffffff;
+    margin: 5px 0 5px;
+}
+
+.sidebar ul li a {
     display: block;
-    line-height: 50px;
-    font-size: 20px;
-    color: rgb(255, 255, 255);
-    padding-left: 40px;
-    box-sizing: border-box;
-    border-bottom: 1px solid rgb(206, 206, 206);
-    border-top: 1px solid rgb(39, 40, 36);
-    transition: 0.4s;
+    padding: 13px 30px;
+    border-bottom: 1px solid #879aa8;
+    color: rgb(241, 237, 237);
+    font-size: 18px;
+    position: relative;
 }
 
-ul li:hover i {
-    padding-left: 50px;
+.sidebar ul li .item {
+    margin-left: 15px;
 }
 
-a {
-    text-decoration: none;
+.sidebar ul li a .icon {
+    color: #dee4ec;
+    width: 30px;
+    display: inline-block;
 }
 
-.sidebar_hide {
-    display: none;
+.sidebar ul li a:hover {
+    color: #0cb18d;
+    background: white;
+    border-right: 2px solid rgb(5, 68, 104);
+}
+
+.sidebar ul li a:hover .icon {
+    color: #0cb18d;
+}
+
+/* ...................................... */
+
+.sidebarHide {
+    background: rgb(47, 50, 51);
+    position: fixed;
+    width: 75px;
+    height: 100%;
+    padding: 20px 0;
+}
+
+.sidebarHide ul li a .icon {
+    color: #dee4ec;
+    width: 30px;
+    display: inline-block;
+}
+
+.sidebarHide .logo {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.sidebarHide .logo h2 {
+    color: #ffffff;
+    margin: 5px 0 5px;
+}
+
+.sidebarHide ul li a {
+    display: block;
+    padding: 13px 30px;
+    border-bottom: 1px solid #879aa8;
+    color: rgb(241, 237, 237);
+    font-size: 18px;
+    position: relative;
+}
+
+.sidebarHide ul li .item {
+    margin-left: 15px;
+}
+
+.sidebarHide ul li a .icon {
+    color: #dee4ec;
+    width: 30px;
+    display: inline-block;
+}
+
+.sidebarHide ul li a:hover {
+    color: #0cb18d;
+    background: white;
+    border-right: 2px solid rgb(5, 68, 104);
+}
+
+.sidebarHide ul li a:hover .icon {
+    color: #0cb18d;
 }
