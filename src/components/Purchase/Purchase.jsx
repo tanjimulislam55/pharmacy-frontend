@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import classes from '../../App.module.css'
-import PurchaseLines from '../PurchaseLines/PurchaseLines'
 import Layout from '../Layout/Layout'
+import PurchaseLines from '../PurchaseLines/PurchaseLines'
+import classes from './Purchase.module.css'
 
 const purchaseLineObj = {
     purchase_price: 0,

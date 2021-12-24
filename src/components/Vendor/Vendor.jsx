@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import classes from '../../App.module.css'
 import Layout from '../Layout/Layout'
+import classes from './Vendor.module.css'
 
 export default function Vendor() {
     const [vendors, setVendors] = useState([])

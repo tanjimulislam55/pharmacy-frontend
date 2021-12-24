@@ -1,4 +1,5 @@
 import {
+    faBriefcaseMedical,
     faChartLine,
     faCog,
     faDatabase,
@@ -26,7 +27,7 @@ export default function Sidebar() {
         {
             text: 'Medicine',
             endpoint: 'type',
-            icon: <FontAwesomeIcon icon={faTachometerAlt} />,
+            icon: <FontAwesomeIcon icon={faBriefcaseMedical} />,
         },
         {
             text: 'Purchase',

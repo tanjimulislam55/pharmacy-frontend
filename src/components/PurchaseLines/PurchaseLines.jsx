@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import classes from '../../App.module.css'
+import classes from './PurchaseLines.module.css'
 
 export default function PurchaseLines({ purchaseLine, i, total, setTotal }) {
     const [medicines, setMedicines] = useState([])

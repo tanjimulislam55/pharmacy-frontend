@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import classes from '../../App.module.css'
 import Layout from '../Layout/Layout'
+import classes from './Category.module.css'
 
 export default function Category() {
     const [name, setName] = useState('')
