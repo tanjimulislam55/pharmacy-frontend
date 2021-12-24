@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import classes from '../../App.module.css'
+import classes from './Medicine.module.css'
 import MedicineForm from './MedicineForm/MedicineForm'
 import MedicineList from './MedicineList/MedicineList'
 
