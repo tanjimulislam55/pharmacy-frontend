@@ -4,7 +4,11 @@ import { Link } from 'react-router-dom'
 import MedicineForm from '../MedicineForm/MedicineForm'
 import classes from './MedicineList.module.css'
 
-export default function MedicineList({ medicine }) {
+export default function MedicineList({ medicines, vendors, types, categories, units, setIsOpenForm }) {
+    const getName = (elements, id) => {
+        const item = elements.find(element => element.id == id)
+        return item.name
+    }
     return (
         <div className={classes.tableContainer}>
             <div className={classes.wrapper}>
@@ -14,8 +18,8 @@ export default function MedicineList({ medicine }) {
                         <FontAwesomeIcon icon={faSearch} />
                     </button>
                 </form>
-                <button className={classes.button}>
-                    <Link to="#popup">Add Medicine</Link>
+                <button className={classes.button} onClick={() => setIsOpenForm(true)}>
+                    Add Medicine
                 </button>
             </div>
 
@@ -24,41 +28,33 @@ export default function MedicineList({ medicine }) {
                     <th>ID</th>
                     <th>Medicine</th>
                     <th>Type</th>
+                    <th>Unit</th>
+                    <th>Category</th>
                     <th>Company</th>
                     <th>Stock</th>
-                    <th></th>
+                    <th>Price</th>
+                    <th>Action</th>
                 </tr>
-
-                <tr className={classes.tableRow}>
-                    <td data-title="id">001</td>
-                    <td data-title="name">Napa Extra</td>
-                    <td data-title="type">Tablet</td>
-                    <td data-title="company">Beximco</td>
-                    <td data-title="stock">500</td>
-                    <td className="select">
-                        <Link className={classes.icon} to="#">
-                            <FontAwesomeIcon icon={faEdit} />
-                        </Link>
-                        <Link className={classes.icon} to="#">
-                            <FontAwesomeIcon icon={faTrash} />
-                        </Link>
-                    </td>
-                </tr>
-                <tr className={classes.tableRow}>
-                    <td data-title="id">002</td>
-                    <td data-title="name">Ace Plus</td>
-                    <td data-title="type">Tablet</td>
-                    <td data-title="company">Square</td>
-                    <td data-title="stock">400</td>
-                    <td className="select">
-                        <Link className={classes.icon} to="#">
-                            <FontAwesomeIcon icon={faEdit} />
-                        </Link>
-                        <Link className={classes.icon} to="#">
-                            <FontAwesomeIcon icon={faTrash} />
-                        </Link>
-                    </td>
-                </tr>
+                {medicines && medicines.map(medicine => (
+                    <tr className={classes.tableRow}>
+                        <td data-title="id">{medicine.id}</td>
+                        <td data-title="name">{medicine.name}</td>
+                        <td data-title="type">{getName(types, medicine.type_id)}</td>
+                        <td data-title="unit">{getName(units, medicine.unit_id)}</td>
+                        <td data-title="category">{getName(categories, medicine.category_id)}</td>
+                        <td data-title="company">{getName(vendors, medicine.vendor_id)}</td>
+                        <td data-title="stock">{medicine.medicine_detail.stock}</td>
+                        <td data-title="price">{medicine.medicine_detail.retail_price}</td>
+                        <td className="select">
+                            <Link className={classes.icon} to="#">
+                                <FontAwesomeIcon icon={faEdit} />
+                            </Link>
+                            <Link className={classes.icon} to="#">
+                                <FontAwesomeIcon icon={faTrash} />
+                            </Link>
+                        </td>
+                    </tr>
+                ))}
             </table>
         </div>
     )
