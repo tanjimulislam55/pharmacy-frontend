@@ -1,16 +1,18 @@
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
 import classes from './MedicineForm.module.css'
 
-export default function MedicineForm({ setIsOpenForm }) {
+export default function MedicineForm({ setIsOpenForm, name, setName, vendors, types, units, categories, setVendorId, setTypeId, setUnitId, setCategorieId }) {
+    
     return (
         <div className={classes.overlay} id="popup">
             <div className={classes.formWrapper}>
                 <h2>Add New Medicine</h2>
-                <Link className={classes.close} to="./">
+                <Link className={classes.close} to="/">
                     &times;
                 </Link>
 
-                <form classNameName={classes.item} onSubmit={handleSubmit}>
+                <form classNameName={classes.item}>
                     <div className={classes.inputbox}>
                         <input type="text" name="" required="" />
                         <label htmlFor="medicines">Medicine Name</label>
