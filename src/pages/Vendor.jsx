@@ -1,5 +1,5 @@
 import { Layout } from '../components'
 
-export default function Vendor() {
+export default function VendorPage() {
     return <Layout />
 }

@@ -1,5 +1,5 @@
 import { Layout } from '../components'
 
-export default function Bill() {
+export default function BillPage() {
     return <Layout />
 }
