@@ -13,6 +13,7 @@ export default function Medicine() {
     const [typeId, setTypeId] = useState()
     const [unitId, setUnitId] = useState()
     const [categorieId, setCategorieId] = useState()
+    
     const [medicines, setMedicines] = useState([])
     const [isOpenForm, setIsOpenForm] = useState(false)
 
@@ -60,9 +61,9 @@ export default function Medicine() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/units`)
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/vendors`)
             const data = await response.json()
-            setUnits(data)
+            setVendors(data)
         }
         return fetchData()
     }, [])
@@ -103,20 +104,32 @@ export default function Medicine() {
     }, [])
 
     return (
-        <>
+
+        <div className={classes.content}>
+            {isOpenForm && 
+                <MedicineForm 
+                    name={name} 
+                    setName={setName} 
+                    vendors={vendors} 
+                    types={types} 
+                    units={units} 
+                    categories={categories} 
+                    setVendorId={setVendorId} 
+                    setTypeId={setTypeId} 
+                    setUnitId={setUnitId} 
+                    setCategorieId={setCategorieId} 
+                />
+            }
             <div className={classes.content}>
-                <div></div>
-                <div onClick={() => setIsOpenForm(!isOpenForm)}>Add Medicine</div>
+                <MedicineList 
+                    setIsOpenForm={setIsOpenForm}
+                    medicines={medicines} 
+                    vendors={vendors} 
+                    types={types} 
+                    units={units} 
+                    categories={categories} 
+                />
             </div>
-            {isOpenForm && <MedicineForm setIsOpenForm={setIsOpenForm} />}
-            <div className={classes.content}>
-                {medicines &&
-                    medicines.map((medicine) => (
-                        <div key={medicine.id}>
-                            <MedicineList medicine={medicine} />
-                        </div>
-                    ))}
-            </div>
-        </>
+        </div>
     )
 }
