@@ -1,5 +1,9 @@
-import { Layout } from '../components'
+import { Layout, Medicine } from '../components'
 
-export default function Medicine() {
-    return <Layout />
+export default function MedicinePage() {
+    return (
+        <Layout>
+            <Medicine />
+        </Layout>
+    )
 }
