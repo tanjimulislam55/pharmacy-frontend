@@ -20,6 +20,11 @@
     grid-template-columns: minmax(0, 15%) minmax(0, 85%);
 }
 
+.layoutWhenSidebarIsHidden {
+    display: grid;
+    grid-template-columns: minmax(0, 5%) minmax(0, 95%);
+}
+
 .container {
     display: block;
     inset: 0;
