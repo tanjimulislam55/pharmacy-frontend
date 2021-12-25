@@ -21,12 +21,12 @@ export default function Sidebar() {
     const sideBarItems = [
         {
             text: 'Dashboard',
-            endpoint: 'vendor',
+            endpoint: '',
             icon: <FontAwesomeIcon icon={faTachometerAlt} />,
         },
         {
             text: 'Medicine',
-            endpoint: 'type',
+            endpoint: 'medicine',
             icon: <FontAwesomeIcon icon={faBriefcaseMedical} />,
         },
         {
@@ -55,13 +55,13 @@ export default function Sidebar() {
             icon: <FontAwesomeIcon icon={faChartLine} />,
         },
         {
-            text: 'Account',
-            endpoint: 'account',
+            text: 'Accounts',
+            endpoint: 'accounts',
             icon: <FontAwesomeIcon icon={faUserShield} />,
         },
         {
-            text: 'Setting',
-            endpoint: 'setting',
+            text: 'Settings',
+            endpoint: 'settings',
             icon: <FontAwesomeIcon icon={faCog} />,
         },
     ]
