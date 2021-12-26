@@ -6,7 +6,7 @@ import classes from './MedicineList.module.css'
 
 export default function MedicineList({ medicines, vendors, types, categories, units, setIsOpenForm }) {
     const getName = (elements, id) => {
-        const item = elements.find(element => element.id == id)
+        const item = elements.find((element) => element.id == id)
         return item.name
     }
     return (
@@ -35,26 +35,27 @@ export default function MedicineList({ medicines, vendors, types, categories, un
                     <th>Price</th>
                     <th>Action</th>
                 </tr>
-                {medicines && medicines.map(medicine => (
-                    <tr className={classes.tableRow}>
-                        <td data-title="id">{medicine.id}</td>
-                        <td data-title="name">{medicine.name}</td>
-                        <td data-title="type">{getName(types, medicine.type_id)}</td>
-                        <td data-title="unit">{getName(units, medicine.unit_id)}</td>
-                        <td data-title="category">{getName(categories, medicine.category_id)}</td>
-                        <td data-title="company">{getName(vendors, medicine.vendor_id)}</td>
-                        <td data-title="stock">{medicine.medicine_detail.stock}</td>
-                        <td data-title="price">{medicine.medicine_detail.retail_price}</td>
-                        <td className="select">
-                            <Link className={classes.icon} to="#">
-                                <FontAwesomeIcon icon={faEdit} />
-                            </Link>
-                            <Link className={classes.icon} to="#">
-                                <FontAwesomeIcon icon={faTrash} />
-                            </Link>
-                        </td>
-                    </tr>
-                ))}
+                {medicines &&
+                    medicines.map((medicine) => (
+                        <tr className={classes.tableRow}>
+                            <td data-title="id">{medicine.id}</td>
+                            <td data-title="name">{medicine.name}</td>
+                            <td data-title="type">{getName(types, medicine.type_id)}</td>
+                            <td data-title="unit">{getName(units, medicine.unit_id)}</td>
+                            <td data-title="category">{getName(categories, medicine.category_id)}</td>
+                            <td data-title="company">{getName(vendors, medicine.vendor_id)}</td>
+                            <td data-title="stock">{medicine.medicine_detail.stock}</td>
+                            <td data-title="price">{medicine.medicine_detail.retail_price}</td>
+                            <td className="select">
+                                <Link className={classes.icon} to="#">
+                                    <FontAwesomeIcon icon={faEdit} />
+                                </Link>
+                                <Link className={classes.icon} to="#">
+                                    <FontAwesomeIcon icon={faTrash} />
+                                </Link>
+                            </td>
+                        </tr>
+                    ))}
             </table>
         </div>
     )
