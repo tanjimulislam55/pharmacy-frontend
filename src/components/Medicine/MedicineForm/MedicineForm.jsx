@@ -84,37 +84,3 @@ export default function MedicineForm({
         </div>
     )
 }
-
-/* return (
-        <div className={classes.overlay} id="popup">
-            <div className={classes.formWrapper}>
-                <h2>Add Medicine</h2>
-                <Link className={classes.close} to="#">
-                    &times;
-                </Link>
-                <form>
-                    <div className={classes.inputbox}>
-                        <input type="text" name="" required="" />
-                        <label>Medicine Name</label>
-                    </div>
-                    <div className={classes.inputbox}>
-                        <input type="text" name="" required="" />
-                        <label>Type</label>
-                    </div>
-                    <div className={classes.inputbox}>
-                        <input type="text" name="" required="" />
-                        <label>Company</label>
-                    </div>
-                    <div className={classes.inputbox}>
-                        <input type="text" name="" required="" />
-                        <label>Stock</label>
-                    </div>
-                    <div className={classes.inputbox}>
-                        <input type="text" name="" required="" />
-                        <label>Unit</label>
-                    </div>
-                    <button className={classes.button}>Submit</button>
-                </form>
-            </div>
-        </div>
-    ) */
