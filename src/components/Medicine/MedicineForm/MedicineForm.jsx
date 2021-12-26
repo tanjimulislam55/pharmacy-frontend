@@ -1,9 +1,20 @@
-import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import classes from './MedicineForm.module.css'
 
-export default function MedicineForm({ setIsOpenForm, name, setName, vendors, types, units, categories, setVendorId, setTypeId, setUnitId, setCategorieId }) {
-    
+export default function MedicineForm({
+    setIsOpenForm,
+    name,
+    setName,
+    vendors,
+    types,
+    units,
+    categories,
+    setVendorId,
+    setTypeId,
+    setUnitId,
+    setCategorieId,
+}) {
     return (
         <div className={classes.overlay} id="popup">
             <div className={classes.formWrapper}>
