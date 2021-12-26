@@ -1,12 +1,11 @@
 import { faEdit, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
-import MedicineForm from '../MedicineForm/MedicineForm'
 import classes from './MedicineList.module.css'
 
 export default function MedicineList({ medicines, vendors, types, categories, units, setIsOpenForm }) {
     const getName = (elements, id) => {
-        const item = elements.find((element) => element.id == id)
+        const item = elements.find((element) => element.id === id)
         return item.name
     }
     return (
