@@ -13,7 +13,7 @@ export default function Medicine() {
     const [typeId, setTypeId] = useState()
     const [unitId, setUnitId] = useState()
     const [categorieId, setCategorieId] = useState()
-    
+
     const [medicines, setMedicines] = useState([])
     const [isOpenForm, setIsOpenForm] = useState(false)
 
@@ -104,30 +104,29 @@ export default function Medicine() {
     }, [])
 
     return (
-
         <div className={classes.content}>
-            {isOpenForm && 
-                <MedicineForm 
-                    name={name} 
-                    setName={setName} 
-                    vendors={vendors} 
-                    types={types} 
-                    units={units} 
-                    categories={categories} 
-                    setVendorId={setVendorId} 
-                    setTypeId={setTypeId} 
-                    setUnitId={setUnitId} 
-                    setCategorieId={setCategorieId} 
+            {isOpenForm && (
+                <MedicineForm
+                    name={name}
+                    setName={setName}
+                    vendors={vendors}
+                    types={types}
+                    units={units}
+                    categories={categories}
+                    setVendorId={setVendorId}
+                    setTypeId={setTypeId}
+                    setUnitId={setUnitId}
+                    setCategorieId={setCategorieId}
                 />
-            }
+            )}
             <div className={classes.content}>
-                <MedicineList 
+                <MedicineList
                     setIsOpenForm={setIsOpenForm}
-                    medicines={medicines} 
-                    vendors={vendors} 
-                    types={types} 
-                    units={units} 
-                    categories={categories} 
+                    medicines={medicines}
+                    vendors={vendors}
+                    types={types}
+                    units={units}
+                    categories={categories}
                 />
             </div>
         </div>
