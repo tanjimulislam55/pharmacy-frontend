@@ -117,6 +117,7 @@ export default function Medicine() {
                     setTypeId={setTypeId}
                     setUnitId={setUnitId}
                     setCategorieId={setCategorieId}
+                    setIsOpenForm={setIsOpenForm}
                 />
             )}
             <div className={classes.content}>
