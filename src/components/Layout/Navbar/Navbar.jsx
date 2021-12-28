@@ -10,12 +10,9 @@ const Navbar = () => {
     return (
         <div className={classes.nav}>
             <div className={classes.topNavbar}>
-                <div className={classes.hamburger}>
-                    <Link onClick={() => setIsOpenSidebar(!isOpenSidebar)} to="#">
-                        <FontAwesomeIcon icon={faBars} />
-                    </Link>
+                <div className={classes.hamburger} onClick={() => setIsOpenSidebar(!isOpenSidebar)}>
+                    <FontAwesomeIcon icon={faBars} />
                 </div>
-
                 <div className={classes.navList}>
                     <Link to="#">
                         <FontAwesomeIcon icon={faBell} />
