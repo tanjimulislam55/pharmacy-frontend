@@ -1,5 +1,9 @@
-import { Layout } from '../components'
+import { Layout, Dashboard } from '../components'
 
 export default function HomePage() {
-    return <Layout />
+    return (
+        <Layout>
+            <Dashboard />
+        </Layout>
+    )
 }
