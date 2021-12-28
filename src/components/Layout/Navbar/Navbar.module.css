@@ -11,18 +11,18 @@
     padding: 0 30px;
 }
 
-.nav .topNavbar .hamburger a {
+.nav .topNavbar .hamburger {
     font-size: 20px;
     color: #f4fbff;
 }
 
-.nav .topNavbar .hamburger a:hover {
+.nav .topNavbar .hamburger:hover {
     color: #a2ecff;
+    cursor: pointer;
 }
 
 .nav .topNavbar .navList {
     margin-left: 85%;
-    display: flex;
 }
 
 .nav .topNavbar .navList a {
