@@ -42,9 +42,13 @@
     text-decoration: none;
     color: rgb(47, 50, 51);
     background-color: azure;
-    padding: 5px;
+    padding: 3px 5px;
     border-radius: 3px;
     margin: 0 1rem;
+    text-transform: uppercase;
+    font-size: initial;
+    font-weight: 800;
+    font-size: 12px;
 }
 
 .nav .topNavbar .navList .logout:hover {
