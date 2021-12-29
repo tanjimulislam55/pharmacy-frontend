@@ -7,6 +7,7 @@
     background: rgb(47, 50, 51);
     height: 70px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     padding: 0 30px;
 }
@@ -22,7 +23,9 @@
 }
 
 .nav .topNavbar .navList {
-    margin-left: 85%;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
 }
 
 .nav .topNavbar .navList a {
@@ -33,4 +36,20 @@
 
 .nav .topNavbar .navList a:hover {
     color: #a2ecff;
+}
+
+.nav .topNavbar .navList .logout {
+    text-decoration: none;
+    color: rgb(47, 50, 51);
+    background-color: azure;
+    padding: 5px;
+    border-radius: 3px;
+    margin: 0 1rem;
+}
+
+.nav .topNavbar .navList .logout:hover {
+    text-decoration: none;
+    color: rgb(47, 50, 51);
+    background-color: #a2ecff;
+    cursor: pointer;
 }

@@ -70,16 +70,14 @@ export default function Sidebar() {
         <div>
             <div className={!isOpenSidebar ? classes.sidebar : classes.sidebarHide}>
                 <div className={classes.logo}>
-                    <h2>E-Pharmacy</h2>
+                    <h2>{!isOpenSidebar ? 'E-Pharmacy' : 'E/P'}</h2>
                 </div>
                 <ul>
                     <li>
                         {sideBarItems.map((item, i) => (
                             <Link key={i} to={`/${item.endpoint}`}>
-                                <span className={classes.icon}>
-                                    <i>{item.icon}</i>
-                                </span>
-                                {!isOpenSidebar && <span className={classes.item}>{item.text}</span>}
+                                <i className={classes.icon}>{item.icon}</i>
+                                {!isOpenSidebar && <span className={classes.text}>{item.text}</span>}
                             </Link>
                         ))}
                     </li>

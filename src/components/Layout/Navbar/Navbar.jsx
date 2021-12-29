@@ -20,6 +20,7 @@ const Navbar = () => {
                     <Link to="#">
                         <FontAwesomeIcon icon={faUserCircle} />
                     </Link>
+                    <button className={classes.logout}>Logout</button>
                 </div>
             </div>
         </div>
