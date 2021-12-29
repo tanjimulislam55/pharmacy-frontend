@@ -36,7 +36,7 @@ export default function MedicineList({ medicines, vendors, types, categories, un
                 </tr>
                 {medicines &&
                     medicines.map((medicine) => (
-                        <tr className={classes.tableRow}>
+                        <tr key={medicine.id} className={classes.tableRow}>
                             <td data-title="id">{medicine.id}</td>
                             <td data-title="name">{medicine.name}</td>
                             <td data-title="type">{getName(types, medicine.type_id)}</td>
