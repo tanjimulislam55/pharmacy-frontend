@@ -1,4 +1,5 @@
-import { XYPlot, LineSeries, MarkSeries, LineMarkSeries } from 'react-vis'
+// import { XYPlot, LineSeries, MarkSeries, LineMarkSeries } from 'react-vis'
+import DashboardItem from './DashboardItem/DashboardItem'
 
 export default function Dashboard() {
     const data = [
@@ -36,35 +37,38 @@ export default function Dashboard() {
     const myPalette = ['#c7e9c0', '#00441b']
 
     return (
-        <div style={{ display: 'grid', gridTemplateColumns: 'auto auto auto', margin: '12em 6em' }}>
-            <div>
-                <XYPlot width={300} height={300}>
-                    <LineMarkSeries
-                        className="linemark-series-example"
-                        style={{
-                            strokeWidth: '3px',
-                        }}
-                        lineStyle={{ stroke: 'red' }}
-                        markStyle={{ stroke: 'blue' }}
-                        data={data}
-                    />
-                    <LineMarkSeries className="linemark-series-example-2" curve={'curveMonotoneX'} data={data} />
-                </XYPlot>
-            </div>
-            <div>
-                <XYPlot height={200} width={200} colorType="category" colorDomain={[0, 1, 2]} colorRange={myPalette}>
-                    <LineSeries data={series1} color={0} />
-                    <LineSeries data={series2} color={1} />
-                    <LineSeries data={series3} color={2} />
-                </XYPlot>
-            </div>
-            <div>
-                <XYPlot height={200} width={200} colorType="category" colorDomain={[0, 1, 2]} colorRange={myPalette}>
-                    <MarkSeries data={series1} color={0} />
-                    <MarkSeries data={series2} color={1} />
-                    <MarkSeries data={series3} color={2} />
-                </XYPlot>
-            </div>
+        // <div style={{ display: 'grid', gridTemplateColumns: 'auto auto auto', margin: '12em 6em' }}>
+        //     <div>
+        //         <XYPlot width={300} height={300}>
+        //             <LineMarkSeries
+        //                 className="linemark-series-example"
+        //                 style={{
+        //                     strokeWidth: '3px',
+        //                 }}
+        //                 lineStyle={{ stroke: 'red' }}
+        //                 markStyle={{ stroke: 'blue' }}
+        //                 data={data}
+        //             />
+        //             <LineMarkSeries className="linemark-series-example-2" curve={'curveMonotoneX'} data={data} />
+        //         </XYPlot>
+        //     </div>
+        //     <div>
+        //         <XYPlot height={200} width={200} colorType="category" colorDomain={[0, 1, 2]} colorRange={myPalette}>
+        //             <LineSeries data={series1} color={0} />
+        //             <LineSeries data={series2} color={1} />
+        //             <LineSeries data={series3} color={2} />
+        //         </XYPlot>
+        //     </div>
+        //     <div>
+        //         <XYPlot height={200} width={200} colorType="category" colorDomain={[0, 1, 2]} colorRange={myPalette}>
+        //             <MarkSeries data={series1} color={0} />
+        //             <MarkSeries data={series2} color={1} />
+        //             <MarkSeries data={series3} color={2} />
+        //         </XYPlot>
+        //     </div>
+        // </div>
+        <div>
+            <DashboardItem />
         </div>
     )
 }
