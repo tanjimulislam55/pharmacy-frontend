@@ -46,12 +46,31 @@
     transition: 0.5s;
 }
 
-.formWrapper .inputbox input:focus ~ label,
-.formWrapper .inputbox input:valid ~ label {
+.formWrapper .inputbox input:focus + label,
+.formWrapper .inputbox input:valid + label {
     top: -32px;
     left: -8px;
     color: #2faab1;
     font-size: 18px;
+}
+
+.formWrapper .selectBox .option {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    font-size: 14px;
+    background-color: rgb(242, 247, 247);
+    color: rgb(102, 99, 99);
+    outline: none;
+    border: none;
+    margin-bottom: 20px;
+    padding: 10px 10px;
+    border-radius: 2px;
+}
+
+.formWrapper .selectBox .option:hover option,
+.formWrapper .selectBox .option:focus option {
+    color: #2faab1;
 }
 
 .formWrapper .button {

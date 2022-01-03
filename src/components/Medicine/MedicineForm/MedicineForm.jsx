@@ -28,11 +28,11 @@ export default function MedicineForm({
                     <label htmlFor="medicines">Medicine Name</label>
                 </div>
 
-                <div className={classes.inputbox}>
-                    <input name="name" type="text" value={name} onChange={(e) => setName(e.target.value)} />
-                    <label htmlFor="types">Select Type</label>
-                    <select onChange={(e) => setTypeId(e.target.value)} id="types">
-                        <option value="">select</option>
+                <div className={classes.selectBox}>
+                    {/* <input name="name" type="text" value={name} onChange={(e) => setName(e.target.value)} /> */}
+                    {/* <label htmlFor="types">Select Type</label> */}
+                    <select className={classes.option} onChange={(e) => setTypeId(e.target.value)} id="types">
+                        <option value="">Select Type</option>
                         {types.map((type, i) => (
                             <option key={i} value={type.id}>
                                 {type.name}
@@ -41,10 +41,10 @@ export default function MedicineForm({
                     </select>
                 </div>
 
-                <div className={classes.inputbox}>
-                    <label htmlFor="categories">Select Category</label>
-                    <select onChange={(e) => setCategorieId(e.target.value)} id="categories">
-                        <option value="">select</option>
+                <div className={classes.selectBox}>
+                    {/* <label htmlFor="categories">Select Category</label> */}
+                    <select className={classes.option} onChange={(e) => setCategorieId(e.target.value)} id="categories">
+                        <option value="">Select Category</option>
                         {categories.map((category, i) => (
                             <option key={i} value={category.id}>
                                 {category.name}
@@ -53,10 +53,10 @@ export default function MedicineForm({
                     </select>
                 </div>
 
-                <div className={classes.inputbox}>
-                    <label htmlFor="units">Select Unit</label>
-                    <select onChange={(e) => setUnitId(e.target.value)} id="units">
-                        <option value="">select</option>
+                <div className={classes.selectBox}>
+                    {/* <label htmlFor="units">Select Unit</label> */}
+                    <select className={classes.option} onChange={(e) => setUnitId(e.target.value)} id="units">
+                        <option value="">Select Unit</option>
                         {units.map((unit, i) => (
                             <option key={i} value={unit.id}>
                                 {unit.name}
@@ -65,10 +65,10 @@ export default function MedicineForm({
                     </select>
                 </div>
 
-                <div className={classes.inputbox}>
-                    <label htmlFor="vendors">Select Vendor</label>
-                    <select onChange={(e) => setVendorId(e.target.value)} id="vendors">
-                        <option value="">select</option>
+                <div className={classes.selectBox}>
+                    {/* <label htmlFor="vendors">Select Vendor</label> */}
+                    <select className={classes.option} onChange={(e) => setVendorId(e.target.value)} id="vendors">
+                        <option value="">Select Vendor</option>
                         {vendors.map((vendor, i) => (
                             <option key={i} value={vendor.id}>
                                 {vendor.name}
