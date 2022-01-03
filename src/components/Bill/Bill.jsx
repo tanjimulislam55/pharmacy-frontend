@@ -1,3 +1,5 @@
+import BillList from './BillList/BillList'
+
 export default function Bill() {
-    return null
+    return <BillList />
 }
