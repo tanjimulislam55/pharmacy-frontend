@@ -104,7 +104,7 @@ export default function Medicine() {
     }, [])
 
     return (
-        <div className={classes.content}>
+        <div>
             {isOpenForm && (
                 <MedicineForm
                     name={name}
@@ -120,16 +120,14 @@ export default function Medicine() {
                     setIsOpenForm={setIsOpenForm}
                 />
             )}
-            <div className={classes.content}>
-                <MedicineList
-                    setIsOpenForm={setIsOpenForm}
-                    medicines={medicines}
-                    vendors={vendors}
-                    types={types}
-                    units={units}
-                    categories={categories}
-                />
-            </div>
+            <MedicineList
+                setIsOpenForm={setIsOpenForm}
+                medicines={medicines}
+                vendors={vendors}
+                types={types}
+                units={units}
+                categories={categories}
+            />
         </div>
     )
 }
