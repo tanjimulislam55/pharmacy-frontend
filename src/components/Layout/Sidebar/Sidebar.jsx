@@ -30,11 +30,6 @@ export default function Sidebar() {
             icon: <FontAwesomeIcon icon={faBriefcaseMedical} />,
         },
         {
-            text: 'Purchase',
-            endpoint: 'purchase',
-            icon: <FontAwesomeIcon icon={faShoppingBag} />,
-        },
-        {
             text: 'Bill',
             endpoint: 'bill',
             icon: <FontAwesomeIcon icon={faHandHoldingUsd} />,
@@ -43,6 +38,11 @@ export default function Sidebar() {
             text: 'Stock',
             endpoint: 'stock',
             icon: <FontAwesomeIcon icon={faLayerGroup} />,
+        },
+        {
+            text: 'Purchase',
+            endpoint: 'purchase',
+            icon: <FontAwesomeIcon icon={faShoppingBag} />,
         },
         {
             text: 'Expense',
@@ -70,7 +70,7 @@ export default function Sidebar() {
         <div>
             <div className={!isOpenSidebar ? classes.sidebar : classes.sidebarHide}>
                 <div className={classes.logo}>
-                    <h2>{!isOpenSidebar ? 'E-Pharmacy' : 'E/P'}</h2>
+                    <h2>{!isOpenSidebar ? 'E-Pharmacy' : 'EP'}</h2>
                 </div>
                 <ul>
                     <li>

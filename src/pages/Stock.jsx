@@ -1,5 +1,4 @@
-import { Layout } from '../components'
-import Stock from '../components/Stock/Stock'
+import { Layout, Stock } from '../components'
 
 export default function StockPage() {
     return (

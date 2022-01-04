@@ -24,7 +24,7 @@ export default function BillList() {
                     <th>Customer</th>
                     <th>Date</th>
                     <th>Total Amount</th>
-                    <th></th>
+                    <th>Action</th>
                 </tr>
                 <tr className={classes.tableRow}>
                     <td data-title="">1</td>

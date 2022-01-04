@@ -16,19 +16,20 @@ h1 {
 }
 
 .tableRow {
-    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 10px 10px 15px 10px var(--light);
 }
 
-td {
-    text-align: center;
-    font-size: 17px;
-}
-
-th {
-    background-color: #202932;
-    color: #fff;
+.tableRow th {
+    background-color: var(--dark);
+    color: var(--white);
     font-weight: 500;
-    font-size: 20px;
+    font-size: 16px;
+}
+
+.tableRow td {
+    text-align: center;
+    font-size: 14px;
+    color: var(--dark);
 }
 
 td,
@@ -39,12 +40,12 @@ th {
 .icon {
     font-size: 12px;
     text-decoration: none;
-    color: rgb(26, 156, 139);
+    color: var(--green);
     padding: 5px;
 }
 
 .icon:hover {
-    color: rgb(128, 9, 9);
+    color: var(--secondary);
 }
 
 .tableContainer .wrapper {
@@ -53,29 +54,29 @@ th {
 }
 
 .tableContainer .button {
-    background-color: rgb(54, 185, 168);
+    background-color: var(--primary);
     border: none;
     float: right;
     padding: 10px 25px;
     font-size: 16px;
     font-weight: 500;
     border-radius: 2px;
-    color: #fff;
     cursor: pointer;
+    color: var(--white);
 }
 
 .tableContainer .button a {
     text-decoration: none;
-    color: #fff;
+    color: var(--white);
 }
 
 .tableContainer .button:hover {
-    background-color: rgb(40, 167, 150);
+    background-color: var(--secondary);
     transition: 0.5s;
 }
 
 .tableContainer .searchField {
-    background-color: #fff;
+    background-color: var(--light);
     border: none;
     padding: 12px 10px;
     width: 300px;
@@ -86,7 +87,7 @@ th {
 }
 
 .tableContainer .searchButton {
-    background-color: #fff;
+    background-color: var(--light);
     padding: 12px;
     border: none;
     border-radius: 2px;
@@ -96,5 +97,5 @@ th {
 }
 
 .tableContainer .searchButton:hover {
-    color: rgb(26, 156, 139);
+    color: var(--secondary);
 }
