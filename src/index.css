@@ -21,3 +21,7 @@
     --green: #5cb484;
     --red: #ef5455;
 }
+
+body {
+    background-color: var(--light);
+}

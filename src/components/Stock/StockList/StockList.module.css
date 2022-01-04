@@ -4,7 +4,7 @@ h1 {
 }
 
 .tableContainer {
-    width: 90%;
+    width: 95%;
     margin: 30px auto;
 }
 
@@ -21,14 +21,14 @@ h1 {
 
 td {
     text-align: center;
-    font-size: 17px;
+    font-size: 14px;
 }
 
 th {
     background-color: #202932;
     color: #fff;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 14px;
 }
 
 td,
