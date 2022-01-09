@@ -8,8 +8,10 @@
 }
 
 :root {
+    --deep-primary: #415dd9;
     --primary: #457dc3;
-    --secondary: #4885cf;
+    --secondary: #41add9;
+    --light-secondary: #3ecbcf;
     --dark: #333;
     --dark-blue: #23395d;
     --dark-grey: #555;
