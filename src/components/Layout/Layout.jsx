@@ -8,7 +8,9 @@ export default function Layout({ children }) {
     const { isOpenSidebar } = useContext(SidebarContext)
     return (
         <div className={!isOpenSidebar ? classes.layout : classes.layoutWhenSidebarIsHidden}>
-            <Sidebar />
+            <div>
+                <Sidebar />
+            </div>
             <div className={classes.container}>
                 <Navbar />
                 {children}
