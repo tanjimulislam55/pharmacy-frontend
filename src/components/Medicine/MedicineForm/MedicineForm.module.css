@@ -1,3 +1,12 @@
+.wrapper {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    background: rgb(0, 0, 0, 0.8);
+}
 .formWrapper {
     position: absolute;
     top: 50%;
