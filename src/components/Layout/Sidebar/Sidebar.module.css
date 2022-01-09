@@ -1,7 +1,8 @@
 .sidebar {
     background: var(--dark);
-    position: relative;
+    position: fixed;
     height: 100vh;
+    width: 15%;
 }
 
 .sidebar .logo {
@@ -52,8 +53,9 @@
 
 .sidebarHide {
     background: var(--dark);
-    position: relative;
+    position: fixed;
     height: 100vh;
+    width: 5%;
 }
 
 .sidebarHide ul li a .icon {
