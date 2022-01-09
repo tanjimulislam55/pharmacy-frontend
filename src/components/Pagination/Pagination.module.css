@@ -1,0 +1,28 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+.pagination a {
+    color: var(--dark);
+    padding: 8px 14px;
+    text-decoration: none;
+    transition: background-color 0.5s;
+    border: 1px solid var(--light);
+    border-radius: 2px;
+    margin: 0 4px;
+    font-size: 12px;
+}
+
+.pagination a.active {
+    background-color: var(--primary);
+    color: var(--white);
+    border: 1px solid var(--secondary);
+}
+
+.pagination a.active:hover {
+    background-color: var(--secondary);
+}
+
+.pagination a:hover:not(.active) {
+    background-color: var(--light);
+}
