@@ -1,0 +1,35 @@
+.dateFilter {
+    position: relative;
+}
+
+.dateFilter label {
+    font-size: 14px;
+    display: inline;
+    padding: 4px 5px;
+    border-radius: 5px;
+}
+
+.dateFilter input {
+    background-color: var(--light);
+    border: none;
+    padding: 12px 10px;
+    width: 200px;
+    border-radius: 2px;
+    font-size: 14px;
+    outline: none;
+    color: var(--dark-grey);
+}
+
+.dateFilter .searchButton {
+    background-color: var(--light);
+    padding: 12px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 2px;
+}
+
+.dateFilter button:hover {
+    color: var(--secondary);
+}
