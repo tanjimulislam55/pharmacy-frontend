@@ -16,8 +16,15 @@
     grid-template-columns: minmax(0, 5%) minmax(0, 95%);
 }
 
+.layoutWhenSidebarIsHidden > div:nth-child(2) > div:nth-child(1) {
+    width: 95%;
+}
+
 .container {
     display: block;
     inset: 0;
     width: 100%;
+}
+.container > div:nth-child(2) {
+    margin-top: 80px;
 }
