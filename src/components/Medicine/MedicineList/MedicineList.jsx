@@ -18,7 +18,7 @@ export default function MedicineList({ medicines, vendors, types, categories, un
                     </button>
                 </form>
                 <button className={classes.button} onClick={() => setIsOpenForm(true)}>
-                    Add Medicine
+                    + Add Medicine
                 </button>
             </div>
 

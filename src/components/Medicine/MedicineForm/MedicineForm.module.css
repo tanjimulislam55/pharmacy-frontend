@@ -5,9 +5,9 @@
     width: 600px;
     padding: 40px;
     transform: translate(-50%, -50%);
-    background: #ffff;
+    background: var(--white);
     box-sizing: border-box;
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px var(--light);
     border-radius: 10px;
     margin: 0 auto;
 }
@@ -15,7 +15,7 @@
 .formWrapper h2 {
     margin: 0 0 40px;
     padding: 0;
-    color: rgb(32, 30, 30);
+    color: var(--dark);
     text-align: center;
 }
 
@@ -27,12 +27,12 @@
     width: 100%;
     padding: 10px 0px;
     font-size: 16px;
-    color: rgb(37, 34, 34);
+    color: var(--dark);
     margin-bottom: 30px;
-    border: 0.01px solid rgb(255, 255, 255);
+    border: 0.01px solid var(--white);
     border-radius: 2px;
     outline: none;
-    background-color: rgb(242, 247, 247);
+    background-color: var(--light);
     margin-bottom: 32px;
 }
 .formWrapper .inputbox label {
@@ -41,7 +41,7 @@
     left: 0;
     padding: 10px 10px;
     font-size: 16px;
-    color: rgb(102, 99, 99);
+    color: var(--dark-grey);
     pointer-events: none;
     transition: 0.5s;
 }
@@ -50,7 +50,7 @@
 .formWrapper .inputbox input:valid + label {
     top: -32px;
     left: -8px;
-    color: #2faab1;
+    color: var(--secondary);
     font-size: 18px;
 }
 
@@ -59,8 +59,8 @@
     width: 100%;
     margin: 0 auto;
     font-size: 14px;
-    background-color: rgb(242, 247, 247);
-    color: rgb(102, 99, 99);
+    background-color: var(--light);
+    color: var(--dark-grey);
     outline: none;
     border: none;
     margin-bottom: 20px;
@@ -70,13 +70,13 @@
 
 .formWrapper .selectBox .option:hover option,
 .formWrapper .selectBox .option:focus option {
-    color: #2faab1;
+    color: var(--secondary);
 }
 
 .formWrapper .button {
-    background-color: rgb(66, 179, 187);
+    background-color: var(--primary);
     padding: 10px 20px;
-    color: #ffff;
+    color: var(--white);
     font-size: 16px;
     text-transform: uppercase;
     overflow: hidden;
@@ -89,7 +89,7 @@
 }
 
 .formWrapper .button:hover {
-    background-color: rgb(187, 66, 44);
+    background-color: var(--secondary);
 }
 
 .formWrapper .close {
@@ -100,10 +100,10 @@
     font-size: 30px;
     font-weight: bold;
     text-decoration: none;
-    color: #333;
+    color: var(--dark-grey);
     cursor: pointer;
 }
 .formWrapper .close:hover {
-    color: #c42a2a;
+    color: var(--red);
     transition: 0.5s;
 }

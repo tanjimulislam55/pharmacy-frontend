@@ -1,4 +1,4 @@
-import { faBars, faBell, faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faBell, faLayerGroup, faSignOutAlt, faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
@@ -18,9 +18,15 @@ const Navbar = () => {
                         <FontAwesomeIcon icon={faBell} />
                     </Link>
                     <Link to="#">
+                        <FontAwesomeIcon icon={faLayerGroup} />
+                    </Link>
+                    <Link to="#">
                         <FontAwesomeIcon icon={faUserCircle} />
                     </Link>
-                    <button className={classes.logout}>Logout</button>
+                    <Link to="#">
+                        <FontAwesomeIcon icon={faSignOutAlt} />
+                    </Link>
+                    {/* <button className={classes.logout}>Logout</button> */}
                 </div>
             </div>
         </div>

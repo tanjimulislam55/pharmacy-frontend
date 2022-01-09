@@ -1,30 +1,36 @@
 .sidebar {
-    background: rgb(47, 50, 51);
+    background: var(--dark);
     position: relative;
     height: 100vh;
 }
 
 .sidebar .logo {
     height: 70px;
+    border: 1px solid var(--light);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .sidebar .logo h2 {
-    color: #ffffff;
+    color: var(--white);
+    cursor: pointer;
+}
+
+.sidebar .logo h2:hover {
+    color: var(--secondary);
 }
 
 .sidebar ul li a {
     display: block;
     padding: 13px 30px;
-    border-bottom: 1px solid #879aa8;
-    color: rgb(241, 237, 237);
-    font-size: 18px;
+    border-bottom: 1px solid var(--grey);
+    color: var(--light);
+    font-size: 16px;
 }
 
 .sidebar ul li a .icon {
-    color: #dee4ec;
+    color: var(--light);
     padding: 0 10px;
 }
 
@@ -33,45 +39,51 @@
 }
 
 .sidebar ul li a:hover {
-    color: #0cb18d;
-    background: white;
+    color: var(--secondary);
+    background: var(--white);
     border-right: 2px solid rgb(5, 68, 104);
 }
 
 .sidebar ul li a:hover .icon {
-    color: #0cb18d;
+    color: var(--secondary);
 }
 
 /* ...................................... */
 
 .sidebarHide {
-    background: rgb(47, 50, 51);
+    background: var(--dark);
     position: relative;
     height: 100vh;
 }
 
 .sidebarHide ul li a .icon {
-    color: #dee4ec;
+    color: var(--light);
     width: 30px;
     display: inline-block;
 }
 
 .sidebarHide .logo {
     height: 70px;
+    border: 1px solid var(--light);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .sidebarHide .logo h2 {
-    color: #ffffff;
+    color: var(--white);
+    cursor: pointer;
+}
+
+.sidebarHide .logo h2:hover {
+    color: var(--secondary);
 }
 
 .sidebarHide ul li a {
     display: block;
     padding: 13px 30px;
-    border-bottom: 1px solid #879aa8;
-    color: rgb(241, 237, 237);
+    border-bottom: 1px solid var(--grey);
+    color: var(--light);
     font-size: 18px;
 }
 
@@ -80,11 +92,11 @@
 }
 
 .sidebarHide ul li a:hover {
-    color: #0cb18d;
-    background: white;
+    color: var(--secondary);
+    background: var(--white);
     border-right: 2px solid rgb(5, 68, 104);
 }
 
 .sidebarHide ul li a:hover .icon {
-    color: #0cb18d;
+    color: var(--secondary);
 }
