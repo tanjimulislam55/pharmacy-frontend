@@ -26,7 +26,6 @@ const Navbar = () => {
                     <Link to="#">
                         <FontAwesomeIcon icon={faSignOutAlt} title="Logout" />
                     </Link>
-                    {/* <button className={classes.logout}>Logout</button> */}
                 </div>
             </div>
         </div>
