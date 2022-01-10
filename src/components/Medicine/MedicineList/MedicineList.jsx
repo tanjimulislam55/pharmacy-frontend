@@ -1,7 +1,8 @@
 import { faEdit, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useState } from 'react/cjs/react.development'
+import { Pagination } from '../../../components'
 import classes from './MedicineList.module.css'
 
 export default function MedicineList({ medicines, vendors, types, categories, units, setIsOpenForm }) {
@@ -11,6 +12,9 @@ export default function MedicineList({ medicines, vendors, types, categories, un
     }
 
     const [searched, setSearched] = useState('')
+    const [startIdx, setStartIdx] = useState(0)
+    const [endIdx, setEndIdx] = useState(10)
+
     return (
         <div className={classes.tableContainer}>
             <div className={classes.wrapper}>
@@ -47,6 +51,7 @@ export default function MedicineList({ medicines, vendors, types, categories, un
                 {medicines &&
                     medicines
                         .filter((medicine) => medicine.name.toLowerCase().includes(searched))
+                        .splice(startIdx, endIdx)
                         .map((filteredMedicine) => (
                             <tr key={filteredMedicine.id} className={classes.tableRow}>
                                 <td data-title="id">{filteredMedicine.id}</td>
@@ -68,6 +73,11 @@ export default function MedicineList({ medicines, vendors, types, categories, un
                             </tr>
                         ))}
             </table>
+            <Pagination
+                setStartIdx={setStartIdx}
+                setEndIdx={setEndIdx}
+                page={medicines.filter((medicine) => medicine.name.toLowerCase().includes(searched)).length}
+            />
         </div>
     )
 }
