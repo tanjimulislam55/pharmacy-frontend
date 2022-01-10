@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
 }
-.pagination a {
+.pagination div {
     color: var(--dark);
     padding: 8px 14px;
     text-decoration: none;
@@ -13,16 +13,17 @@
     font-size: 12px;
 }
 
-.pagination a.active {
+.pagination .active {
     background-color: var(--primary);
     color: var(--white);
     border: 1px solid var(--secondary);
 }
 
-.pagination a.active:hover {
+.pagination .active:hover {
     background-color: var(--secondary);
+    cursor: pointer;
 }
 
-.pagination a:hover:not(.active) {
+.pagination:hover:not(.active) {
     background-color: var(--light);
 }
