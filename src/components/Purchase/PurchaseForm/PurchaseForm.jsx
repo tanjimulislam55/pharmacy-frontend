@@ -51,55 +51,73 @@ export default function PurchaseForm() {
 
     return (
         <>
-            <div className={classes.content}>
-                <form className={classes.item} onSubmit={handleSubmit}>
+            <div className={classes.wrapper}>
+                <div className={classes.formWrapper}>
                     <h2>Add New Purchase</h2>
-                    <label htmlFor="date">Billing date</label>
-                    <input
-                        id="date"
-                        name="date"
-                        type="date"
-                        value={date}
-                        onChange={(e) => {
-                            setDate(e.target.value)
-                        }}
-                    />
-                    <label htmlFor="note">Note</label>
-                    <input
-                        id="note"
-                        placeholder="Place a note (Optional)"
-                        name="note"
-                        type="text"
-                        value={note}
-                        onChange={(e) => setNote(e.target.value)}
-                    />
-                    {purchaseLines.map((purchaseLine, i) => (
-                        <PurchaseLines
-                            purchaseLine={purchaseLine}
-                            key={i}
-                            i={i}
-                            total={total}
-                            setTotal={setTotal}
-                            totalAmountPerMedicine={totalAmountPerMedicine}
-                        />
-                    ))}
-                    <button onClick={() => setPurchaseLines((prev) => prev.concat({}))} type="button">
-                        Add more
-                    </button>
-                    <label htmlFor="subTotal">Subtotal</label>
-                    <input id="subTotal" name="subTotal" type="number" value={subTotal} />
-                    <label htmlFor="paidAmount">Paid amount</label>
-                    <input
-                        id="paidAmount"
-                        name="paidAmount"
-                        type="number"
-                        value={paidAmount}
-                        onChange={(e) => setPaidAmount(e.target.value)}
-                    />
-                    <label htmlFor="paidAmount">Due amount</label>
-                    <input id="dueAmount" name="dueAmount" type="number" value={dueAmount} />
-                    <button type="submit">Submit</button>
-                </form>
+                    <div className={classes.close}>&times;</div>
+
+                    <form className={classes.item} onSubmit={handleSubmit}>
+                        <div className={classes.inputbox}>
+                            <input
+                                id="date"
+                                name="date"
+                                type="date"
+                                value={date}
+                                onChange={(e) => {
+                                    setDate(e.target.value)
+                                }}
+                                required
+                            />
+                            {/* <label htmlFor="date">Billing date</label> */}
+                        </div>
+                        <div className={classes.inputbox}>
+                            <input
+                                id="note"
+                                // placeholder="Place a note (Optional)"
+                                name="note"
+                                type="text"
+                                value={note}
+                                onChange={(e) => setNote(e.target.value)}
+                                required
+                            />
+                            <label htmlFor="note">Note</label>
+                        </div>
+
+                        <div className={classes.inputbox}>
+                            <input id="subTotal" name="subTotal" type="number" value={subTotal} required />
+                            <label htmlFor="subTotal">Subtotal</label>
+                        </div>
+                        <div className={classes.inputbox}>
+                            <input
+                                id="paidAmount"
+                                name="paidAmount"
+                                type="number"
+                                value={paidAmount}
+                                onChange={(e) => setPaidAmount(e.target.value)}
+                                required
+                            />
+                            <label htmlFor="paidAmount">Paid amount</label>
+                        </div>
+                        <div className={classes.inputbox}>
+                            <input id="dueAmount" name="dueAmount" type="number" value={dueAmount} required />
+                            <label htmlFor="paidAmount">Due amount</label>
+                        </div>
+                        {purchaseLines.map((purchaseLine, i) => (
+                            <PurchaseLines
+                                purchaseLine={purchaseLine}
+                                key={i}
+                                i={i}
+                                total={total}
+                                setTotal={setTotal}
+                                totalAmountPerMedicine={totalAmountPerMedicine}
+                            />
+                        ))}
+                        <button onClick={() => setPurchaseLines((prev) => prev.concat({}))} type="button">
+                            Add more
+                        </button>
+                        <button className={classes.button}>Submit</button>
+                    </form>
+                </div>
             </div>
         </>
     )
