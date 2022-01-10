@@ -52,7 +52,7 @@
     font-size: 16px;
     color: var(--dark-grey);
     pointer-events: none;
-    transition: 0.5s;
+    transition: 0.2s;
 }
 
 .formWrapper .inputbox input:focus + label,
@@ -60,7 +60,7 @@
     top: -32px;
     left: -8px;
     color: var(--secondary);
-    font-size: 18px;
+    font-size: 14px;
 }
 
 .formWrapper .selectBox .option {
