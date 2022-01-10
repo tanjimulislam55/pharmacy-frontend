@@ -1,6 +1,7 @@
 import { faEdit, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link } from 'react-router-dom'
+import { useState } from 'react/cjs/react.development'
 import classes from './MedicineList.module.css'
 
 export default function MedicineList({ medicines, vendors, types, categories, units, setIsOpenForm }) {
@@ -8,11 +9,20 @@ export default function MedicineList({ medicines, vendors, types, categories, un
         const item = elements.find((element) => element.id === id)
         return item.name
     }
+
+    const [searched, setSearched] = useState('')
     return (
         <div className={classes.tableContainer}>
             <div className={classes.wrapper}>
                 <form action="">
-                    <input className={classes.searchField} type="text" placeholder="Search medicine" name="search" />
+                    <input
+                        onChange={(e) => setSearched(e.target.value)}
+                        value={searched}
+                        className={classes.searchField}
+                        type="text"
+                        placeholder="Search medicine"
+                        name="search"
+                    />
                     <button className={classes.searchButton} type="submit">
                         <FontAwesomeIcon icon={faSearch} />
                     </button>
@@ -35,26 +45,28 @@ export default function MedicineList({ medicines, vendors, types, categories, un
                     <th>Action</th>
                 </tr>
                 {medicines &&
-                    medicines.map((medicine) => (
-                        <tr key={medicine.id} className={classes.tableRow}>
-                            <td data-title="id">{medicine.id}</td>
-                            <td data-title="name">{medicine.name}</td>
-                            <td data-title="type">{getName(types, medicine.type_id)}</td>
-                            <td data-title="unit">{getName(units, medicine.unit_id)}</td>
-                            <td data-title="category">{getName(categories, medicine.category_id)}</td>
-                            <td data-title="company">{getName(vendors, medicine.vendor_id)}</td>
-                            <td data-title="stock">{medicine.medicine_detail.stock}</td>
-                            <td data-title="price">{medicine.medicine_detail.retail_price}</td>
-                            <td className="select">
-                                <Link className={classes.icon} to="#">
-                                    <FontAwesomeIcon icon={faEdit} />
-                                </Link>
-                                <Link className={classes.icon} to="#">
-                                    <FontAwesomeIcon icon={faTrash} />
-                                </Link>
-                            </td>
-                        </tr>
-                    ))}
+                    medicines
+                        .filter((medicine) => medicine.name.toLowerCase().includes(searched))
+                        .map((filteredMedicine) => (
+                            <tr key={filteredMedicine.id} className={classes.tableRow}>
+                                <td data-title="id">{filteredMedicine.id}</td>
+                                <td data-title="name">{filteredMedicine.name}</td>
+                                <td data-title="type">{getName(types, filteredMedicine.type_id)}</td>
+                                <td data-title="unit">{getName(units, filteredMedicine.unit_id)}</td>
+                                <td data-title="category">{getName(categories, filteredMedicine.category_id)}</td>
+                                <td data-title="company">{getName(vendors, filteredMedicine.vendor_id)}</td>
+                                <td data-title="stock">{filteredMedicine.medicine_detail.stock}</td>
+                                <td data-title="price">{filteredMedicine.medicine_detail.retail_price}</td>
+                                <td className="select">
+                                    <Link className={classes.icon} to="#">
+                                        <FontAwesomeIcon icon={faEdit} />
+                                    </Link>
+                                    <Link className={classes.icon} to="#">
+                                        <FontAwesomeIcon icon={faTrash} />
+                                    </Link>
+                                </td>
+                            </tr>
+                        ))}
             </table>
         </div>
     )
