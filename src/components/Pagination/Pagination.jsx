@@ -1,20 +1,23 @@
-import { Link } from 'react-router-dom'
 import classes from './Pagination.module.css'
 
-export default function Pagination() {
+export default function Pagination({ page, setStartIdx, setEndIdx }) {
+    const handlePage = (value) => {
+        setEndIdx(value * 10)
+        setStartIdx(value * 10 - 10)
+    }
+
     return (
         <div class={classes.pagination}>
-            <Link to="#">&laquo;</Link>
-            <Link to="#" class={classes.active}>
-                1
-            </Link>
-            <Link to="#">2</Link>
-            <Link to="#">3</Link>
-            <Link to="#">4</Link>
-            <Link to="#">5</Link>
-            <Link to="#">...</Link>
-            <Link to="#">10</Link>
-            <Link to="#">&raquo;</Link>
+            <div>&laquo;</div>
+            {page &&
+                Array(Math.ceil(page / 10))
+                    .fill(0)
+                    .map((x, i) => (
+                        <div onClick={() => handlePage(i + 1)} className={classes.active}>
+                            {i + 1}
+                        </div>
+                    ))}
+            <div>&raquo;</div>
         </div>
     )
 }
