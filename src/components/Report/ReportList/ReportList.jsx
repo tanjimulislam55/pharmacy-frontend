@@ -18,7 +18,9 @@ export default function ReportList() {
             <div className={classes.item}>
                 <FontAwesomeIcon className={classes.icon} icon={faFileInvoice} />
                 <p>Invoice Report</p>
-                <button>View</button>
+                <div className={classes.button}>
+                    <button>View</button>
+                </div>
             </div>
 
             <div className={classes.item}>
