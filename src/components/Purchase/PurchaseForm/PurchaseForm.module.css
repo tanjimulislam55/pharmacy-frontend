@@ -1,0 +1,99 @@
+.wrapper {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    background: rgb(0, 0, 0, 0.8);
+}
+.formWrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 700px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: var(--white);
+    box-sizing: border-box;
+    box-shadow: 1px 1px var(--light);
+    border-radius: 10px;
+    margin: 0 auto;
+}
+
+.formWrapper h2 {
+    margin: 0 0 40px;
+    padding: 0;
+    color: var(--dark);
+    text-align: center;
+}
+
+.formWrapper .inputbox {
+    position: relative;
+}
+
+.formWrapper .inputbox input {
+    width: 100%;
+    padding: 10px 0px;
+    font-size: 16px;
+    color: var(--dark);
+    margin-bottom: 30px;
+    border: 0.01px solid var(--white);
+    border-radius: 2px;
+    outline: none;
+    background-color: var(--light);
+    margin-bottom: 32px;
+}
+.formWrapper .inputbox label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 10px;
+    font-size: 16px;
+    color: var(--dark-grey);
+    pointer-events: none;
+    transition: 0.2s;
+}
+
+.formWrapper .inputbox input:focus + label,
+.formWrapper .inputbox input:valid + label {
+    top: -32px;
+    left: -8px;
+    color: var(--secondary);
+    font-size: 14px;
+}
+
+.formWrapper .button {
+    background-color: var(--primary);
+    padding: 10px 20px;
+    color: var(--white);
+    font-size: 16px;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s;
+    margin: 0 auto;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 2px;
+    width: 100%;
+}
+
+.formWrapper .button:hover {
+    background-color: var(--secondary);
+}
+
+.formWrapper .close {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--dark-grey);
+    cursor: pointer;
+}
+.formWrapper .close:hover {
+    color: var(--red);
+    transition: 0.5s;
+}
