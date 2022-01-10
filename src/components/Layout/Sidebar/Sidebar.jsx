@@ -22,47 +22,47 @@ export default function Sidebar() {
         {
             text: 'Dashboard',
             endpoint: '',
-            icon: <FontAwesomeIcon icon={faTachometerAlt} />,
+            icon: <FontAwesomeIcon icon={faTachometerAlt} title="Dashboard" />,
         },
         {
             text: 'Medicine',
             endpoint: 'medicine',
-            icon: <FontAwesomeIcon icon={faBriefcaseMedical} />,
+            icon: <FontAwesomeIcon icon={faBriefcaseMedical} title="Medicine" />,
         },
         {
             text: 'Bill',
             endpoint: 'bill',
-            icon: <FontAwesomeIcon icon={faHandHoldingUsd} />,
+            icon: <FontAwesomeIcon icon={faHandHoldingUsd} title="Bill" />,
         },
         {
             text: 'Stock',
             endpoint: 'stock',
-            icon: <FontAwesomeIcon icon={faLayerGroup} />,
+            icon: <FontAwesomeIcon icon={faLayerGroup} title="Stock" />,
         },
         {
             text: 'Purchase',
             endpoint: 'purchase',
-            icon: <FontAwesomeIcon icon={faShoppingBag} />,
+            icon: <FontAwesomeIcon icon={faShoppingBag} title="Purchase" />,
         },
         {
             text: 'Expense',
             endpoint: 'expense',
-            icon: <FontAwesomeIcon icon={faDatabase} />,
+            icon: <FontAwesomeIcon icon={faDatabase} title="Expense" />,
         },
         {
             text: 'Report',
             endpoint: 'reports',
-            icon: <FontAwesomeIcon icon={faChartLine} />,
+            icon: <FontAwesomeIcon icon={faChartLine} title="Report" />,
         },
         {
             text: 'Accounts',
             endpoint: 'accounts',
-            icon: <FontAwesomeIcon icon={faUserShield} />,
+            icon: <FontAwesomeIcon icon={faUserShield} title="Accounts" />,
         },
         {
             text: 'Settings',
             endpoint: 'settings',
-            icon: <FontAwesomeIcon icon={faCog} />,
+            icon: <FontAwesomeIcon icon={faCog} title="Settings" />,
         },
     ]
 
