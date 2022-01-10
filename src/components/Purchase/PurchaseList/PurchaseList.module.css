@@ -1,0 +1,101 @@
+h1 {
+    text-align: center;
+    font-weight: 300;
+}
+
+.tableContainer {
+    width: 90%;
+    margin: 30px auto;
+}
+
+.tableMain {
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    display: table;
+    width: 100%;
+}
+
+.tableRow {
+    box-shadow: 10px 10px 15px 10px var(--light);
+}
+
+.tableRow th {
+    background-color: var(--dark);
+    color: var(--white);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.tableRow td {
+    text-align: center;
+    font-size: 14px;
+    color: var(--dark);
+}
+
+td,
+th {
+    padding: 20px;
+}
+
+.icon {
+    font-size: 12px;
+    text-decoration: none;
+    color: var(--green);
+    padding: 5px;
+}
+
+.icon:hover {
+    color: var(--secondary);
+}
+
+.tableContainer .wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tableContainer .button {
+    background-color: var(--primary);
+    border: none;
+    float: right;
+    padding: 10px 25px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 2px;
+    color: var(--white);
+    cursor: pointer;
+}
+
+.tableContainer .button a {
+    text-decoration: none;
+    color: var(--white);
+}
+
+.tableContainer .button:hover {
+    background-color: var(--secondary);
+    transition: 0.5s;
+}
+
+.tableContainer .searchField {
+    background-color: var(--light);
+    border: none;
+    padding: 12px 10px;
+    width: 300px;
+    appearance: none;
+    border-radius: 2px;
+    font-size: 14px;
+    outline: none;
+}
+
+.tableContainer .searchButton {
+    background-color: var(--light);
+    padding: 12px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 2px;
+}
+
+.tableContainer .searchButton:hover {
+    color: var(--secondary);
+}

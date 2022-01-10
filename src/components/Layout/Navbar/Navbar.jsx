@@ -11,20 +11,20 @@ const Navbar = () => {
         <div className={classes.nav}>
             <div className={classes.topNavbar}>
                 <div className={classes.hamburger} onClick={() => setIsOpenSidebar(!isOpenSidebar)}>
-                    <FontAwesomeIcon icon={faBars} />
+                    <FontAwesomeIcon icon={faBars} title="Toggle" />
                 </div>
                 <div className={classes.navList}>
                     <Link to="#">
-                        <FontAwesomeIcon icon={faBell} />
+                        <FontAwesomeIcon icon={faBell} title="Notification" />
                     </Link>
                     <Link to="#">
-                        <FontAwesomeIcon icon={faLayerGroup} />
+                        <FontAwesomeIcon icon={faLayerGroup} title="Stock Info" />
                     </Link>
                     <Link to="#">
-                        <FontAwesomeIcon icon={faUserCircle} />
+                        <FontAwesomeIcon icon={faUserCircle} title="Profile" />
                     </Link>
                     <Link to="#">
-                        <FontAwesomeIcon icon={faSignOutAlt} />
+                        <FontAwesomeIcon icon={faSignOutAlt} title="Logout" />
                     </Link>
                     {/* <button className={classes.logout}>Logout</button> */}
                 </div>
