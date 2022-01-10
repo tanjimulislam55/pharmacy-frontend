@@ -1,4 +1,4 @@
-import { faAddressBook, faCapsules, faHandHoldingMedical, faLaptopMedical } from '@fortawesome/free-solid-svg-icons'
+import { faCapsules, faHandHoldingMedical, faLaptopMedical } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classes from './DashboardItem.module.css'
 

@@ -1,5 +1,5 @@
 .sidebar {
-    background: var(--dark);
+    background-image: linear-gradient(var(--primary), var(--secondary));
     position: fixed;
     height: 100vh;
     width: 15%;
@@ -7,7 +7,6 @@
 
 .sidebar .logo {
     height: 70px;
-    border: 1px solid var(--light);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -16,43 +15,80 @@
 .sidebar .logo h2 {
     color: var(--white);
     cursor: pointer;
+    font-weight: 400;
+    transition: 200ms;
 }
 
 .sidebar .logo h2:hover {
-    color: var(--secondary);
+    transform: scale(1.1);
 }
 
+.sidebar ul {
+    margin: 20px 0 0 0;
+}
 .sidebar ul li a {
     display: block;
     padding: 13px 30px;
-    border-bottom: 1px solid var(--grey);
     color: var(--light);
     font-size: 16px;
-}
-
-.sidebar ul li a .icon {
-    color: var(--light);
-    padding: 0 10px;
-}
-
-.sidebar ul li .text {
-    margin-left: 15px;
+    width: 90%;
+    margin: 0 0 0 10%;
+    position: relative;
 }
 
 .sidebar ul li a:hover {
     color: var(--secondary);
     background: var(--white);
-    border-right: 2px solid rgb(5, 68, 104);
+    border-radius: 50px 0 0 50px;
 }
 
 .sidebar ul li a:hover .icon {
     color: var(--secondary);
 }
 
+.sidebar ul li a::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 15px;
+    background: transparent;
+    right: -1px;
+    top: -15px;
+    border-radius: 0 0 50px 0;
+    box-shadow: 0 5px 0 0 #fff;
+    display: none;
+}
+.sidebar ul li a::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 15px;
+    background: transparent;
+    right: -1px;
+    bottom: -15px;
+    border-radius: 0 50px 0 0;
+    box-shadow: 0 -5px 0 0 #fff;
+    display: none;
+}
+
+.sidebar ul li a:hover::before,
+.sidebar ul li a:hover::after {
+    display: block;
+}
+
+.sidebar ul li a .icon {
+    color: var(--light);
+    padding: 0 5px;
+}
+
+.sidebar ul li .text {
+    margin-left: 15px;
+}
+
 /* ...................................... */
 
 .sidebarHide {
-    background: var(--dark);
+    background-image: linear-gradient(var(--primary), var(--light-secondary));
     position: fixed;
     height: 100vh;
     width: 5%;
@@ -96,7 +132,6 @@
 .sidebarHide ul li a:hover {
     color: var(--secondary);
     background: var(--white);
-    border-right: 2px solid rgb(5, 68, 104);
 }
 
 .sidebarHide ul li a:hover .icon {

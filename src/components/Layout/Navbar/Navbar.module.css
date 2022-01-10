@@ -4,7 +4,7 @@
 }
 
 .nav .topNavbar {
-    background: var(--dark);
+    background-image: linear-gradient(to right, var(--primary), var(--secondary));
     height: 70px;
     display: flex;
     justify-content: space-between;
@@ -32,10 +32,6 @@
     font-size: 20px;
     color: var(--white);
     padding-left: 25px;
-}
-
-.nav .topNavbar .navList a:hover {
-    color: var(--secondary);
 }
 
 .nav .topNavbar .navList .logout {
