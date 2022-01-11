@@ -6,14 +6,15 @@
     left: 0;
     top: 0;
     background: rgb(0, 0, 0, 0.8);
+    overflow-x: scroll;
 }
 .formWrapper {
     position: absolute;
-    top: 50%;
+    top: 70%;
     left: 50%;
     width: 700px;
     padding: 40px;
-    transform: translate(-50%, -50%);
+    transform: translate(-70%, -50%);
     background: var(--white);
     box-sizing: border-box;
     box-shadow: 1px 1px var(--light);

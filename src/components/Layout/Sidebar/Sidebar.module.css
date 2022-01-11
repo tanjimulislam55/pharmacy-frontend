@@ -120,7 +120,7 @@
 .sidebarHide ul li a {
     display: block;
     padding: 13px 30px;
-    border-bottom: 1px solid var(--grey);
+    border-bottom: 1px solid var(--secondary);
     color: var(--light);
     font-size: 18px;
 }
