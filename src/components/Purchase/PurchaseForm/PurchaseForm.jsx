@@ -50,75 +50,75 @@ export default function PurchaseForm() {
     }
 
     return (
-        <>
-            <div className={classes.wrapper}>
-                <div className={classes.formWrapper}>
-                    <h2>Add New Purchase</h2>
-                    <div className={classes.close}>&times;</div>
+        <div className={classes.wrapper}>
+            <div className={classes.formWrapper}>
+                <h2>Add New Purchase</h2>
 
-                    <form className={classes.item} onSubmit={handleSubmit}>
-                        <div className={classes.inputbox}>
-                            <input
-                                id="date"
-                                name="date"
-                                type="date"
-                                value={date}
-                                onChange={(e) => {
-                                    setDate(e.target.value)
-                                }}
-                                required
-                            />
-                            {/* <label htmlFor="date">Billing date</label> */}
-                        </div>
-                        <div className={classes.inputbox}>
-                            <input
-                                id="note"
-                                // placeholder="Place a note (Optional)"
-                                name="note"
-                                type="text"
-                                value={note}
-                                onChange={(e) => setNote(e.target.value)}
-                                required
-                            />
-                            <label htmlFor="note">Note</label>
-                        </div>
+                <form className={classes.item} onSubmit={handleSubmit}>
+                    <div className={classes.inputbox}>
+                        <input
+                            id="date"
+                            name="date"
+                            type="date"
+                            value={date}
+                            onChange={(e) => {
+                                setDate(e.target.value)
+                            }}
+                            required
+                        />
+                        {/* <label htmlFor="date">Billing date</label> */}
+                    </div>
+                    <div className={classes.inputbox}>
+                        <input
+                            id="note"
+                            // placeholder="Place a note (Optional)"
+                            name="note"
+                            type="text"
+                            value={note}
+                            onChange={(e) => setNote(e.target.value)}
+                            required
+                        />
+                        <label htmlFor="note">Note</label>
+                    </div>
 
-                        <div className={classes.inputbox}>
-                            <input id="subTotal" name="subTotal" type="number" value={subTotal} required />
-                            <label htmlFor="subTotal">Subtotal</label>
-                        </div>
-                        <div className={classes.inputbox}>
-                            <input
-                                id="paidAmount"
-                                name="paidAmount"
-                                type="number"
-                                value={paidAmount}
-                                onChange={(e) => setPaidAmount(e.target.value)}
-                                required
-                            />
-                            <label htmlFor="paidAmount">Paid amount</label>
-                        </div>
-                        <div className={classes.inputbox}>
-                            <input id="dueAmount" name="dueAmount" type="number" value={dueAmount} required />
-                            <label htmlFor="paidAmount">Due amount</label>
-                        </div>
-                        {purchaseLines.map((purchaseLine, i) => (
-                            <PurchaseLines
-                                purchaseLine={purchaseLine}
-                                key={i}
-                                i={i}
-                                total={total}
-                                setTotal={setTotal}
-                                totalAmountPerMedicine={totalAmountPerMedicine}
-                            />
-                        ))}
-                        <button onClick={() => setPurchaseLines((prev) => prev.concat({}))} type="button">
-                            Add more
-                        </button>
-                        <button className={classes.button}>Submit</button>
-                    </form>
-                </div>
+                    <div className={classes.inputbox}>
+                        <input id="subTotal" name="subTotal" type="number" value={subTotal} required />
+                        <label htmlFor="subTotal">Subtotal</label>
+                    </div>
+                    <div className={classes.inputbox}>
+                        <input
+                            id="paidAmount"
+                            name="paidAmount"
+                            type="number"
+                            value={paidAmount}
+                            onChange={(e) => setPaidAmount(e.target.value)}
+                            required
+                        />
+                        <label htmlFor="paidAmount">Paid amount</label>
+                    </div>
+                    <div className={classes.inputbox}>
+                        <input id="dueAmount" name="dueAmount" type="number" value={dueAmount} required />
+                        <label htmlFor="paidAmount">Due amount</label>
+                    </div>
+                    {purchaseLines.map((purchaseLine, i) => (
+                        <PurchaseLines
+                            purchaseLine={purchaseLine}
+                            key={i}
+                            i={i}
+                            total={total}
+                            setTotal={setTotal}
+                            totalAmountPerMedicine={totalAmountPerMedicine}
+                        />
+                    ))}
+                    <button
+                        onClick={() => setPurchaseLines((prev) => prev.concat({}))}
+                        type="button"
+                        className={classes.btn}>
+                        Add More Item
+                    </button>
+                    <button className={classes.button}>Submit</button>
+                </form>
             </div>
-        </>
+        </div>
     )
 }

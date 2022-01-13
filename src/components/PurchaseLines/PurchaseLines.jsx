@@ -30,58 +30,64 @@ export default function PurchaseLines({ purchaseLine, i, total, setTotal }) {
     return (
         <div className={classes.formWrapper}>
             <div key={i}>
-                {/* <label htmlFor="categories">Select Medicine</label> */}
-                <div className={classes.selectBox}>
-                    <select
-                        className={classes.option}
-                        onChange={(e) => (purchaseLine.medicine_id = e.target.value)}
-                        id="medicines">
-                        <option value="">Select Medicine</option>
-                        {medicines &&
-                            medicines.map((medicine, i) => (
-                                <option key={i} value={medicine.id}>
-                                    {medicine.name}
-                                </option>
-                            ))}
-                    </select>
-                </div>
-                <div className={classes.inputbox}>
-                    <input
-                        id="purchasePrice"
-                        name="purchasePrice"
-                        type="number"
-                        value={purchaseLine.purchase_price}
-                        onChange={(e) => (purchaseLine.purchase_price = e.target.value)}
-                        onBlur={(e) => handleBlur(e)}
-                        required
-                    />
-                    <label htmlFor="purchasePrice">Purchase Price</label>
-                </div>
+                <table className={classes.formTable}>
+                    <tr>
+                        <th>Select Medicine</th>
+                        <th>Purchase Price</th>
+                        <th>Purchased Quantity</th>
+                        <th>Received Quantity</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select
+                                className={classes.option}
+                                onChange={(e) => (purchaseLine.medicine_id = e.target.value)}
+                                id="medicines">
+                                <option value="">Select</option>
+                                {medicines &&
+                                    medicines.map((medicine, i) => (
+                                        <option key={i} value={medicine.id}>
+                                            {medicine.name}
+                                        </option>
+                                    ))}
+                            </select>
+                        </td>
+                        <td>
+                            <input
+                                id="purchasePrice"
+                                name="purchasePrice"
+                                type="number"
+                                value={purchaseLine.purchase_price}
+                                onChange={(e) => (purchaseLine.purchase_price = e.target.value)}
+                                onBlur={(e) => handleBlur(e)}
+                                required
+                            />
+                        </td>
+                        <td>
+                            <input
+                                id="purchaseQuantiy"
+                                name="purchaseQuantiy"
+                                type="number"
+                                value={purchaseLine.purchased_qty}
+                                onChange={(e) => (purchaseLine.purchased_qty = e.target.value)}
+                                onBlur={handleBlur}
+                                required
+                            />
+                        </td>
+                        <td>
+                            <input
+                                id="receivedQuantity"
+                                name="receivedQuantity"
+                                type="number"
+                                value={purchaseLine.received_qty}
+                                onChange={(e) => (purchaseLine.received_qty = e.target.value)}
+                                required
+                            />
+                        </td>
+                    </tr>
 
-                <div className={classes.inputbox}>
-                    <input
-                        id="purchaseQuantiy"
-                        name="purchaseQuantiy"
-                        type="number"
-                        value={purchaseLine.purchased_qty}
-                        onChange={(e) => (purchaseLine.purchased_qty = e.target.value)}
-                        onBlur={handleBlur}
-                        required
-                    />
-                    <label htmlFor="purchasedQuantiy">Purchased quantity</label>
-                </div>
-                <div className={classes.inputbox}>
-                    <input
-                        id="receivedQuantity"
-                        name="receivedQuantity"
-                        type="number"
-                        value={purchaseLine.received_qty}
-                        onChange={(e) => (purchaseLine.received_qty = e.target.value)}
-                        required
-                    />
-                    <label htmlFor="receivedQuantity">Received Quantity</label>
-                </div>
-                <div>Total: {total}</div>
+                    <div className={classes.text}>Total: {total}</div>
+                </table>
             </div>
         </div>
     )

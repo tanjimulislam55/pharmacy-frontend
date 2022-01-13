@@ -1,29 +1,17 @@
 .wrapper {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    background: rgb(0, 0, 0, 0.8);
-    overflow-x: scroll;
-}
-.formWrapper {
-    position: absolute;
-    top: 70%;
-    left: 50%;
-    width: 700px;
-    padding: 40px;
-    transform: translate(-70%, -50%);
-    background: var(--white);
     box-sizing: border-box;
-    box-shadow: 1px 1px var(--light);
-    border-radius: 10px;
-    margin: 0 auto;
+    background-color: var(--white);
+}
+
+.formWrapper {
+    width: 95%;
+    margin: 10px auto;
+    box-shadow: 2px 2px 5px 2px var(--light);
+    padding: 20px;
 }
 
 .formWrapper h2 {
-    margin: 0 0 40px;
+    margin: 0 0 30px;
     padding: 0;
     color: var(--dark);
     text-align: center;
@@ -36,13 +24,12 @@
 .formWrapper .inputbox input {
     width: 100%;
     padding: 10px 0px;
-    font-size: 16px;
+    font-size: 14px;
     color: var(--dark);
     margin-bottom: 30px;
-    border: 0.01px solid var(--white);
-    border-radius: 2px;
+    border: 0.7px solid var(--light);
+    border-radius: 4px;
     outline: none;
-    background-color: var(--light);
     margin-bottom: 32px;
 }
 .formWrapper .inputbox label {
@@ -50,7 +37,7 @@
     top: 0;
     left: 0;
     padding: 10px 10px;
-    font-size: 16px;
+    font-size: 14px;
     color: var(--dark-grey);
     pointer-events: none;
     transition: 0.2s;
@@ -83,18 +70,12 @@
     background-color: var(--secondary);
 }
 
-.formWrapper .close {
-    position: absolute;
-    top: 25px;
-    right: 30px;
-    transition: all 200ms;
-    font-size: 30px;
-    font-weight: bold;
-    text-decoration: none;
-    color: var(--dark-grey);
-    cursor: pointer;
-}
-.formWrapper .close:hover {
-    color: var(--red);
-    transition: 0.5s;
+.formWrapper .btn {
+    float: right;
+    border: none;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    background-color: var(--green);
+    border-radius: 2px;
+    color: var(--white);
 }
