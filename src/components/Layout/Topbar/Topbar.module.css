@@ -5,7 +5,7 @@
 
 .nav .topNavbar {
     background-image: linear-gradient(to right, var(--primary), var(--secondary));
-    height: 70px;
+    height: 55px;
     display: flex;
     justify-content: space-between;
     align-items: center;
