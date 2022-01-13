@@ -21,7 +21,8 @@
     --light: #f0f0f0;
     --white: #fff;
     --green: #5cb484;
-    --red: #ef5455;
+    --light-green: #7fb98d;
+    --red: #dd4545;
 }
 
 body {

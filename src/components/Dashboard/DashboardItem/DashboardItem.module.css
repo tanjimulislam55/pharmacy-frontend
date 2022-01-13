@@ -38,7 +38,7 @@
 }
 
 .dashContainer .dashBox .itemIcon {
-    font-size: 6em;
+    font-size: 3em;
     color: var(--white);
     position: absolute;
     right: 20px;

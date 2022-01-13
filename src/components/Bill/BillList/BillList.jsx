@@ -15,7 +15,7 @@ export default function BillList({ bills, setIsOpenForm }) {
                     </button>
                 </form>
                 <button className={classes.button} onClick={() => setIsOpenForm(true)}>
-                    Add Bill
+                    + Add Bill
                 </button>
             </div>
 
