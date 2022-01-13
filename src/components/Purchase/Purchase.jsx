@@ -4,7 +4,7 @@ import PurchaseList from './PurchaseList/PurchaseList'
 export default function Purchase() {
     return (
         <div>
-            <PurchaseList />
+            {/* 2<PurchaseList /> */}
             <PurchaseForm />
         </div>
     )
