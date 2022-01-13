@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { SidebarContext } from '../../../contexts/sidebarContext'
-import classes from './Navbar.module.css'
+import classes from './Topbar.module.css'
 
 const Navbar = () => {
     const { isOpenSidebar, setIsOpenSidebar } = useContext(SidebarContext)
