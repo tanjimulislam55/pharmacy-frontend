@@ -97,3 +97,35 @@
 .tableContainer .searchButton:hover {
     color: var(--secondary);
 }
+
+.container,
+.containerItem {
+    display: grid;
+    grid-template-columns: repeat(6, auto);
+    grid-gap: 10px;
+    padding: 6px;
+}
+
+.container {
+    background-color: var(--green);
+    padding: 4px;
+}
+
+.container .head {
+    border-radius: 2px;
+    text-align: center;
+    color: var(--white);
+    padding: 4px;
+}
+
+.containerItem {
+    background-color: rgb(255, 255, 255);
+    margin: 10px auto;
+    box-shadow: 2px 2px 5px 2px var(--light);
+}
+.containerItem .item {
+    border-radius: 2px;
+    text-align: center;
+    padding: 2px;
+    cursor: pointer;
+}
