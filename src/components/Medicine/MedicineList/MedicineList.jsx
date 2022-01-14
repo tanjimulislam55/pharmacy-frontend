@@ -46,6 +46,8 @@ export default function MedicineList({ medicines, vendors, types, categories, un
                     <th>Company</th>
                     <th>Stock</th>
                     <th>Price</th>
+                    <th>Last Sale Date</th>
+                    <th>Last Sold Quantity</th>
                     <th>Action</th>
                 </tr>
                 {medicines &&
@@ -62,6 +64,8 @@ export default function MedicineList({ medicines, vendors, types, categories, un
                                 <td data-title="company">{getName(vendors, filteredMedicine.vendor_id)}</td>
                                 <td data-title="stock">{filteredMedicine.medicine_detail.stock}</td>
                                 <td data-title="price">{filteredMedicine.medicine_detail.retail_price}</td>
+                                <td data-title="last-sale-date">{filteredMedicine.medicine_detail.last_sale_date}</td>
+                                <td data-title="last-sold-qty">{filteredMedicine.medicine_detail.last_slold_qty}</td>
                                 <td className="select">
                                     <Link className={classes.icon} to="#">
                                         <FontAwesomeIcon icon={faEdit} />
