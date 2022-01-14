@@ -1,10 +1,19 @@
 import { faEdit, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import Collapse from '../../Collapse/Collapse'
+import CollapseList from '../../Collapse/CollapseList/CollapseList'
 import classes from './BillList.module.css'
 
 export default function BillList({ bills, setIsOpenForm }) {
+    const [popup, setPopup] = useState(false)
+    const [billLines, setBillLines] = useState([])
+    console.log(billLines)
+    function handlePopup(bill_lines) {
+        setBillLines([...bill_lines])
+        setPopup(true)
+    }
+
     return (
         <div className={classes.tableContainer}>
             <div className={classes.wrapper}>
@@ -31,7 +40,7 @@ export default function BillList({ bills, setIsOpenForm }) {
                 {bills &&
                     bills.map((bill) => (
                         <>
-                            <tr className={classes.tableRow}>
+                            <tr onClick={() => handlePopup(bill.bill_lines)} key={bill.id} className={classes.tableRow}>
                                 <td data-title="">{bill.id}</td>
                                 <td data-title="">{bill.total_amount}</td>
                                 <td data-title="">{bill.due_amount}</td>
@@ -45,11 +54,14 @@ export default function BillList({ bills, setIsOpenForm }) {
                                         <FontAwesomeIcon icon={faTrash} />
                                     </Link>
                                 </td>
+                                {popup & (billLines[0]?.bill_id === bill.id) ? (
+                                    <CollapseList billLines={billLines} />
+                                ) : null}
                             </tr>
-                            <Collapse />
                         </>
                     ))}
             </table>
+            {/* {popup && <Collapse billLines={billLines} />} */}
         </div>
     )
 }

@@ -1,20 +1,44 @@
+import { useState, useEffect } from 'react'
 import classes from './CollapseList.module.css'
 
-export default function CollapseList() {
+export default function CollapseList({ billLines }) {
+    const [medicines, setMedicines] = useState()
+
+    const getName = (elements, id) => {
+        const item = elements.find((element) => element.id === id)
+        return item.name
+    }
+    console.log(billLines)
+    useEffect(() => {
+        const controller = new AbortController()
+        const fetchData = async () => {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/medicines`)
+            const data = await response.json()
+            setMedicines(data)
+        }
+        fetchData()
+        return () => {
+            fetchData()
+            controller.abort()
+        }
+    }, [])
     return (
         <>
-            <div class={classes.container}>
-                <div class={classes.head}>Name</div>
-                <div class={classes.head}>Unit</div>
-                <div class={classes.head}>Price</div>
-                <div class={classes.head}>Qty</div>
+            <div className={classes.container}>
+                <div className={classes.head}>Id</div>
+                <div className={classes.head}>Medicine</div>
+                <div className={classes.head}>Price</div>
+                <div className={classes.head}>Quantity</div>
             </div>
-            <div class={classes.containerItem}>
-                <div class={classes.item}>Napa</div>
-                <div class={classes.item}>3</div>
-                <div class={classes.item}>10</div>
-                <div class={classes.item}>3</div>
-            </div>
+            {billLines &&
+                billLines.map((billLine) => (
+                    <div key={billLine.id} className={classes.containerItem}>
+                        <div className={classes.item}>{billLine.id}</div>
+                        {/* <div className={classes.item}>{getName(medicines, billLine.medicine_id)}</div> */}
+                        <div className={classes.item}>{billLine.price}</div>
+                        <div className={classes.item}>{billLine.qty}</div>
+                    </div>
+                ))}
         </>
     )
 }
