@@ -1,0 +1,35 @@
+.nav {
+    width: 85%;
+    position: fixed;
+}
+
+.nav .topNavbar {
+    background-image: linear-gradient(to right, var(--primary), var(--secondary));
+    height: 55px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+}
+
+.nav .topNavbar .hamburger {
+    font-size: 18px;
+    color: var(--white);
+}
+
+.nav .topNavbar .hamburger:hover {
+    color: var(--secondary);
+    cursor: pointer;
+}
+
+.nav .topNavbar .navList {
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.nav .topNavbar .navList a {
+    font-size: 18px;
+    color: var(--white);
+    padding-left: 25px;
+}
