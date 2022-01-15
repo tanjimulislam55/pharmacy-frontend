@@ -2,13 +2,24 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
-    padding: 20px;
+    padding: 10px;
 }
 
 .graphWrapper .graphBox {
     position: relative;
-    padding: 20px;
+    padding: 10px;
     /* box-shadow: 1px 1px 1px 1px grey; */
     border-radius: 4px;
     min-height: 100px;
+}
+
+.graphBox p {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--secondary);
+}
+
+.graphBox p:hover {
+    opacity: 0.8;
 }
