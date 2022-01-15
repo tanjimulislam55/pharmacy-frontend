@@ -1,0 +1,14 @@
+.graphWrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    padding: 20px;
+}
+
+.graphWrapper .graphBox {
+    position: relative;
+    padding: 20px;
+    /* box-shadow: 1px 1px 1px 1px grey; */
+    border-radius: 4px;
+    min-height: 100px;
+}
