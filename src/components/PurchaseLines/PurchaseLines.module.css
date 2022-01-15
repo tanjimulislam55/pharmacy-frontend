@@ -1,45 +1,11 @@
-.formWrapper .inputbox input {
-    width: 100%;
-    padding: 10px 0px;
-    font-size: 16px;
-    color: var(--dark);
-    margin-bottom: 30px;
-    border: 0.01px solid var(--white);
-    border-radius: 2px;
-    outline: none;
-    background-color: var(--light);
-    margin-bottom: 32px;
-}
-.formWrapper .inputbox label {
-    position: relative;
-    top: -70px;
-    left: 0;
-    padding: 10px 10px;
-    font-size: 16px;
-    color: var(--dark-grey);
-    pointer-events: none;
-    transition: 0.2s;
-}
-
-.formWrapper .inputbox input:focus + label,
-.formWrapper .inputbox input:valid + label {
-    top: -32px;
-    left: -8px;
-    color: var(--secondary);
-    font-size: 14px;
-}
-
-.formWrapper .selectBox .option {
-    position: relative;
-    width: 100%;
+.formWrapper .formTable .option {
+    width: 20em;
     margin: 0 auto;
     font-size: 14px;
-    background-color: var(--light);
-    color: var(--dark-grey);
+    background-color: var(--white);
     outline: none;
     border: none;
-    margin-bottom: 20px;
-    padding: 10px 10px;
+    padding: 6px 10px;
     border-radius: 2px;
 }
 
@@ -48,37 +14,42 @@
     color: var(--secondary);
 }
 
-.formWrapper .button {
-    background-color: var(--primary);
-    padding: 10px 20px;
-    color: var(--white);
-    font-size: 16px;
-    text-transform: uppercase;
-    overflow: hidden;
-    transition: 0.5s;
-    margin: 0 auto;
-    letter-spacing: 1px;
-    border: none;
-    border-radius: 2px;
+.formWrapper .formTable {
     width: 100%;
+    border-collapse: separate;
+    border-spacing: 2px;
+}
+.formTable th,
+.formTable td {
+    border-width: 1px;
+    padding: 10px;
+    position: relative;
+    text-align: left;
+    border-radius: 0.25em;
 }
 
-.formWrapper .button:hover {
-    background-color: var(--secondary);
+.formTable th {
+    background: var(--green);
+    border-color: var(--light);
+    color: var(--white);
+    font-size: 14px;
+    text-align: center;
+    border: none;
+}
+.formTable td {
+    border-color: var(--light);
+    border: 1px solid var(--light);
 }
 
-.formWrapper .close {
-    position: absolute;
-    top: 25px;
-    right: 30px;
-    transition: all 200ms;
-    font-size: 30px;
-    font-weight: bold;
-    text-decoration: none;
-    color: var(--dark-grey);
-    cursor: pointer;
+.formTable input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 14px;
 }
-.formWrapper .close:hover {
-    color: var(--red);
-    transition: 0.5s;
+
+.formTable .text {
+    font-size: 16px;
+    color: var(--secondary);
+    padding: 10px;
 }

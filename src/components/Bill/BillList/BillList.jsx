@@ -1,9 +1,19 @@
 import { faEdit, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import CollapseList from '../../Collapse/CollapseList/CollapseList'
 import classes from './BillList.module.css'
 
 export default function BillList({ bills, setIsOpenForm }) {
+    const [popup, setPopup] = useState(false)
+    const [billLines, setBillLines] = useState([])
+    console.log(billLines)
+    function handlePopup(bill_lines) {
+        setBillLines([...bill_lines])
+        setPopup(true)
+    }
+
     return (
         <div className={classes.tableContainer}>
             <div className={classes.wrapper}>
@@ -18,34 +28,43 @@ export default function BillList({ bills, setIsOpenForm }) {
                 </button>
             </div>
 
-            <table className={classes.tableMain}>
-                <tr className={classes.tableRow}>
-                    <th>ID</th>
-                    <th>Total Amount</th>
-                    <th>Due Amount</th>
-                    <th>Paid Amount</th>
-                    <th>Billing Date</th>
-                    <th>Action</th>
-                </tr>
+            <div className={classes.tableMain}>
+                <div className={classes.container}>
+                    <div className={classes.head}>ID</div>
+                    <div className={classes.head}>Total Amount</div>
+                    <div className={classes.head}>Paid Amount</div>
+                    <div className={classes.head}>Quantity</div>
+                    <div className={classes.head}>Billing Date</div>
+                    <div className={classes.head}>Action</div>
+                </div>
+
                 {bills &&
                     bills.map((bill) => (
-                        <tr className={classes.tableRow}>
-                            <td data-title="">{bill.id}</td>
-                            <td data-title="">{bill.total_amount}</td>
-                            <td data-title="">{bill.due_amount}</td>
-                            <td data-title="">{bill.paid_amount}</td>
-                            <td data-title="">{bill.billing_date}</td>
-                            <td className="select">
-                                <Link className={classes.icon} to="#">
-                                    <FontAwesomeIcon icon={faEdit} />
-                                </Link>
-                                <Link className={classes.icon} to="#">
-                                    <FontAwesomeIcon icon={faTrash} />
-                                </Link>
-                            </td>
-                        </tr>
+                        <>
+                            <tr
+                                onClick={() => handlePopup(bill.bill_lines)}
+                                key={bill.id}
+                                className={classes.containerItem}>
+                                <div className={classes.item}>{bill.id}</div>
+                                <div className={classes.item}>{bill.total_amount}</div>
+                                <div className={classes.item}>{bill.due_amount}</div>
+                                <div className={classes.item}>{bill.paid_amount}</div>
+                                <div className={classes.item}>{bill.billing_date}</div>
+                                <div className={classes.item}>
+                                    <Link className={classes.icon} to="#">
+                                        <FontAwesomeIcon icon={faEdit} />
+                                    </Link>
+                                    <Link className={classes.icon} to="#">
+                                        <FontAwesomeIcon icon={faTrash} />
+                                    </Link>
+                                </div>
+                                {popup & (billLines[0]?.bill_id === bill.id) ? (
+                                    <CollapseList billLines={billLines} />
+                                ) : null}
+                            </tr>
+                        </>
                     ))}
-            </table>
+            </div>
         </div>
     )
 }

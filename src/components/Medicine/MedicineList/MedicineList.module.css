@@ -55,7 +55,7 @@
 .tableContainer .button {
     background-color: var(--primary);
     border: none;
-    padding: 0 20px;
+    padding: 0 10px;
     font-size: 12px;
     font-weight: 500;
     border-radius: 2px;
@@ -76,7 +76,7 @@
 .tableContainer .searchField {
     background-color: var(--light);
     border: none;
-    padding: 12px 10px;
+    padding: 10px 10px;
     width: 300px;
     appearance: none;
     border-radius: 2px;
@@ -86,7 +86,7 @@
 
 .tableContainer .searchButton {
     background-color: var(--light);
-    padding: 12px;
+    padding: 10px;
     border: none;
     border-radius: 2px;
     cursor: pointer;

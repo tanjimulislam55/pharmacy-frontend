@@ -5,7 +5,7 @@
 
 .nav .topNavbar {
     background-image: linear-gradient(to right, var(--primary), var(--secondary));
-    height: 70px;
+    height: 55px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -32,24 +32,4 @@
     font-size: 18px;
     color: var(--white);
     padding-left: 25px;
-}
-
-.nav .topNavbar .navList .logout {
-    text-decoration: none;
-    color: var(--dark);
-    background-color: var(--light);
-    padding: 3px 5px;
-    border-radius: 3px;
-    margin: 0 1rem;
-    text-transform: uppercase;
-    font-size: initial;
-    font-weight: 800;
-    font-size: 12px;
-}
-
-.nav .topNavbar .navList .logout:hover {
-    text-decoration: none;
-    color: var(--dark);
-    background-color: var(--secondary);
-    cursor: pointer;
 }
