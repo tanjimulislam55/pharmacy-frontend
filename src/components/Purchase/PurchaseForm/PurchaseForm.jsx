@@ -50,16 +50,9 @@ export default function PurchaseForm() {
     }
 
     return (
-<<<<<<< HEAD
-        <>
-            <div className={classes.wrapper}>
-                <div className={classes.formWrapper}>
-                    <h2>Add New Purchase</h2>
-=======
         <div className={classes.wrapper}>
             <div className={classes.formWrapper}>
                 <h2>Add New Purchase</h2>
->>>>>>> de8a30a9786449de87569163e41e8f01a7ffb631
 
                 <form className={classes.item} onSubmit={handleSubmit}>
                     <div className={classes.inputbox}>
