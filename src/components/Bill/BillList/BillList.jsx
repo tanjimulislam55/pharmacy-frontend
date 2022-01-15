@@ -11,7 +11,7 @@ export default function BillList({ bills, setIsOpenForm }) {
     console.log(billLines)
     function handlePopup(bill_lines) {
         setBillLines([...bill_lines])
-        setPopup(true)
+        setPopup((prev) => !prev)
     }
 
     return (

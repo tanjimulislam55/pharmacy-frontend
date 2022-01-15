@@ -34,7 +34,7 @@ export default function CollapseList({ billLines }) {
                 billLines.map((billLine) => (
                     <div key={billLine.id} className={classes.containerItem}>
                         <div className={classes.item}>{billLine.id}</div>
-                        {/* <div className={classes.item}>{getName(medicines, billLine.medicine_id)}</div> */}
+                        {medicines && <div className={classes.item}>{getName(medicines, billLine?.medicine_id)}</div>}
                         <div className={classes.item}>{billLine.price}</div>
                         <div className={classes.item}>{billLine.qty}</div>
                     </div>
