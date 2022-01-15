@@ -54,7 +54,6 @@ export default function PurchaseForm() {
             <div className={classes.wrapper}>
                 <div className={classes.formWrapper}>
                     <h2>Add New Purchase</h2>
-                    <div className={classes.close}>&times;</div>
 
                     <form className={classes.item} onSubmit={handleSubmit}>
                         <div className={classes.inputbox}>
