@@ -14,7 +14,7 @@
 }
 
 .nav .topNavbar .hamburger {
-    font-size: 18px;
+    font-size: 16px;
     color: var(--white);
 }
 
@@ -30,7 +30,7 @@
 }
 
 .nav .topNavbar .navList a {
-    font-size: 18px;
+    font-size: 16px;
     color: var(--white);
     padding-left: 25px;
 }

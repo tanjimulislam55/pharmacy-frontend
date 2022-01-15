@@ -11,7 +11,11 @@
     "@testing-library/user-event": "^12.1.10",
     "chart.js": "^3.6.2",
     "react": "^17.0.2",
+<<<<<<< HEAD
     "react-chartjs2": "^1.2.1",
+=======
+    "react-chartjs-2": "^4.0.0",
+>>>>>>> b36acf2d8dd16db2acf939e280e2b432a3136c5d
     "react-dom": "^17.0.2",
     "react-router": "^6.0.2",
     "react-router-dom": "^6.0.2",

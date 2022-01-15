@@ -10,6 +10,11 @@
     padding: 20px;
 }
 
+.formWrapper {
+    width: 60%;
+    margin: 50px auto;
+}
+
 .formWrapper h2 {
     margin: 0 0 30px;
     padding: 0;
