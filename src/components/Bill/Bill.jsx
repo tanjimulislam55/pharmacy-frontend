@@ -22,8 +22,10 @@ export default function Bill() {
 
     return (
         <div>
-            {isOpenForm && <BillForm />}
-            <BillList bills={bills} setIsOpenForm={setIsOpenForm} />
+            {/* {isOpenForm && <BillForm />}
+            <BillList bills={bills} setIsOpenForm={setIsOpenForm} /> */}
+            <BillList bills={bills} />
+            <BillForm />
         </div>
     )
 }
