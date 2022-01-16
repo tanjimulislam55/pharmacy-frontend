@@ -19,7 +19,7 @@
 .dashContainer .dashBox {
     position: relative;
     padding: 20px;
-    box-shadow: 0 5px 10px var(--grey2);
+    box-shadow: 0 2px 3px var(--grey2);
     border-radius: 4px;
     min-height: 200px;
 }
