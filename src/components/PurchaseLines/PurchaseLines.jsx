@@ -28,16 +28,24 @@ export default function PurchaseLines({ purchaseLine, i, total, setTotal }) {
     }
 
     return (
-        <div className={classes.formWrapper}>
+        <div className={classes.tableContainer}>
             <div key={i}>
-                <table className={classes.formTable}>
-                    <tr>
-                        <th>Select Medicine</th>
-                        <th>Purchase Price</th>
-                        <th>Purchased Quantity</th>
-                        <th>Received Quantity</th>
+                <table className={classes.tableMain}>
+                    <tr className={classes.tableRow}>
+                        <th>Select Medicines</th>
+                        <th>
+                            Purchase Price <span>*</span>
+                        </th>
+                        <th>
+                            Purchased Quantity <span>*</span>
+                        </th>
+                        <th>Received Quantity </th>
+                        <th>Sale Price</th>
+                        <th>
+                            Exp Date <span>*</span>
+                        </th>
                     </tr>
-                    <tr>
+                    <tr className={classes.tableRow}>
                         <td>
                             <select
                                 className={classes.option}
@@ -84,9 +92,15 @@ export default function PurchaseLines({ purchaseLine, i, total, setTotal }) {
                                 required
                             />
                         </td>
+                        <td>
+                            <input type="number" required />
+                        </td>
+                        <td>
+                            <input type="number" required />
+                        </td>
                     </tr>
 
-                    <div className={classes.text}>Total: {total}</div>
+                    {/* <div className={classes.text}>Total: {total}</div> */}
                 </table>
             </div>
         </div>
