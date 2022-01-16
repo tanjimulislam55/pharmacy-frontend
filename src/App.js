@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { SidebarProvider } from './contexts/sidebarContext'
-import { Home, Vendor, Bill, Customer, Medicine, Stock, Expense, Purchase, Report } from './pages'
+import { Home, Vendor, Bill, Customer, Medicine, Stock, Expense, Purchase, Report, Admin } from './pages'
 
 function App() {
     return (
@@ -17,6 +17,7 @@ function App() {
                     <Route path="/purchase" element={<Purchase />} />
                     <Route path="/purchase" element={<Purchase />} />
                     <Route path="/reports" element={<Report />} />
+                    <Route path="/accounts" element={<Admin />} />
                 </Routes>
             </BrowserRouter>
         </SidebarProvider>
