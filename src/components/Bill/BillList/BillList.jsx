@@ -41,7 +41,7 @@ export default function BillList({ bills, setIsOpenForm }) {
                 {bills &&
                     bills.map((bill) => (
                         <>
-                            <tr
+                            <div
                                 onClick={() => handlePopup(bill.bill_lines)}
                                 key={bill.id}
                                 className={classes.containerItem}>
@@ -61,7 +61,7 @@ export default function BillList({ bills, setIsOpenForm }) {
                                 {popup & (billLines[0]?.bill_id === bill.id) ? (
                                     <CollapseList billLines={billLines} />
                                 ) : null}
-                            </tr>
+                            </div>
                         </>
                     ))}
             </div>
