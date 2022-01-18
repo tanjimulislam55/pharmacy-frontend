@@ -14,12 +14,27 @@ import classes from './LineChart.module.css'
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
 
 const LineChart = () => {
+    const labels = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+    ]
     const data = {
-        labels: ['Red', 'Blue', 'Yellow'],
+        labels: labels,
         datasets: [
             {
-                data: [300, 50, 100],
-                backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
+                label: 'Monthly Sales',
+                data: [6500, 5900, 8000, 8100, 5600, 5500, 4000, 5000, 6000, 7000, 8500, 9200, 3000],
+                backgroundColor: 'rgb(75, 192, 192)',
                 hoverOffset: 1,
             },
         ],
