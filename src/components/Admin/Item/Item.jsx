@@ -21,17 +21,17 @@ export default function Item() {
                 </div>
             </div>
             <div className={classes.itemBox}>
-                <div className={classes.itemName}>Admin</div>
+                <div className={classes.itemName}>Manager</div>
                 <div className={classes.itemNumber}>2</div>
                 <div className={classes.itemIcon}>
-                    <FontAwesomeIcon icon={faUserShield} />
+                    <FontAwesomeIcon icon={faUserCog} />
                 </div>
             </div>
             <div className={classes.itemBox}>
-                <div className={classes.itemName}>Moderator</div>
+                <div className={classes.itemName}>Accountant</div>
                 <div className={classes.itemNumber}>5</div>
                 <div className={classes.itemIcon}>
-                    <FontAwesomeIcon icon={faUserCog} />
+                    <FontAwesomeIcon icon={faUserShield} />
                 </div>
             </div>
             <div className={classes.itemBox}>
