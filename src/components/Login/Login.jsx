@@ -48,8 +48,8 @@ export default function Login() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <button type="submit">Submit</button>
             </form>
+            <button type="submit">Submit</button>
         </div>
     )
 }
