@@ -27,8 +27,8 @@ export default function UserList() {
                 </tr>
                 <tr className={classes.tableRow}>
                     <td>Sajid</td>
-                    <td>Admin</td>
-                    <td>admin</td>
+                    <td>Owner</td>
+                    <td>owner</td>
                     <td>Active</td>
                     <td>14-01-2022</td>
                     <td className="select">
@@ -42,8 +42,8 @@ export default function UserList() {
                 </tr>
                 <tr className={classes.tableRow}>
                     <td>Rishad</td>
-                    <td>Moderator</td>
-                    <td>moderator1</td>
+                    <td>Manager</td>
+                    <td>manager1</td>
                     <td>Active</td>
                     <td>15-01-2022</td>
                     <td className="select">
@@ -57,8 +57,8 @@ export default function UserList() {
                 </tr>
                 <tr className={classes.tableRow}>
                     <td>Antor</td>
-                    <td>Moderator</td>
-                    <td>moderator2</td>
+                    <td>Manager</td>
+                    <td>manager2</td>
                     <td>Active</td>
                     <td>16-01-2022</td>
                     <td className="select">
