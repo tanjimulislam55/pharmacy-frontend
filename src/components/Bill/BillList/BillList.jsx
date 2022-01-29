@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import CollapseList from '../../Collapse/CollapseList/CollapseList'
 import classes from './BillList.module.css'
 
-export default function BillList({ bills, setIsOpenForm }) {
+export default function BillList({ bills }) {
     const [popup, setPopup] = useState(false)
     const [billLines, setBillLines] = useState([])
     console.log(billLines)
@@ -23,8 +23,8 @@ export default function BillList({ bills, setIsOpenForm }) {
                         <FontAwesomeIcon icon={faSearch} />
                     </button>
                 </form>
-                <button className={classes.button} onClick={() => setIsOpenForm(true)}>
-                    + Add Bill
+                <button className={classes.button}>
+                    <Link to="./billform"> + Add Bill</Link>
                 </button>
             </div>
 
