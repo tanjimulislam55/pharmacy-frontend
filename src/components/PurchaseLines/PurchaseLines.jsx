@@ -32,20 +32,6 @@ export default function PurchaseLines({ purchaseLine, i, total, setTotal }) {
             <div key={i}>
                 <table className={classes.tableMain}>
                     <tr className={classes.tableRow}>
-                        <th>Select Medicines</th>
-                        <th>
-                            Purchase Price <span>*</span>
-                        </th>
-                        <th>
-                            Purchased Quantity <span>*</span>
-                        </th>
-                        <th>Received Quantity </th>
-                        <th>Sale Price</th>
-                        <th>
-                            Exp Date <span>*</span>
-                        </th>
-                    </tr>
-                    <tr className={classes.tableRow}>
                         <td>
                             <select
                                 className={classes.option}

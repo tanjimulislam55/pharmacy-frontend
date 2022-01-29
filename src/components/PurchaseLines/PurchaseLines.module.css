@@ -20,21 +20,12 @@
     border-collapse: separate;
     border-spacing: 2px 4px;
 }
-.tableRow th,
+
 .tableRow td {
     position: relative;
     border-radius: 0.25em;
 }
 
-.tableRow th {
-    box-shadow: 0px 0px 0px 1px var(--light);
-    font-size: 12px;
-    text-align: center;
-    border: none;
-    color: var(--dark);
-    padding: 10px;
-    font-weight: 400;
-}
 .tableRow td {
     border-color: var(--light);
     border: 1px solid var(--light);
