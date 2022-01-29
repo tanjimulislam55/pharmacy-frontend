@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react'
-import BillForm from './BillForm/BillForm'
 import BillList from './BillList/BillList'
 
 export default function Bill() {
     const [bills, setBills] = useState([])
-    const [isOpenForm, setIsOpenForm] = useState(false)
 
     useEffect(() => {
         const controller = new AbortController()
@@ -22,10 +20,7 @@ export default function Bill() {
 
     return (
         <div>
-            {/* {isOpenForm && <BillForm />}
-            <BillList bills={bills} setIsOpenForm={setIsOpenForm} /> */}
             <BillList bills={bills} />
-            <BillForm />
         </div>
     )
 }
