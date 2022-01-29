@@ -113,6 +113,24 @@ export default function PurchaseForm() {
                         />
                         <label htmlFor="note">Note</label>
                     </div>
+                    <div className={classes.tableContainer}>
+                        <table className={classes.tableMain}>
+                            <tr className={classes.tableRow}>
+                                <th>Select Medicines</th>
+                                <th>
+                                    Purchase Price <span>*</span>
+                                </th>
+                                <th>
+                                    Purchased Quantity <span>*</span>
+                                </th>
+                                <th>Received Quantity </th>
+                                <th>Sale Price</th>
+                                <th>
+                                    Exp Date <span>*</span>
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
                     {purchaseLines.map((purchaseLine, i) => (
                         <PurchaseLines
                             purchaseLine={purchaseLine}
