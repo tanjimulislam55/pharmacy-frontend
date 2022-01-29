@@ -70,7 +70,9 @@ export default function Sidebar() {
         <div>
             <div className={!isOpenSidebar ? classes.sidebar : classes.sidebarHide}>
                 <div className={classes.logo}>
-                    <h2>{!isOpenSidebar ? 'E-Pharmacy' : 'EP'}</h2>
+                    <Link to="/">
+                        <h2>{!isOpenSidebar ? 'E-Pharmacy' : 'EP'}</h2>
+                    </Link>
                 </div>
                 <ul>
                     <li>
