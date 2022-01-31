@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import PurchaseLines from '../../PurchaseLines/PurchaseLines'
 import classes from './PurchaseForm.module.css'
 
@@ -18,6 +19,7 @@ export default function PurchaseForm() {
     const [dueAmount, setDueAmount] = useState()
 
     const [total, setTotal] = useState([])
+    const history = useNavigate()
 
     const [purchaseLines, setPurchaseLines] = useState([{}])
 
@@ -40,13 +42,17 @@ export default function PurchaseForm() {
             purchase_line_in: purchaseLines,
         }
         console.log(details)
-        fetch(`${process.env.REACT_APP_API_URL}/add_purchase`, {
+        let successPurchaseForm = fetch(`${process.env.REACT_APP_API_URL}/add_purchase`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(details),
         })
+
+        if (successPurchaseForm.ok) {
+            history('/purchase')
+        }
     }
 
     return (
@@ -79,12 +85,26 @@ export default function PurchaseForm() {
                     </div>
                     <div className={classes.gridThree}>
                         <div className={classes.inputbox}>
-                            <input id="subTotal" name="subTotal" type="number" value={subTotal} required />
+                            <input
+                                id="subTotal"
+                                name="subTotal"
+                                type="number"
+                                value={subTotal}
+                                onChange={(e) => setSubTotal(e.target.value)}
+                                required
+                            />
                             <label htmlFor="subTotal">Subtotal</label>
                         </div>
 
                         <div className={classes.inputbox}>
-                            <input id="dueAmount" name="dueAmount" type="number" value={dueAmount} required />
+                            <input
+                                id="dueAmount"
+                                name="dueAmount"
+                                type="number"
+                                value={dueAmount}
+                                onChange={(e) => setDueAmount(e.target.value)}
+                                required
+                            />
                             <label htmlFor="paidAmount">Due amount</label>
                         </div>
                         <div className={classes.inputbox}>
@@ -147,7 +167,9 @@ export default function PurchaseForm() {
                         className={classes.btn}>
                         Add More Item
                     </button>
-                    <button className={classes.button}>Submit</button>
+                    <button type="submit" className={classes.button}>
+                        Submit
+                    </button>
                 </form>
             </div>
         </div>
