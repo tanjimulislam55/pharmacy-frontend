@@ -91,7 +91,7 @@ export default function Login({ setOpenRegistration, setOpenLogin }) {
                     <div className={classes.overlay}>
                         <div className={`${classes.overlayPanel} ${classes.overlayRight}`}>
                             <h2>New here!</h2>
-                            <p>Click sign up and yout start journey</p>
+                            <p>Click sign up and your start journey</p>
                             <Link to="/registration">
                                 <button className={classes.btn}>Sign Up</button>
                             </Link>
