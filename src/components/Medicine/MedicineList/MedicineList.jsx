@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { Pagination } from '../../../components'
 import classes from './MedicineList.module.css'
 
-export default function MedicineList({ medicines, vendors, types, categories, units, setIsOpenForm }) {
+export default function MedicineList({ medicines, manufacturers, setIsOpenForm }) {
     const getName = (elements, id) => {
         const item = elements.find((element) => element.id === id)
         return item.name
@@ -39,33 +39,28 @@ export default function MedicineList({ medicines, vendors, types, categories, un
             <table className={classes.tableMain}>
                 <tr className={classes.tableRow}>
                     <th>ID</th>
-                    <th>Medicine</th>
-                    <th>Type</th>
-                    <th>Unit</th>
-                    <th>Category</th>
-                    <th>Company</th>
-                    <th>Stock</th>
-                    <th>Price</th>
-                    <th>Last Sale Date</th>
-                    <th>Last Sold Quantity</th>
+                    <th>Brand Name</th>
+                    <th>Generic Name</th>
+                    <th>Dosage Form</th>
+                    <th>Strength</th>
+                    <th>Manufacturer</th>
                     <th>Action</th>
                 </tr>
                 {medicines &&
+                    manufacturers &&
                     medicines
-                        .filter((medicine) => medicine.name.toLowerCase().includes(searched))
+                        .filter((medicine) => medicine.brand_name.toLowerCase().includes(searched))
                         .splice(startIdx, endIdx)
                         .map((filteredMedicine) => (
                             <tr key={filteredMedicine.id} className={classes.tableRow}>
                                 <td data-title="id">{filteredMedicine.id}</td>
-                                <td data-title="name">{filteredMedicine.name}</td>
-                                <td data-title="type">{getName(types, filteredMedicine.type_id)}</td>
-                                <td data-title="unit">{getName(units, filteredMedicine.unit_id)}</td>
-                                <td data-title="category">{getName(categories, filteredMedicine.category_id)}</td>
-                                <td data-title="company">{getName(vendors, filteredMedicine.vendor_id)}</td>
-                                <td data-title="stock">{filteredMedicine.medicine_detail.stock}</td>
-                                <td data-title="price">{filteredMedicine.medicine_detail.retail_price}</td>
-                                <td data-title="last-sale-date">{filteredMedicine.medicine_detail.last_sale_date}</td>
-                                <td data-title="last-sold-qty">{filteredMedicine.medicine_detail.last_slold_qty}</td>
+                                <td data-title="brand_name">{filteredMedicine.brand_name}</td>
+                                <td data-title="generic_name">{filteredMedicine.generic_name}</td>
+                                <td data-title="dosage_form">{filteredMedicine.dosage_form}</td>
+                                <td data-title="strength">{filteredMedicine.strength}</td>
+                                <td data-title="manufacturer">
+                                    {getName(manufacturers, filteredMedicine.manufacturer_id)}
+                                </td>
                                 <td className="select">
                                     <Link className={classes.icon} to="#">
                                         <FontAwesomeIcon icon={faEdit} />
@@ -80,7 +75,10 @@ export default function MedicineList({ medicines, vendors, types, categories, un
             <Pagination
                 setStartIdx={setStartIdx}
                 setEndIdx={setEndIdx}
-                page={medicines.filter((medicine) => medicine.name.toLowerCase().includes(searched)).length}
+                page={
+                    medicines &&
+                    medicines.filter((medicine) => medicine.brand_name.toLowerCase().includes(searched)).length
+                }
             />
         </div>
     )

@@ -30,7 +30,7 @@ export default function Login({ setOpenRegistration, setOpenLogin }) {
         }
         formBody = formBody.join('&')
 
-        let logFetch = await fetch(`${api}/token`, {
+        let logFetch = await fetch(`${api}/login/access-token`, {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',

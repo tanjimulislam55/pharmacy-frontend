@@ -1,17 +1,19 @@
 import classes from './MedicineForm.module.css'
 
 export default function MedicineForm({
+    brandName,
+    setBrandName,
+    genericName,
+    setGenericName,
+    dosageForm,
+    setDosageForm,
+    stength,
+    setStrength,
+    unitPrice,
+    setUnitPrice,
+    manufacturers,
+    setManufacturerId,
     setIsOpenForm,
-    name,
-    setName,
-    vendors,
-    types,
-    units,
-    categories,
-    setVendorId,
-    setTypeId,
-    setUnitId,
-    setCategorieId,
 }) {
     return (
         <div className={classes.wrapper}>
@@ -23,57 +25,65 @@ export default function MedicineForm({
 
                 <form classNameName={classes.item}>
                     <div className={classes.inputbox}>
-                        <input type="text" name="" required />
-                        <label htmlFor="medicines">Medicine Name</label>
+                        <input
+                            onChange={(e) => setBrandName(e.target.value)}
+                            value={brandName}
+                            type="text"
+                            name="brandName"
+                            required
+                        />
+                        <label htmlFor="medicines">Brand Name</label>
+                    </div>
+                    <div className={classes.inputbox}>
+                        <input
+                            onChange={(e) => setGenericName(e.target.value)}
+                            value={genericName}
+                            type="text"
+                            name="brandName"
+                            required
+                        />
+                        <label htmlFor="medicines">Generic Name</label>
+                    </div>
+                    <div className={classes.inputbox}>
+                        <input
+                            onChange={(e) => setDosageForm(e.target.value)}
+                            value={dosageForm}
+                            type="text"
+                            name="brandName"
+                            required
+                        />
+                        <label htmlFor="medicines">Dosage Form</label>
+                    </div>
+                    <div className={classes.inputbox}>
+                        <input
+                            onChange={(e) => setStrength(e.target.value)}
+                            value={stength}
+                            type="text"
+                            name="brandName"
+                            required
+                        />
+                        <label htmlFor="medicines">Strength</label>
+                    </div>
+                    <div className={classes.inputbox}>
+                        <input
+                            onChange={(e) => setUnitPrice(e.target.value)}
+                            value={unitPrice}
+                            type="text"
+                            name="brandName"
+                            required
+                        />
+                        <label htmlFor="medicines">Unit Price</label>
                     </div>
 
                     <div className={classes.selectBox}>
-                        {/* <input name="name" type="text" value={name} onChange={(e) => setName(e.target.value)} /> */}
-                        {/* <label htmlFor="types">Select Type</label> */}
-                        <select className={classes.option} onChange={(e) => setTypeId(e.target.value)} id="types">
-                            <option value="">Select Type</option>
-                            {types.map((type, i) => (
-                                <option key={i} value={type.id}>
-                                    {type.name}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-
-                    <div className={classes.selectBox}>
-                        {/* <label htmlFor="categories">Select Category</label> */}
                         <select
                             className={classes.option}
-                            onChange={(e) => setCategorieId(e.target.value)}
-                            id="categories">
-                            <option value="">Select Category</option>
-                            {categories.map((category, i) => (
-                                <option key={i} value={category.id}>
-                                    {category.name}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-
-                    <div className={classes.selectBox}>
-                        {/* <label htmlFor="units">Select Unit</label> */}
-                        <select className={classes.option} onChange={(e) => setUnitId(e.target.value)} id="units">
-                            <option value="">Select Unit</option>
-                            {units.map((unit, i) => (
-                                <option key={i} value={unit.id}>
-                                    {unit.name}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-
-                    <div className={classes.selectBox}>
-                        {/* <label htmlFor="vendors">Select Vendor</label> */}
-                        <select className={classes.option} onChange={(e) => setVendorId(e.target.value)} id="vendors">
+                            onChange={(e) => setManufacturerId(e.target.value)}
+                            id="vendors">
                             <option value="">Select Vendor</option>
-                            {vendors.map((vendor, i) => (
-                                <option key={i} value={vendor.id}>
-                                    {vendor.name}
+                            {manufacturers.map((manufacturer, i) => (
+                                <option key={i} value={manufacturer.id}>
+                                    {manufacturer.name}
                                 </option>
                             ))}
                         </select>

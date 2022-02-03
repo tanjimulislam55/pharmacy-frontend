@@ -3,95 +3,65 @@ import MedicineForm from './MedicineForm/MedicineForm'
 import MedicineList from './MedicineList/MedicineList'
 
 export default function Medicine() {
-    const [name, setName] = useState('')
-    const [vendors, setVendors] = useState([])
-    const [types, setTypes] = useState([])
-    const [units, setUnits] = useState([])
-    const [categories, setCategories] = useState([])
-    const [vendorId, setVendorId] = useState()
-    const [typeId, setTypeId] = useState()
-    const [unitId, setUnitId] = useState()
-    const [categorieId, setCategorieId] = useState()
-
     const [medicines, setMedicines] = useState([])
+    const [manufacturers, setManufacturers] = useState([])
+    const [brandName, setBrandName] = useState('')
+    const [genericName, setGenericName] = useState('')
+    const [dosageForm, setDosageForm] = useState('')
+    const [stength, setStrength] = useState('')
+    const [unitPrice, setUnitPrice] = useState('')
+    const [, setManufacturerId] = useState()
+
     const [isOpenForm, setIsOpenForm] = useState(false)
-
-    useEffect(() => {
-        const controller = new AbortController()
-        const fetchData = async () => {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/types`)
-            const data = await response.json()
-            setTypes(data)
-        }
-        fetchData()
-        return () => {
-            fetchData()
-            controller.abort()
-        }
-    }, [])
-
-    useEffect(() => {
-        const controller = new AbortController()
-        const fetchData = async () => {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/units`)
-            const data = await response.json()
-            setUnits(data)
-        }
-        fetchData()
-        return () => {
-            fetchData()
-            controller.abort()
-        }
-    }, [])
-
-    useEffect(() => {
-        const controller = new AbortController()
-        const fetchData = async () => {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/categories`)
-            const data = await response.json()
-            setCategories(data)
-        }
-        fetchData()
-        return () => {
-            fetchData()
-            controller.abort()
-        }
-    }, [])
+    const auth = JSON.parse(localStorage.getItem('auth'))
+    const token = auth.token
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/vendors`)
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/manufacturers`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+            })
             const data = await response.json()
-            setVendors(data)
+            setManufacturers(data)
         }
         return fetchData()
-    }, [])
+    }, [token])
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        const details = {
-            name,
-            vendor_id: vendorId,
-            unit_id: unitId,
-            type_id: typeId,
-            category_id: categorieId,
-        }
-        if (vendorId === undefined || unitId === undefined || typeId === undefined || categorieId === undefined) {
-            return console.log('select all')
-        }
-        fetch(`${process.env.REACT_APP_API_URL}/add_medicine`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(details),
-        })
-    }
+    // const handleSubmit = (e) => {
+    //     e.preventDefault()
+    //     const details = {
+    //         name,
+    //         vendor_id: vendorId,
+    //         unit_id: unitId,
+    //         type_id: typeId,
+    //         category_id: categorieId,
+    //     }
+    //     if (vendorId === undefined || unitId === undefined || typeId === undefined || categorieId === undefined) {
+    //         return console.log('select all')
+    //     }
+    //     fetch(`${process.env.REACT_APP_API_URL}/add_medicine`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify(details),
+    //     })
+    // }
 
     useEffect(() => {
         const controller = new AbortController()
         const fetchData = async () => {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/medicines`)
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/medicines`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+            })
             const data = await response.json()
             setMedicines(data)
         }
@@ -100,33 +70,30 @@ export default function Medicine() {
             fetchData()
             controller.abort()
         }
-    }, [])
+    }, [token])
 
     return (
         <div>
             {isOpenForm && (
                 <MedicineForm
-                    name={name}
-                    setName={setName}
-                    vendors={vendors}
-                    types={types}
-                    units={units}
-                    categories={categories}
-                    setVendorId={setVendorId}
-                    setTypeId={setTypeId}
-                    setUnitId={setUnitId}
-                    setCategorieId={setCategorieId}
+                    brandName={brandName}
+                    setBrandName={setBrandName}
+                    genericName={genericName}
+                    setGenericName={setGenericName}
+                    dosageForm={dosageForm}
+                    setDosageForm={setDosageForm}
+                    stength={stength}
+                    setStrength={setStrength}
+                    unitPrice={unitPrice}
+                    setUnitPrice={setUnitPrice}
+                    manufacturers={manufacturers}
+                    setManufacturerId={setManufacturerId}
                     setIsOpenForm={setIsOpenForm}
                 />
             )}
-            <MedicineList
-                setIsOpenForm={setIsOpenForm}
-                medicines={medicines}
-                vendors={vendors}
-                types={types}
-                units={units}
-                categories={categories}
-            />
+            {medicines && manufacturers && (
+                <MedicineList setIsOpenForm={setIsOpenForm} medicines={medicines} manufacturers={manufacturers} />
+            )}
         </div>
     )
 }
