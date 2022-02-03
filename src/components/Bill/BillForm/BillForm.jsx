@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import PurchaseLines from '../../PurchaseLines/PurchaseLines'
+import BillLines from '../../BillLines/BillLines'
 import classes from './BillForm.module.css'
 
 export default function BillForm() {
@@ -12,10 +12,10 @@ export default function BillForm() {
 
     const [total, setTotal] = useState([])
 
-    const [purchaseLines, setPurchaseLines] = useState([{}])
+    const [billLines, setBillLines] = useState([{}])
 
     const click = () => {
-        console.log(purchaseLines)
+        console.log(billLines)
         console.log(total)
     }
 
@@ -23,17 +23,17 @@ export default function BillForm() {
         e.preventDefault()
         click()
         const details = {
-            purchase_in: {
+            bill_in: {
                 total_amount: subTotal,
                 paid_amount: paidAmount,
                 due_amount: dueAmount,
                 note,
-                purchase_date: date,
+                billing_date: date,
             },
-            purchase_line_in: purchaseLines,
+            bill_line_in: billLines,
         }
         console.log(details)
-        fetch(`${process.env.REACT_APP_API_URL}/add_purchase`, {
+        fetch(`${process.env.REACT_APP_API_URL}/add_bill`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -74,7 +74,13 @@ export default function BillForm() {
                             </label>
                         </div>
                         <div className={classes.inputbox}>
-                            <input id="date" name="date" type="date" required />
+                            <input
+                                id="date"
+                                name="date"
+                                type="date"
+                                onChange={(e) => setDate(e.target.value)}
+                                required
+                            />
                         </div>
                         <div className={classes.inputbox}>
                             <select>
@@ -98,24 +104,55 @@ export default function BillForm() {
                     </div>
                     <div className={classes.gridThree}>
                         <div className={classes.inputbox}>
-                            <input id="subTotal" name="subTotal" type="number" required />
+                            <input
+                                id="subTotal"
+                                name="subTotal"
+                                type="number"
+                                onChange={(e) => setSubTotal(e.target.value)}
+                                required
+                            />
                             <label htmlFor="subTotal">Subtotal</label>
                         </div>
 
                         <div className={classes.inputbox}>
-                            <input id="dueAmount" name="dueAmount" type="number" required />
+                            <input
+                                id="dueAmount"
+                                name="dueAmount"
+                                type="number"
+                                onChange={(e) => setDueAmount(e.target.value)}
+                                required
+                            />
                             <label htmlFor="paidAmount">Due amount</label>
                         </div>
                         <div className={classes.inputbox}>
-                            <input id="paidAmount" name="paidAmount" type="number" required />
+                            <input
+                                id="paidAmount"
+                                name="paidAmount"
+                                type="number"
+                                onChange={(e) => setPaidAmount(e.target.value)}
+                                required
+                            />
                             <label htmlFor="paidAmount">
                                 Paid amount <span>*</span>
                             </label>
                         </div>
                     </div>
-                    {purchaseLines.map((purchaseLine, i) => (
-                        <PurchaseLines
-                            purchaseLine={purchaseLine}
+                    <div className={classes.tableContainer}>
+                        <table className={classes.tableMain}>
+                            <tr className={classes.tableRow}>
+                                <th>Select Medicines</th>
+                                <th>
+                                    Price <span>*</span>
+                                </th>
+                                <th>
+                                    Quantity <span>*</span>
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+                    {billLines.map((billLine, i) => (
+                        <BillLines
+                            billLine={billLine}
                             key={i}
                             i={i}
                             total={total}
@@ -124,13 +161,15 @@ export default function BillForm() {
                         />
                     ))}
                     <button
-                        onClick={() => setPurchaseLines((prev) => prev.concat({}))}
+                        onClick={() => setBillLines((prev) => prev.concat({}))}
                         type="button"
                         className={classes.btn}>
                         Add More Item
                     </button>
 
-                    <button className={classes.button}>Submit</button>
+                    <button type="submit" className={classes.button}>
+                        Submit
+                    </button>
                 </form>
             </div>
         </div>

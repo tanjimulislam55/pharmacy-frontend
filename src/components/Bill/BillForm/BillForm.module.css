@@ -121,3 +121,24 @@
 .inputbox span {
     color: var(--red);
 }
+
+/* Table */
+.tableContainer .tableMain {
+    width: 100%;
+    table-layout: fixed;
+    background-color: var(--light);
+}
+
+.tableRow th {
+    position: relative;
+    font-size: 12px;
+    text-align: center;
+    border: none;
+    color: var(--dark);
+    padding: 10px;
+    font-weight: 500;
+}
+
+.formWrapper .tableMain th span {
+    color: var(--red);
+}
