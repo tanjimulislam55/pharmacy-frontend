@@ -20,7 +20,7 @@ const Navbar = () => {
                     <Link to="#">
                         <FontAwesomeIcon icon={faLayerGroup} title="Stock Info" />
                     </Link>
-                    <Link to="#">
+                    <Link to="/login">
                         <FontAwesomeIcon icon={faUserCircle} title="Profile" />
                     </Link>
                     <Link to="#">

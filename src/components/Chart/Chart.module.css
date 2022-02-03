@@ -2,13 +2,38 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
-    padding: 20px;
+    padding: 10px 20px;
+    margin-top: 20px;
 }
 
 .graphWrapper .graphBox {
     position: relative;
     padding: 20px;
-    /* box-shadow: 1px 1px 1px 1px grey; */
+    box-shadow: 0 2px 6px var(--light);
     border-radius: 4px;
     min-height: 100px;
+}
+
+.graphBox p {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--secondary);
+}
+
+.graphBox p:hover {
+    opacity: 0.8;
+}
+
+.graphWrapper .graphBox .select {
+    width: 60%;
+    margin: 0 auto;
+    display: block;
+    padding: 6px;
+    border: 0.5px solid var(--light);
+    background-color: white;
+    border-radius: 4px;
+    outline: none;
+    font-size: 12px;
+    color: var(--dark-grey);
 }

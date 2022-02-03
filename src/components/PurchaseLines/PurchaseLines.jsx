@@ -28,16 +28,10 @@ export default function PurchaseLines({ purchaseLine, i, total, setTotal }) {
     }
 
     return (
-        <div className={classes.formWrapper}>
+        <div className={classes.tableContainer}>
             <div key={i}>
-                <table className={classes.formTable}>
-                    <tr>
-                        <th>Select Medicine</th>
-                        <th>Purchase Price</th>
-                        <th>Purchased Quantity</th>
-                        <th>Received Quantity</th>
-                    </tr>
-                    <tr>
+                <table className={classes.tableMain}>
+                    <tr className={classes.tableRow}>
                         <td>
                             <select
                                 className={classes.option}
@@ -84,9 +78,15 @@ export default function PurchaseLines({ purchaseLine, i, total, setTotal }) {
                                 required
                             />
                         </td>
+                        <td>
+                            <input type="number" required />
+                        </td>
+                        <td>
+                            <input type="number" required />
+                        </td>
                     </tr>
 
-                    <div className={classes.text}>Total: {total}</div>
+                    {/* <div className={classes.text}>Total: {total}</div> */}
                 </table>
             </div>
         </div>

@@ -8,15 +8,15 @@
 
 .container .head {
     padding: 4px;
-    box-shadow: 0px 2px 5px rgb(167, 167, 182);
-    border-radius: 2px;
+    box-shadow: 0px 0px 0px 1.4px var(--light);
     text-align: center;
-    background-color: var(--green);
-    color: var(--white);
+    color: var(--light);
+    font-size: 12px;
+    color: var(--dark);
 }
 
 .containerItem .item {
-    border: 1px solid var(--light);
     border-radius: 2px;
     text-align: center;
+    font-size: 12px;
 }
