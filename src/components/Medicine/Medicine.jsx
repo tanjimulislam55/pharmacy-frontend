@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import MedicineForm from './MedicineForm/MedicineForm'
 import MedicineList from './MedicineList/MedicineList'
 
@@ -16,6 +17,8 @@ export default function Medicine() {
     const auth = JSON.parse(localStorage.getItem('auth'))
     const token = auth.token
 
+    const navigate = useNavigate()
+
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch(`${process.env.REACT_APP_API_URL}/manufacturers`, {
@@ -29,6 +32,26 @@ export default function Medicine() {
             setManufacturers(data)
         }
         return fetchData()
+    }, [token])
+
+    useEffect(() => {
+        const controller = new AbortController()
+        const fetchData = async () => {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/medicines`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            const data = await response.json()
+            setMedicines(data)
+        }
+        fetchData()
+        return () => {
+            fetchData()
+            controller.abort()
+        }
     }, [token])
 
     const handleSubmit = (e) => {
@@ -50,27 +73,8 @@ export default function Medicine() {
             },
             body: JSON.stringify(details),
         })
+        navigate('./medicine')
     }
-
-    useEffect(() => {
-        const controller = new AbortController()
-        const fetchData = async () => {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/medicines`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-            const data = await response.json()
-            setMedicines(data)
-        }
-        fetchData()
-        return () => {
-            fetchData()
-            controller.abort()
-        }
-    }, [token])
 
     return (
         <div>
