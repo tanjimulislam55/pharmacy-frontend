@@ -35,7 +35,7 @@ export default function PurchaseLines({ purchaseLine, lineIndex, total, setTotal
                         <td>
                             <select
                                 className={classes.option}
-                                onChange={(e) => (purchaseLine.medicine_id = e.target.value)}
+                                onChange={(e) => (purchaseLine.medicine_id = parseInt(e.target.value))}
                                 id="medicines">
                                 <option value="">Select</option>
                                 {medicines &&
@@ -52,7 +52,7 @@ export default function PurchaseLines({ purchaseLine, lineIndex, total, setTotal
                                 name="quantity"
                                 type="text"
                                 value={purchaseLine.quantity}
-                                onChange={(e) => (purchaseLine.quantity = e.target.value)}
+                                onChange={(e) => (purchaseLine.quantity = parseInt(e.target.value))}
                                 required
                             />
                         </td>
@@ -62,7 +62,7 @@ export default function PurchaseLines({ purchaseLine, lineIndex, total, setTotal
                                 name="buyingPrice"
                                 type="text"
                                 value={purchaseLine.buying_price}
-                                onChange={(e) => (purchaseLine.buying_price = e.target.value)}
+                                onChange={(e) => (purchaseLine.buying_price = parseInt(e.target.value))}
                                 required
                             />
                         </td>
@@ -72,7 +72,7 @@ export default function PurchaseLines({ purchaseLine, lineIndex, total, setTotal
                                 name="sellingPrice"
                                 type="text"
                                 value={purchaseLine.selling_price}
-                                onChange={(e) => (purchaseLine.selling_price = e.target.value)}
+                                onChange={(e) => (purchaseLine.selling_price = parseInt(e.target.value))}
                                 required
                             />
                         </td>
@@ -82,7 +82,7 @@ export default function PurchaseLines({ purchaseLine, lineIndex, total, setTotal
                                 name="expiryDate"
                                 type="date"
                                 value={purchaseLine.expiry_date}
-                                onChange={(date) => (purchaseLine.expiry_date = date)}
+                                onChange={(date) => (purchaseLine.expiry_date = date.target.value)}
                                 required
                             />
                         </td>

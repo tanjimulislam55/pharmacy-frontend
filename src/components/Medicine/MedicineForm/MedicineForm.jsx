@@ -14,6 +14,7 @@ export default function MedicineForm({
     manufacturers,
     setManufacturerId,
     setIsOpenForm,
+    handleSubmit,
 }) {
     return (
         <div className={classes.wrapper}>
@@ -23,7 +24,7 @@ export default function MedicineForm({
                     &times;
                 </div>
 
-                <form classNameName={classes.item}>
+                <form onSubmit={handleSubmit} classNameName={classes.item}>
                     <div className={classes.inputbox}>
                         <input
                             onChange={(e) => setBrandName(e.target.value)}
@@ -39,7 +40,7 @@ export default function MedicineForm({
                             onChange={(e) => setGenericName(e.target.value)}
                             value={genericName}
                             type="text"
-                            name="brandName"
+                            name="genericName"
                             required
                         />
                         <label htmlFor="medicines">Generic Name</label>
@@ -49,7 +50,7 @@ export default function MedicineForm({
                             onChange={(e) => setDosageForm(e.target.value)}
                             value={dosageForm}
                             type="text"
-                            name="brandName"
+                            name="dosageForm"
                             required
                         />
                         <label htmlFor="medicines">Dosage Form</label>
@@ -59,17 +60,17 @@ export default function MedicineForm({
                             onChange={(e) => setStrength(e.target.value)}
                             value={stength}
                             type="text"
-                            name="brandName"
+                            name="strength"
                             required
                         />
                         <label htmlFor="medicines">Strength</label>
                     </div>
                     <div className={classes.inputbox}>
                         <input
-                            onChange={(e) => setUnitPrice(e.target.value)}
+                            onChange={(e) => setUnitPrice(parseFloat(e.target.value))}
                             value={unitPrice}
                             type="text"
-                            name="brandName"
+                            name="unitPrice"
                             required
                         />
                         <label htmlFor="medicines">Unit Price</label>
@@ -78,7 +79,7 @@ export default function MedicineForm({
                     <div className={classes.selectBox}>
                         <select
                             className={classes.option}
-                            onChange={(e) => setManufacturerId(e.target.value)}
+                            onChange={(e) => setManufacturerId(parseInt(e.target.value))}
                             id="vendors">
                             <option value="">Select Vendor</option>
                             {manufacturers.map((manufacturer, i) => (
@@ -89,7 +90,9 @@ export default function MedicineForm({
                         </select>
                     </div>
 
-                    <button className={classes.button}>Submit</button>
+                    <button type="submit" className={classes.button}>
+                        Submit
+                    </button>
                 </form>
             </div>
         </div>
