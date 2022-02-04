@@ -21,20 +21,6 @@ export default function Chart() {
                 </select>
                 <BarChart />
             </div>
-            <div className={classes.graphBox}>
-                <select className={classes.select}>
-                    <option value="">Top Medicine - Monthly</option>
-                    <option value="">Top Medicine - Yearly</option>
-                </select>
-                <DoughnutChart />
-            </div>
-            <div className={classes.graphBox}>
-                <select className={classes.select}>
-                    <option value="">Top Customer - Monthly</option>
-                    <option value="">Top Customer - Yearly</option>
-                </select>
-                <PieChart />
-            </div>
         </div>
     )
 }
