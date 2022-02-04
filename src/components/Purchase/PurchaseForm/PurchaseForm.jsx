@@ -3,18 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import PurchaseLines from '../../PurchaseLines/PurchaseLines'
 import classes from './PurchaseForm.module.css'
 
-const purchaseLineObj = {
-    purchase_price: 0,
-    medicine_id: 0,
-    purchased_qty: 0,
-    received_qty: 0,
-}
-
 export default function PurchaseForm() {
-    const [date, setDate] = useState('')
+    const [user, setUser] = useState()
     const [note, setNote] = useState('')
     const [totalAmountPerMedicine, setTotalAmountPerMedicine] = useState()
-    const [subTotal, setSubTotal] = useState()
+    const [totalAmount, setTotalAmount] = useState()
     const [paidAmount, setPaidAmount] = useState()
     const [dueAmount, setDueAmount] = useState()
 
@@ -22,30 +15,46 @@ export default function PurchaseForm() {
     const history = useNavigate()
 
     const [purchaseLines, setPurchaseLines] = useState([{}])
+    const auth = JSON.parse(localStorage.getItem('auth'))
+    const token = auth.token
 
-    const click = () => {
-        console.log(purchaseLines)
-        console.log(total)
-    }
+    useEffect(() => {
+        const controller = new AbortController()
+        const fetchData = async () => {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/users/me`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            const data = await response.json()
+            setUser(data)
+        }
+        fetchData()
+        return () => {
+            fetchData()
+            controller.abort()
+        }
+    }, [token])
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        click()
         const details = {
-            purchase_in: {
-                total_amount: subTotal,
+            purchase_order_in: {
+                total_amount: totalAmount,
                 paid_amount: paidAmount,
                 due_amount: dueAmount,
                 note,
-                purchase_date: date,
+                user_id: user.id,
             },
-            purchase_line_in: purchaseLines,
+            purchase_order_line_in: purchaseLines,
         }
-        console.log(details)
-        let successPurchaseForm = fetch(`${process.env.REACT_APP_API_URL}/add_purchase`, {
+        let successPurchaseForm = fetch(`${process.env.REACT_APP_API_URL}/purchases/new`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify(details),
         })
@@ -61,51 +70,19 @@ export default function PurchaseForm() {
                 <p>Add New Purchase</p>
 
                 <form className={classes.item} onSubmit={handleSubmit}>
-                    <div className={classes.gridTwo}>
-                        <div className={classes.inputbox}>
-                            <select>
-                                <option value="">Select Vendors *</option>
-                                <option value="">ACI</option>
-                                <option value="">Beximco</option>
-                                <option value="">Square</option>
-                            </select>
-                        </div>
-                        <div className={classes.inputbox}>
-                            <input
-                                id="date"
-                                name="date"
-                                type="date"
-                                value={date}
-                                onChange={(e) => {
-                                    setDate(e.target.value)
-                                }}
-                                required
-                            />
-                        </div>
-                    </div>
                     <div className={classes.gridThree}>
                         <div className={classes.inputbox}>
                             <input
-                                id="subTotal"
-                                name="subTotal"
+                                id="total"
+                                name="Total"
                                 type="number"
-                                value={subTotal}
-                                onChange={(e) => setSubTotal(e.target.value)}
+                                value={totalAmount}
+                                onChange={(e) => setTotalAmount(e.target.value)}
                                 required
                             />
-                            <label htmlFor="subTotal">Subtotal</label>
-                        </div>
-
-                        <div className={classes.inputbox}>
-                            <input
-                                id="dueAmount"
-                                name="dueAmount"
-                                type="number"
-                                value={dueAmount}
-                                onChange={(e) => setDueAmount(e.target.value)}
-                                required
-                            />
-                            <label htmlFor="paidAmount">Due amount</label>
+                            <label htmlFor="totalAmount">
+                                Subtotal <span>*</span>
+                            </label>
                         </div>
                         <div className={classes.inputbox}>
                             <input
@@ -119,6 +96,17 @@ export default function PurchaseForm() {
                             <label htmlFor="paidAmount">
                                 Paid amount <span>*</span>
                             </label>
+                        </div>
+                        <div className={classes.inputbox}>
+                            <input
+                                id="due"
+                                name="Due"
+                                type="number"
+                                value={dueAmount}
+                                onChange={(e) => setDueAmount(e.target.value)}
+                                required
+                            />
+                            <label htmlFor="dueAmount">Due amount</label>
                         </div>
                     </div>
                     <div className={classes.inputbox}>
@@ -136,26 +124,28 @@ export default function PurchaseForm() {
                     <div className={classes.tableContainer}>
                         <table className={classes.tableMain}>
                             <tr className={classes.tableRow}>
-                                <th>Select Medicines</th>
                                 <th>
-                                    Purchase Price <span>*</span>
+                                    Select Medicines<span>*</span>
                                 </th>
                                 <th>
-                                    Purchased Quantity <span>*</span>
+                                    Quantity <span>*</span>
                                 </th>
-                                <th>Received Quantity </th>
-                                <th>Sale Price</th>
                                 <th>
-                                    Exp Date <span>*</span>
+                                    Bying Price <span>*</span>
                                 </th>
+                                <th>
+                                    Selling Price <span>*</span>
+                                </th>
+                                <th>Expiry Date</th>
+                                <th>Cost</th>
                             </tr>
                         </table>
                     </div>
-                    {purchaseLines.map((purchaseLine, i) => (
+                    {purchaseLines.map((purchaseLine, idx) => (
                         <PurchaseLines
                             purchaseLine={purchaseLine}
-                            key={i}
-                            i={i}
+                            key={idx}
+                            lineIndex={idx}
                             total={total}
                             setTotal={setTotal}
                             totalAmountPerMedicine={totalAmountPerMedicine}

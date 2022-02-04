@@ -50,15 +50,17 @@ export default function StockList({ stocks, medicines }) {
                         .splice(startIdx, endIdx)
                         .map((filteredMedicine) => (
                             <tr className={classes.tableRow}>
-                                <td data-title="stock_id">{get_matched_stock(stocks, filteredMedicine.id).id}</td>
+                                <td data-title="stock_id">{get_matched_stock(stocks, filteredMedicine.id)?.id}</td>
                                 <td data-title="brand_name">{filteredMedicine.brand_name}</td>
                                 <td data-title="generic_name">{filteredMedicine.generic_name}</td>
-                                <td data-title="in_stock">{get_matched_stock(stocks, filteredMedicine.id).in_stock}</td>
+                                <td data-title="in_stock">
+                                    {get_matched_stock(stocks, filteredMedicine.id)?.in_stock}
+                                </td>
                                 <td data-title="last_transacted_quantity">
-                                    {get_matched_stock(stocks, filteredMedicine.id).last_transacted_quantity}
+                                    {get_matched_stock(stocks, filteredMedicine.id)?.last_transacted_quantity}
                                 </td>
                                 <td data-title="last_transacted_date">
-                                    {get_matched_stock(stocks, filteredMedicine.id).last_transacted_date}
+                                    {get_matched_stock(stocks, filteredMedicine.id)?.last_transacted_date}
                                 </td>
                                 <td data-title="unit_price">{filteredMedicine.unit_price}</td>
                                 <td className="select">

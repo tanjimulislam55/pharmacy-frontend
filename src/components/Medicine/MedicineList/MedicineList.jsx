@@ -7,7 +7,7 @@ import classes from './MedicineList.module.css'
 export default function MedicineList({ medicines, manufacturers, setIsOpenForm }) {
     const getName = (elements, id) => {
         const item = elements.find((element) => element.id === id)
-        return item.name
+        return item?.name
     }
 
     const [searched, setSearched] = useState('')
