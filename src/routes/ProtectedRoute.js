@@ -1,8 +1,8 @@
 import { useContext, useEffect } from 'react'
-import { Route, Navigate, Redirect } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 import { Auth, UserInfo } from '../contexts/allContex'
 
-export default function ProtectedRoute({ component: Component }) {
+export default function ProtectedRoute() {
     const { stateAuth } = useContext(Auth)
     const { dispatchUser } = useContext(UserInfo)
 
@@ -28,5 +28,5 @@ export default function ProtectedRoute({ component: Component }) {
         }
     }, [stateAuth, dispatchUser, api])
 
-    return stateAuth.auth === true ? <Component /> : <Navigate to="/login" />
+    return stateAuth.auth === true ? <Outlet /> : <Navigate to="/login" />
 }
