@@ -4,10 +4,19 @@ import BillList from './BillList/BillList'
 export default function Bill() {
     const [bills, setBills] = useState([])
 
+    const auth = JSON.parse(localStorage.getItem('auth'))
+    const token = auth.token
+
     useEffect(() => {
         const controller = new AbortController()
         const fetchData = async () => {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/bills`)
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/invoices`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+            })
             const data = await response.json()
             setBills(data)
         }
@@ -16,7 +25,7 @@ export default function Bill() {
             fetchData()
             controller.abort()
         }
-    }, [])
+    }, [token])
 
     return (
         <div>

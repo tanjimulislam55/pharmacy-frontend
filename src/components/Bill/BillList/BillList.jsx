@@ -2,12 +2,16 @@ import { faEdit, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Pagination } from '../../../components'
 import CollapseList from '../../Collapse/CollapseList/CollapseList'
 import classes from './BillList.module.css'
 
 export default function BillList({ bills }) {
     const [popup, setPopup] = useState(false)
     const [billLines, setBillLines] = useState([])
+    const [startIdx, setStartIdx] = useState(0)
+    const [endIdx, setEndIdx] = useState(10)
+
     console.log(billLines)
     function handlePopup(bill_lines) {
         setBillLines([...bill_lines])
@@ -33,7 +37,7 @@ export default function BillList({ bills }) {
                     <div className={classes.head}>ID</div>
                     <div className={classes.head}>Total Amount</div>
                     <div className={classes.head}>Paid Amount</div>
-                    <div className={classes.head}>Quantity</div>
+                    <div className={classes.head}>Due Amount</div>
                     <div className={classes.head}>Billing Date</div>
                     <div className={classes.head}>Action</div>
                 </div>
@@ -47,8 +51,8 @@ export default function BillList({ bills }) {
                                 className={classes.containerItem}>
                                 <div className={classes.item}>{bill.id}</div>
                                 <div className={classes.item}>{bill.total_amount}</div>
-                                <div className={classes.item}>{bill.due_amount}</div>
                                 <div className={classes.item}>{bill.paid_amount}</div>
+                                <div className={classes.item}>{bill.due_amount}</div>
                                 <div className={classes.item}>{bill.billing_date}</div>
                                 <div className={classes.item}>
                                     <Link className={classes.icon} to="#">
@@ -64,6 +68,11 @@ export default function BillList({ bills }) {
                             </div>
                         </>
                     ))}
+                <Pagination
+                    setStartIdx={setStartIdx}
+                    setEndIdx={setEndIdx}
+                    page={bills.filter((bill) => bill.id).length}
+                />
             </div>
         </div>
     )
