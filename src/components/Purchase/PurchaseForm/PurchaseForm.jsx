@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import PurchaseLines from '../../PurchaseLines/PurchaseLines'
+import PurchaseLines from '../PurchaseLines/PurchaseLines'
 import classes from './PurchaseForm.module.css'
 
 export default function PurchaseForm() {
@@ -10,13 +10,12 @@ export default function PurchaseForm() {
     const [totalAmount, setTotalAmount] = useState()
     const [paidAmount, setPaidAmount] = useState()
     const [dueAmount, setDueAmount] = useState()
-
     const [total, setTotal] = useState([])
-    const history = useNavigate()
 
     const [purchaseLines, setPurchaseLines] = useState([{}])
     const auth = JSON.parse(localStorage.getItem('auth'))
     const token = auth.token
+    const navigate = useNavigate()
 
     useEffect(() => {
         const controller = new AbortController()
@@ -50,7 +49,7 @@ export default function PurchaseForm() {
             },
             purchase_order_line_in: purchaseLines,
         }
-        let successPurchaseForm = fetch(`${process.env.REACT_APP_API_URL}/purchases/new`, {
+        fetch(`${process.env.REACT_APP_API_URL}/purchases/new`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -58,10 +57,7 @@ export default function PurchaseForm() {
             },
             body: JSON.stringify(details),
         })
-
-        if (successPurchaseForm.ok) {
-            history('/purchase')
-        }
+        navigate('/purchase')
     }
 
     return (
@@ -70,6 +66,42 @@ export default function PurchaseForm() {
                 <p>Add New Purchase</p>
 
                 <form className={classes.item} onSubmit={handleSubmit}>
+                    <div className={classes.tableContainer}>
+                        <table className={classes.tableMain}>
+                            <tr className={classes.tableRow}>
+                                <th>
+                                    Select Medicines<span>*</span>
+                                </th>
+                                <th>
+                                    Quantity <span>*</span>
+                                </th>
+                                <th>
+                                    Bying Price <span>*</span>
+                                </th>
+                                <th>
+                                    Selling Price <span>*</span>
+                                </th>
+                                <th>Expiry Date</th>
+                                <th>Cost</th>
+                            </tr>
+                        </table>
+                    </div>
+                    {purchaseLines.map((purchaseLine, idx) => (
+                        <PurchaseLines
+                            purchaseLine={purchaseLine}
+                            key={idx}
+                            lineIndex={idx}
+                            total={total}
+                            setTotal={setTotal}
+                            totalAmountPerMedicine={totalAmountPerMedicine}
+                        />
+                    ))}
+                    <button
+                        onClick={() => setPurchaseLines((prev) => prev.concat({}))}
+                        type="button"
+                        className={classes.btn}>
+                        Add More Item
+                    </button>
                     <div className={classes.gridThree}>
                         <div className={classes.inputbox}>
                             <input
@@ -121,42 +153,7 @@ export default function PurchaseForm() {
                         />
                         <label htmlFor="note">Note</label>
                     </div>
-                    <div className={classes.tableContainer}>
-                        <table className={classes.tableMain}>
-                            <tr className={classes.tableRow}>
-                                <th>
-                                    Select Medicines<span>*</span>
-                                </th>
-                                <th>
-                                    Quantity <span>*</span>
-                                </th>
-                                <th>
-                                    Bying Price <span>*</span>
-                                </th>
-                                <th>
-                                    Selling Price <span>*</span>
-                                </th>
-                                <th>Expiry Date</th>
-                                <th>Cost</th>
-                            </tr>
-                        </table>
-                    </div>
-                    {purchaseLines.map((purchaseLine, idx) => (
-                        <PurchaseLines
-                            purchaseLine={purchaseLine}
-                            key={idx}
-                            lineIndex={idx}
-                            total={total}
-                            setTotal={setTotal}
-                            totalAmountPerMedicine={totalAmountPerMedicine}
-                        />
-                    ))}
-                    <button
-                        onClick={() => setPurchaseLines((prev) => prev.concat({}))}
-                        type="button"
-                        className={classes.btn}>
-                        Add More Item
-                    </button>
+
                     <button type="submit" className={classes.button}>
                         Submit
                     </button>
