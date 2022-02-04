@@ -8,9 +8,9 @@ export default function Medicine() {
     const [brandName, setBrandName] = useState('')
     const [genericName, setGenericName] = useState('')
     const [dosageForm, setDosageForm] = useState('')
-    const [stength, setStrength] = useState('')
+    const [strength, setStrength] = useState('')
     const [unitPrice, setUnitPrice] = useState('')
-    const [, setManufacturerId] = useState()
+    const [manufacturerId, setManufacturerId] = useState()
 
     const [isOpenForm, setIsOpenForm] = useState(false)
     const auth = JSON.parse(localStorage.getItem('auth'))
@@ -31,26 +31,26 @@ export default function Medicine() {
         return fetchData()
     }, [token])
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault()
-    //     const details = {
-    //         name,
-    //         vendor_id: vendorId,
-    //         unit_id: unitId,
-    //         type_id: typeId,
-    //         category_id: categorieId,
-    //     }
-    //     if (vendorId === undefined || unitId === undefined || typeId === undefined || categorieId === undefined) {
-    //         return console.log('select all')
-    //     }
-    //     fetch(`${process.env.REACT_APP_API_URL}/add_medicine`, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify(details),
-    //     })
-    // }
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const details = {
+            brand_name: brandName,
+            generic_name: genericName,
+            dosage_form: dosageForm,
+            strength: strength,
+            unit_price: unitPrice,
+            manufacturer_id: manufacturerId,
+        }
+
+        fetch(`${process.env.REACT_APP_API_URL}/medicines/new`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(details),
+        })
+    }
 
     useEffect(() => {
         const controller = new AbortController()
@@ -82,13 +82,14 @@ export default function Medicine() {
                     setGenericName={setGenericName}
                     dosageForm={dosageForm}
                     setDosageForm={setDosageForm}
-                    stength={stength}
+                    stength={strength}
                     setStrength={setStrength}
                     unitPrice={unitPrice}
                     setUnitPrice={setUnitPrice}
                     manufacturers={manufacturers}
                     setManufacturerId={setManufacturerId}
                     setIsOpenForm={setIsOpenForm}
+                    handleSubmit={handleSubmit}
                 />
             )}
             {medicines && manufacturers && (
