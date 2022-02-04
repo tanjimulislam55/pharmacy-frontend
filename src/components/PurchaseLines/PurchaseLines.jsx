@@ -1,13 +1,22 @@
 import { useEffect, useState } from 'react'
 import classes from './PurchaseLines.module.css'
 
-export default function PurchaseLines({ purchaseLine, i, total, setTotal }) {
+export default function PurchaseLines({ purchaseLine, line_imdex, total, setTotal }) {
     const [medicines, setMedicines] = useState([])
+
+    const auth = JSON.parse(localStorage.getItem('auth'))
+    const token = auth.token
 
     useEffect(() => {
         const controller = new AbortController()
         const fetchData = async () => {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/medicines`)
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/medicines`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+            })
             const data = await response.json()
             setMedicines(data)
         }
@@ -16,20 +25,11 @@ export default function PurchaseLines({ purchaseLine, i, total, setTotal }) {
             fetchData()
             controller.abort()
         }
-    }, [])
-
-    const handleBlur = (e) => {
-        console.log(e)
-        if (purchaseLine.purchased_qty && purchaseLine.purchase_price) {
-            // total = total
-            total = purchaseLine.purchased_qty * purchaseLine.purchase_price
-            setTotal((total) => (total[i] = total))
-        }
-    }
+    }, [token])
 
     return (
         <div className={classes.tableContainer}>
-            <div key={i}>
+            <div key={line_imdex}>
                 <table className={classes.tableMain}>
                     <tr className={classes.tableRow}>
                         <td>
@@ -41,48 +41,60 @@ export default function PurchaseLines({ purchaseLine, i, total, setTotal }) {
                                 {medicines &&
                                     medicines.map((medicine, i) => (
                                         <option key={i} value={medicine.id}>
-                                            {medicine.name}
+                                            {medicine.brand_name}
                                         </option>
                                     ))}
                             </select>
                         </td>
                         <td>
                             <input
-                                id="purchasePrice"
-                                name="purchasePrice"
-                                type="number"
-                                value={purchaseLine.purchase_price}
-                                onChange={(e) => (purchaseLine.purchase_price = e.target.value)}
-                                onBlur={(e) => handleBlur(e)}
+                                id="quantity"
+                                name="quantity"
+                                type="text"
+                                value={purchaseLine.quantity}
+                                onChange={(e) => (purchaseLine.quantity = e.target.value)}
                                 required
                             />
                         </td>
                         <td>
                             <input
-                                id="purchaseQuantiy"
-                                name="purchaseQuantiy"
-                                type="number"
-                                value={purchaseLine.purchased_qty}
-                                onChange={(e) => (purchaseLine.purchased_qty = e.target.value)}
-                                onBlur={handleBlur}
+                                id="buyingPrice"
+                                name="buyingPrice"
+                                type="text"
+                                value={purchaseLine.buying_price}
+                                onChange={(e) => (purchaseLine.buying_price = e.target.value)}
                                 required
                             />
                         </td>
                         <td>
                             <input
-                                id="receivedQuantity"
-                                name="receivedQuantity"
-                                type="number"
-                                value={purchaseLine.received_qty}
-                                onChange={(e) => (purchaseLine.received_qty = e.target.value)}
+                                id="sellingPrice"
+                                name="sellingPrice"
+                                type="text"
+                                value={purchaseLine.selling_price}
+                                onChange={(e) => (purchaseLine.selling_price = e.target.value)}
                                 required
                             />
                         </td>
                         <td>
-                            <input type="number" required />
+                            <input
+                                id="expiryDate"
+                                name="expiryDate"
+                                type="date"
+                                value={purchaseLine.expiry_date}
+                                onChange={(date) => (purchaseLine.expiry_date = date)}
+                                required
+                            />
                         </td>
                         <td>
-                            <input type="number" required />
+                            <input
+                                id="cost"
+                                name="cost"
+                                type="text"
+                                value={purchaseLine.cost}
+                                onChange={(e) => (purchaseLine.cost = e.target.value)}
+                                required
+                            />
                         </td>
                     </tr>
 

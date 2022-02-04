@@ -12,7 +12,6 @@ export default function ProtectedRoute({ component: Component }) {
         let funFetch = async () => {
             let logFetch = await fetch(`${api}/users/me`, {
                 headers: {
-                    Accept: 'application/json',
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${stateAuth.token}`,
                 },
@@ -21,6 +20,7 @@ export default function ProtectedRoute({ component: Component }) {
             })
 
             let log = await logFetch.json()
+            console.log(log)
             dispatchUser({ type: 'set', payload: log })
         }
         if (stateAuth.auth === true) {
