@@ -82,7 +82,7 @@
     border-radius: 2px;
     width: 20em;
     display: block;
-    margin-top: 5em;
+    margin-top: 1em;
     cursor: pointer;
 }
 
@@ -91,19 +91,19 @@
 }
 
 .formWrapper .btn {
-    float: right;
     border: none;
     padding: 6px 14px;
-    margin: 6px 0;
-    background-color: var(--light);
+    margin: 6px 2px;
+    background-color: var(--green);
     border-radius: 2px;
-    color: var(--dark);
+    color: var(--white);
     cursor: pointer;
     font-size: 12px;
+    margin-bottom: 3em;
 }
 
 .formWrapper .btn:hover {
-    color: var(--green);
+    opacity: 0.8;
 }
 
 .formWrapper .gridTwo {
