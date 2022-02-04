@@ -28,29 +28,29 @@ function App() {
 
     return (
         <SidebarProvider>
-            <BrowserRouter>
-                <Auth.Provider value={{ stateAuth, dispatchAuth }}>
-                    <UserInfo.Provider value={{ stateUser, dispatchUser }}>
-                        <Routes>
-                            <Route path="/login" element={<Login />} />
-                            <Route path="/registration" element={<Registration />} />
+            <Auth.Provider value={{ stateAuth, dispatchAuth }}>
+                <UserInfo.Provider value={{ stateUser, dispatchUser }}>
+                    <Routes>
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/registration" element={<Registration />} />
 
-                            <Route path="/" element={<Home />} />
-                            <Route path="/medicine" element={<Medicine />} />
-                            <Route path="/vendor" element={<Vendor />} />
-                            <Route path="/customer" element={<Customer />} />
-                            <Route path="/bill" element={<Bill />} />
-                            <Route path="/bill/billform" element={<BillForm />} />
-                            <Route path="/stock" element={<Stock />} />
-                            <Route path="/expense" element={<Expense />} />
-                            <Route path="/purchase" element={<Purchase />} />
-                            <Route path="/purchase/purchaseform" element={<PurchaseForm />} />
-                            <Route path="/reports" element={<Report />} />
-                            <Route path="/accounts" element={<Admin />} />
-                        </Routes>
-                    </UserInfo.Provider>
-                </Auth.Provider>
-            </BrowserRouter>
+                        <Route path="/*" element={<ProtectedRoute />}>
+                            <Route path="" element={<Home />} />
+                            <Route path="medicine" element={<Medicine />} />
+                            <Route path="vendor" element={<Vendor />} />
+                            <Route path="customer" element={<Customer />} />
+                            <Route path="bill" element={<Bill />} />
+                            <Route path="bill/billform" element={<BillForm />} />
+                            <Route path="stock" element={<Stock />} />
+                            <Route path="expense" element={<Expense />} />
+                            <Route path="purchase" element={<Purchase />} />
+                            <Route path="purchase/purchaseform" element={<PurchaseForm />} />
+                            <Route path="reports" element={<Report />} />
+                            <Route path="accounts" element={<Admin />} />
+                        </Route>
+                    </Routes>
+                </UserInfo.Provider>
+            </Auth.Provider>
         </SidebarProvider>
     )
 }
