@@ -1,7 +1,6 @@
-import { faEdit, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { Pagination } from '../../../components'
 import classes from './MedicineList.module.css'
 
@@ -44,7 +43,6 @@ export default function MedicineList({ medicines, manufacturers, setIsOpenForm }
                     <th>Dosage Form</th>
                     <th>Strength</th>
                     <th>Manufacturer</th>
-                    <th>Action</th>
                 </tr>
                 {medicines &&
                     manufacturers &&
@@ -60,14 +58,6 @@ export default function MedicineList({ medicines, manufacturers, setIsOpenForm }
                                 <td data-title="strength">{filteredMedicine.strength}</td>
                                 <td data-title="manufacturer">
                                     {getName(manufacturers, filteredMedicine.manufacturer_id)}
-                                </td>
-                                <td className="select">
-                                    <Link className={classes.icon} to="#">
-                                        <FontAwesomeIcon icon={faEdit} />
-                                    </Link>
-                                    <Link className={classes.icon} to="#">
-                                        <FontAwesomeIcon icon={faTrash} />
-                                    </Link>
                                 </td>
                             </tr>
                         ))}
