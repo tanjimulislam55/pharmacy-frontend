@@ -1,5 +1,5 @@
 .tableContainer .tableMain select {
-    width: 20em;
+    width: 19em;
     margin: 0 auto;
     font-size: 12px;
     background-color: var(--white);
@@ -17,6 +17,7 @@
 
 .tableContainer .tableMain {
     width: 100%;
+    table-layout: fixed;
     border-collapse: separate;
     border-spacing: 2px 4px;
 }

@@ -97,8 +97,6 @@ export default function PurchaseLines({ purchaseLine, lineIndex, total, setTotal
                             />
                         </td>
                     </tr>
-
-                    {/* <div className={classes.text}>Total: {total}</div> */}
                 </table>
             </div>
         </div>
