@@ -1,14 +1,16 @@
 import { faFacebookF, faLinkedinIn, faGoogle } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState, useContext } from 'react'
-import { Link, useNavigate, useHistory } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Auth } from '../../../contexts/allContex'
 import classes from './Registration.module.css'
 
 export default function Registration({ setOpenRegistration, setOpenLogin }) {
-    // const [name, setName] = useState('')
-    const [username, setUsername] = useState('')
+    const [fName, setFname] = useState('')
+    const [lName, setLname] = useState('')
     const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
+    const [gender, setGender] = useState('')
     const [password, setPassword] = useState('')
     const [cfpPassword, setCfpPassword] = useState('')
     const [alert, setAlert] = useState([])
@@ -26,7 +28,7 @@ export default function Registration({ setOpenRegistration, setOpenLogin }) {
             return
         }
 
-        let registerId = await fetch(`${api}/add_user`, {
+        let registerId = await fetch(`${api}/users/new`, {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
@@ -34,8 +36,11 @@ export default function Registration({ setOpenRegistration, setOpenLogin }) {
             dataType: 'json',
             method: 'POST',
             body: JSON.stringify({
-                username,
+                first_name: fName,
+                last_name: lName,
                 email,
+                phone,
+                gender,
                 password,
             }),
         })
@@ -76,24 +81,41 @@ export default function Registration({ setOpenRegistration, setOpenLogin }) {
                                 </Link>
                             </div>
                             <span>or use your email for registration</span>
-                            {/* <input
-                                placeholder="Name"
-                                type="text"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                            /> */}
-                            <input
-                                placeholder="Username"
-                                type="text"
-                                value={username}
-                                onChange={(e) => setUsername(e.target.value)}
-                            />
+                            <div className={classes.grid}>
+                                <input
+                                    placeholder="First Name"
+                                    type="text"
+                                    value={fName}
+                                    onChange={(e) => setFname(e.target.value)}
+                                />
+                                <input
+                                    placeholder="Last Name"
+                                    type="text"
+                                    value={lName}
+                                    onChange={(e) => setLname(e.target.value)}
+                                />
+                            </div>
                             <input
                                 placeholder="Email"
                                 type="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
+                            <div className={classes.grid}>
+                                <input
+                                    placeholder="Phone"
+                                    type="text"
+                                    value={phone}
+                                    onChange={(e) => setPhone(e.target.value)}
+                                />
+
+                                <input
+                                    placeholder="Gender"
+                                    type="text"
+                                    value={gender}
+                                    onChange={(e) => setGender(e.target.value)}
+                                />
+                            </div>
                             <input
                                 placeholder="Password"
                                 type="password"
@@ -101,7 +123,7 @@ export default function Registration({ setOpenRegistration, setOpenLogin }) {
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                             <input
-                                placeholder="Password"
+                                placeholder="Confirm Password"
                                 type="password"
                                 value={cfpPassword}
                                 onChange={(e) => setCfpPassword(e.target.value)}
