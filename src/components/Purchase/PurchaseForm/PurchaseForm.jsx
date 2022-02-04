@@ -41,14 +41,14 @@ export default function PurchaseForm() {
     const handleSubmit = (e) => {
         e.preventDefault()
         const details = {
-            purchase_in: {
+            purchase_order_in: {
                 total_amount: totalAmount,
                 paid_amount: paidAmount,
                 due_amount: dueAmount,
                 note,
                 user_id: user.id,
             },
-            purchase_line_in: purchaseLines,
+            purchase_order_line_in: purchaseLines,
         }
         let successPurchaseForm = fetch(`${process.env.REACT_APP_API_URL}/purchases/new`, {
             method: 'POST',

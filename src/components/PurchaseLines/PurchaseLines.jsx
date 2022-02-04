@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import classes from './PurchaseLines.module.css'
 
-export default function PurchaseLines({ purchaseLine, line_imdex, total, setTotal }) {
+export default function PurchaseLines({ purchaseLine, lineIndex, total, setTotal }) {
     const [medicines, setMedicines] = useState([])
 
     const auth = JSON.parse(localStorage.getItem('auth'))
@@ -29,7 +29,7 @@ export default function PurchaseLines({ purchaseLine, line_imdex, total, setTota
 
     return (
         <div className={classes.tableContainer}>
-            <div key={line_imdex}>
+            <div key={lineIndex}>
                 <table className={classes.tableMain}>
                     <tr className={classes.tableRow}>
                         <td>
