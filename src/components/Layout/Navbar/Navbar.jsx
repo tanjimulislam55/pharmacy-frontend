@@ -2,11 +2,14 @@ import { faBars, faBell, faLayerGroup, faSignOutAlt, faUserCircle } from '@forta
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { Auth } from '../../../contexts/allContex'
 import { SidebarContext } from '../../../contexts/sidebarContext'
 import classes from './Navbar.module.css'
 
 const Navbar = () => {
     const { isOpenSidebar, setIsOpenSidebar } = useContext(SidebarContext)
+    const { stateAuth, dispatchAuth } = useContext(Auth)
+
     return (
         <div className={classes.nav}>
             <div className={classes.topNavbar}>
@@ -20,10 +23,10 @@ const Navbar = () => {
                     <Link to="#">
                         <FontAwesomeIcon icon={faLayerGroup} title="Stock Info" />
                     </Link>
-                    <Link to="/login">
+                    <Link to="#">
                         <FontAwesomeIcon icon={faUserCircle} title="Profile" />
                     </Link>
-                    <Link to="#">
+                    <Link to="/login" onClick={() => dispatchAuth({ type: 'remove' })}>
                         <FontAwesomeIcon icon={faSignOutAlt} title="Logout" />
                     </Link>
                 </div>
