@@ -10,7 +10,7 @@ export default function Login({ setOpenRegistration, setOpenLogin }) {
 
     const history = useNavigate()
 
-    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const api = process.env.REACT_APP_API_URL
@@ -19,7 +19,7 @@ export default function Login({ setOpenRegistration, setOpenLogin }) {
         e.preventDefault()
 
         const details = {
-            username,
+            username: email,
             password,
         }
         let formBody = []
@@ -69,11 +69,11 @@ export default function Login({ setOpenRegistration, setOpenLogin }) {
                         </div>
                         <span>or use your account</span>
                         <input
-                            placeholder="Username"
+                            placeholder="Email"
                             name="username"
                             type="text"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                         <input
                             placeholder="Password"
