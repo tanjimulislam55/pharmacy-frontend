@@ -1,5 +1,5 @@
 import { useReducer } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { Auth, UserInfo } from './contexts/allContex'
 import { authReducer, authState } from './contexts/reducer/authReducer'
 import { userReducer, userState } from './contexts/reducer/userReducer'
@@ -19,6 +19,7 @@ import {
     PurchaseForm,
     Login,
     Registration,
+    Manufacturer,
 } from './pages'
 import ProtectedRoute from './routes/ProtectedRoute'
 
@@ -47,6 +48,7 @@ function App() {
                             <Route path="purchase/purchaseform" element={<PurchaseForm />} />
                             <Route path="reports" element={<Report />} />
                             <Route path="accounts" element={<Admin />} />
+                            <Route path="manufacturer" element={<Manufacturer />} />
                         </Route>
                     </Routes>
                 </UserInfo.Provider>
