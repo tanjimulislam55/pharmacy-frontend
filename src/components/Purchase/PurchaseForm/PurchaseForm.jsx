@@ -77,7 +77,7 @@ export default function PurchaseForm() {
                                 name="Total"
                                 type="number"
                                 value={totalAmount}
-                                onChange={(e) => setTotalAmount(e.target.value)}
+                                onChange={(e) => setTotalAmount(parseInt(e.target.value))}
                                 required
                             />
                             <label htmlFor="totalAmount">
@@ -90,7 +90,7 @@ export default function PurchaseForm() {
                                 name="paidAmount"
                                 type="number"
                                 value={paidAmount}
-                                onChange={(e) => setPaidAmount(e.target.value)}
+                                onChange={(e) => setPaidAmount(parseInt(e.target.value))}
                                 required
                             />
                             <label htmlFor="paidAmount">
@@ -103,7 +103,7 @@ export default function PurchaseForm() {
                                 name="Due"
                                 type="number"
                                 value={dueAmount}
-                                onChange={(e) => setDueAmount(e.target.value)}
+                                onChange={(e) => setDueAmount(parseInt(e.target.value))}
                                 required
                             />
                             <label htmlFor="dueAmount">Due amount</label>
