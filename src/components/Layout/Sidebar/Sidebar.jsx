@@ -45,9 +45,9 @@ export default function Sidebar() {
             icon: <FontAwesomeIcon icon={faShoppingBag} title="Purchase" />,
         },
         {
-            text: 'Expense',
-            endpoint: 'expense',
-            icon: <FontAwesomeIcon icon={faDatabase} title="Expense" />,
+            text: 'Manufacturer',
+            endpoint: 'manufacturer',
+            icon: <FontAwesomeIcon icon={faDatabase} title="Manufacturer" />,
         },
         {
             text: 'Report',
