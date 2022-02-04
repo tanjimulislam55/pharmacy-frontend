@@ -1,4 +1,4 @@
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -32,6 +32,7 @@ export default function PurchaseList({ purchases }) {
                     <th>Paid Amount</th>
                     <th>Note</th>
                     <th>User Id</th>
+                    <th>Action</th>
                 </tr>
                 {purchases &&
                     purchases.map((purchase) => (
@@ -42,6 +43,14 @@ export default function PurchaseList({ purchases }) {
                             <td data-title="">{purchase.paid_amount}</td>
                             <td data-title="">{purchase.note}</td>
                             <td data-title="">{purchase.user_id}</td>
+                            <td className="select">
+                                <Link className={classes.icon} to="#">
+                                    <FontAwesomeIcon icon={faEdit} />
+                                </Link>
+                                <Link className={classes.icon} to="#">
+                                    <FontAwesomeIcon icon={faTrash} />
+                                </Link>
+                            </td>
                         </tr>
                     ))}
             </table>
