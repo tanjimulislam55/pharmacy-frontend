@@ -53,7 +53,8 @@ export default function BillList({ bills }) {
                                 <div className={classes.item}>{bill.total_amount}</div>
                                 <div className={classes.item}>{bill.paid_amount}</div>
                                 <div className={classes.item}>{bill.due_amount}</div>
-                                <div className={classes.item}>{bill.billing_date}</div>
+                                {/* <div className={classes.item}>{bill.billing_date}</div> */}
+                                <div className={classes.item}>2022-02-05</div>
                                 <div className={classes.item}>
                                     <Link className={classes.icon} to="#">
                                         <FontAwesomeIcon icon={faEdit} />
