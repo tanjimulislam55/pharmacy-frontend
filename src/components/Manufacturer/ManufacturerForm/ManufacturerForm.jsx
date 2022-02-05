@@ -23,7 +23,7 @@ export default function ManufacturerForm({ setOpenForm }) {
             total_brands: brand,
             total_generics: generic,
             headquarter: headquarter,
-            contact_list: null,
+            contact_list: contact.split(', '),
             established_in: establish,
             market_share: share,
             growth: growth,
