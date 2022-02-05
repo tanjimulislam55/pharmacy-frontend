@@ -25,12 +25,22 @@ const DashboardItem = () => {
             </div>
             <div className={classes.dashBox}>
                 <div div className={classes.itemNumber}>
-                    1,000
+                    9,000 <span>৳</span>
                 </div>
-                <div className={classes.itemName}>Today's Stock</div>
+                <div className={classes.itemName}>Today's Collection</div>
 
                 <div className={classes.itemIcon}>
                     <FontAwesomeIcon icon={faHandHoldingMedical} />
+                </div>
+            </div>
+            <div className={classes.dashBox}>
+                <div div className={classes.itemNumber}>
+                    1,000 <span>৳</span>
+                </div>
+                <div className={classes.itemName}>Today's Due</div>
+
+                <div className={classes.itemIcon}>
+                    <FontAwesomeIcon icon={faHandHoldingUsd} />
                 </div>
             </div>
             <div className={classes.dashBox}>
@@ -43,11 +53,32 @@ const DashboardItem = () => {
                     <FontAwesomeIcon icon={faLaptopMedical} />
                 </div>
             </div>
+
+            <div className={classes.dashBox}>
+                <div className={classes.itemNumber}>
+                    2,50,000 <span>৳</span>
+                </div>
+                <div className={classes.itemName}>Monthly Sales</div>
+
+                <div className={classes.itemIcon}>
+                    <FontAwesomeIcon icon={faDollarSign} />
+                </div>
+            </div>
             <div className={classes.dashBox}>
                 <div div className={classes.itemNumber}>
-                    30,000 <span>৳</span>
+                    2,00,000 <span>৳</span>
                 </div>
-                <div className={classes.itemName}>Total Sale</div>
+                <div className={classes.itemName}>Monthly Collection</div>
+
+                <div className={classes.itemIcon}>
+                    <FontAwesomeIcon icon={faHandHoldingMedical} />
+                </div>
+            </div>
+            <div className={classes.dashBox}>
+                <div div className={classes.itemNumber}>
+                    50,000 <span>৳</span>
+                </div>
+                <div className={classes.itemName}>Monthly Due</div>
 
                 <div className={classes.itemIcon}>
                     <FontAwesomeIcon icon={faHandHoldingUsd} />
@@ -55,9 +86,20 @@ const DashboardItem = () => {
             </div>
             <div className={classes.dashBox}>
                 <div div className={classes.itemNumber}>
+                    1,50,000 <span>৳</span>
+                </div>
+                <div className={classes.itemName}>Monthly Purchase</div>
+
+                <div className={classes.itemIcon}>
+                    <FontAwesomeIcon icon={faLaptopMedical} />
+                </div>
+            </div>
+
+            <div className={classes.dashBox}>
+                <div div className={classes.itemNumber}>
                     10,000
                 </div>
-                <div className={classes.itemName}>Total Medicine</div>
+                <div className={classes.itemName}>Number of Medicine</div>
 
                 <div className={classes.itemIcon}>
                     <FontAwesomeIcon icon={faCapsules} />
@@ -65,9 +107,9 @@ const DashboardItem = () => {
             </div>
             <div className={classes.dashBox}>
                 <div div className={classes.itemNumber}>
-                    20,000
+                    5,00,000 <span>৳</span>
                 </div>
-                <div className={classes.itemName}>Total Stock</div>
+                <div className={classes.itemName}>Stock Value</div>
 
                 <div className={classes.itemIcon}>
                     <FontAwesomeIcon icon={faCubes} />
@@ -77,7 +119,7 @@ const DashboardItem = () => {
                 <div div className={classes.itemNumber}>
                     50,000 <span>৳</span>
                 </div>
-                <div className={classes.itemName}>Stock Value</div>
+                <div className={classes.itemName}>Expired Stock Value</div>
 
                 <div className={classes.itemIcon}>
                     <FontAwesomeIcon icon={faHandHoldingUsd} />
@@ -87,7 +129,7 @@ const DashboardItem = () => {
                 <div div className={classes.itemNumber}>
                     500
                 </div>
-                <div className={classes.itemName}>Expired Stock</div>
+                <div className={classes.itemName}>Expired Stock Quantity</div>
 
                 <div className={classes.itemIcon}>
                     <FontAwesomeIcon icon={faHandHoldingUsd} />
