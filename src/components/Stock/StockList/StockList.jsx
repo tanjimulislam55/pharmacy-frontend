@@ -15,6 +15,11 @@ export default function StockList({ stocks, medicines }) {
     const [startIdx, setStartIdx] = useState(0)
     const [endIdx, setEndIdx] = useState(10)
 
+    const formattedDate = (e, id) => {
+        let date = get_matched_stock(stocks, id)?.last_transacted_date
+        console.log(date)
+        return date.toLocaleDateString()
+    }
     return (
         <div className={classes.tableContainer}>
             <div className={classes.wrapper}>
@@ -39,8 +44,8 @@ export default function StockList({ stocks, medicines }) {
                     <th>Brand Name</th>
                     <th>Generic Name</th>
                     <th>In Stock</th>
-                    <th>Last transacted quantity</th>
-                    <th>Last transacted date</th>
+                    <th>Last Transacted Quantity</th>
+                    <th>Last Transacted Date</th>
                     <th>Unit Price</th>
                     <th>Action</th>
                 </tr>
@@ -60,6 +65,7 @@ export default function StockList({ stocks, medicines }) {
                                     {get_matched_stock(stocks, filteredMedicine.id)?.last_transacted_quantity}
                                 </td>
                                 <td data-title="last_transacted_date">
+                                    {(e) => formattedDate(e, filteredMedicine.id)}
                                     {get_matched_stock(stocks, filteredMedicine.id)?.last_transacted_date}
                                 </td>
                                 <td data-title="unit_price">{filteredMedicine.unit_price}</td>
