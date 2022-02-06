@@ -20,7 +20,7 @@ export default function PurchaseList({ purchases }) {
                     </button>
                 </form>
                 <button className={classes.button}>
-                    <Link to="./purchaseform">+ New Purchase</Link>
+                    <Link to="./purchaseform">+ New Order</Link>
                 </button>
             </div>
 
