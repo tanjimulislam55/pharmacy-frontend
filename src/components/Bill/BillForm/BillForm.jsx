@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import BillLines from '../BillLines/BillLines'
+import Add from './Add/Add'
 import classes from './BillForm.module.css'
 
 export default function BillForm() {
+    const [array, setArray] = useState([])
+    const [id, setId] = useState(1)
     const [user, setUser] = useState()
     // const [date, setDate] = useState('')
     const [note, setNote] = useState('')
@@ -76,11 +79,13 @@ export default function BillForm() {
         })
         navigate('/bill')
     }
-
+    console.log(array)
     return (
         <div className={classes.wrapper}>
             <div className={classes.formWrapper}>
                 <p>Add Invoice</p>
+
+                <Add id={id} setId={setId} array={array} setArray={setArray} />
 
                 <form className={classes.item} onSubmit={handleSubmit}>
                     {/* <div className={classes.gridThree}>
