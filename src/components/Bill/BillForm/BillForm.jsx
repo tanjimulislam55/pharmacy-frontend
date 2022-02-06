@@ -56,8 +56,8 @@ export default function BillForm() {
                 paid_amount: paidAmount,
                 due_amount: dueAmount,
                 comment: note,
-                discount: 0,
-                vat: 0,
+                discount: discount,
+                vat: vat,
                 customer_id: null,
                 user_id: user.id,
                 // billing_date: date,
@@ -80,10 +80,10 @@ export default function BillForm() {
     return (
         <div className={classes.wrapper}>
             <div className={classes.formWrapper}>
-                <p>Add New Bill</p>
+                <p>Add Invoice</p>
 
                 <form className={classes.item} onSubmit={handleSubmit}>
-                    <div className={classes.gridThree}>
+                    {/* <div className={classes.gridThree}>
                         <div className={classes.inputbox}>
                             <input id="subTotal" name="subTotal" type="text" required />
                             <label htmlFor="subTotal">
@@ -118,33 +118,23 @@ export default function BillForm() {
                                 <option value="">Cash</option>
                             </select>
                         </div>
-                    </div>
-                    <div className={classes.inputbox}>
-                        <textarea
-                            id="note"
-                            name="note"
-                            type="text"
-                            value={note}
-                            onChange={(e) => setNote(e.target.value)}
-                            rows={2}
-                            required
-                        />
-                        <label htmlFor="note">Note</label>
-                    </div>
+                    </div> */}
 
                     <div className={classes.tableContainer}>
                         <table className={classes.tableMain}>
                             <tr className={classes.tableRow}>
-                                <th>Select Medicines</th>
+                                <th>
+                                    Select Medicines <span>*</span>
+                                </th>
                                 <th>
                                     Quantity <span>*</span>
                                 </th>
                                 <th>
-                                    Price <span>*</span>
+                                    Unit Price <span>*</span>
                                 </th>
-                                <th>
-                                    Cost <span>*</span>
-                                </th>
+                                <th>Tax</th>
+                                <th>Discount</th>
+                                <th>Total Cost</th>
                             </tr>
                         </table>
                     </div>
@@ -164,7 +154,19 @@ export default function BillForm() {
                         className={classes.btn}>
                         Add More Item
                     </button>
-                    <div className={classes.gridThree}>
+                    <div className={classes.inputbox}>
+                        <textarea
+                            id="note"
+                            name="note"
+                            type="text"
+                            value={note}
+                            onChange={(e) => setNote(e.target.value)}
+                            rows={2}
+                            required
+                        />
+                        <label htmlFor="note">Note</label>
+                    </div>
+                    <div className={classes.gridFour}>
                         <div className={classes.inputbox}>
                             <input
                                 id="subTotal"
@@ -175,17 +177,31 @@ export default function BillForm() {
                             />
                             <label htmlFor="subTotal">Subtotal</label>
                         </div>
-
                         <div className={classes.inputbox}>
                             <input
-                                id="dueAmount"
-                                name="dueAmount"
+                                id="vat"
+                                name="vat"
                                 type="number"
-                                onChange={(e) => setDueAmount(e.target.value)}
+                                onChange={(e) => setVat(e.target.value)}
                                 required
                             />
-                            <label htmlFor="paidAmount">Due amount</label>
+                            <label htmlFor="subTotal">Vat</label>
                         </div>
+                        <div className={classes.inputbox}>
+                            <input
+                                id="discount"
+                                name="discount"
+                                type="number"
+                                onChange={(e) => setDiscount(e.target.value)}
+                                required
+                            />
+                            <label htmlFor="subTotal">Discount</label>
+                        </div>
+                        <div className={classes.inputbox}>
+                            <input id="discount" name="discount" type="number" required />
+                            <label htmlFor="totalPrice">Total Price</label>
+                        </div>
+
                         <div className={classes.inputbox}>
                             <input
                                 id="paidAmount"
@@ -197,6 +213,16 @@ export default function BillForm() {
                             <label htmlFor="paidAmount">
                                 Paid amount <span>*</span>
                             </label>
+                        </div>
+                        <div className={classes.inputbox}>
+                            <input
+                                id="dueAmount"
+                                name="dueAmount"
+                                type="number"
+                                onChange={(e) => setDueAmount(e.target.value)}
+                                required
+                            />
+                            <label htmlFor="paidAmount">Due amount</label>
                         </div>
                     </div>
 

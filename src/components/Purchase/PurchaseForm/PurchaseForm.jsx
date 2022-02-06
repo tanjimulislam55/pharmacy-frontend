@@ -63,26 +63,28 @@ export default function PurchaseForm() {
     return (
         <div className={classes.wrapper}>
             <div className={classes.formWrapper}>
-                <p>Add New Purchase</p>
+                <p>Add Order</p>
 
                 <form className={classes.item} onSubmit={handleSubmit}>
                     <div className={classes.tableContainer}>
                         <table className={classes.tableMain}>
                             <tr className={classes.tableRow}>
                                 <th>
-                                    Select Medicines<span>*</span>
+                                    Manufacturer<span>*</span>
                                 </th>
                                 <th>
-                                    Quantity <span>*</span>
+                                    Medicine<span>*</span>
+                                </th>
+                                <th>Last Month Sales</th>
+                                <th>Current Stock</th>
+                                <th>Suggested Quantity</th>
+                                <th>
+                                    Final Quantity<span>*</span>
                                 </th>
                                 <th>
-                                    Bying Price <span>*</span>
+                                    Price<span>*</span>
                                 </th>
-                                <th>
-                                    Selling Price <span>*</span>
-                                </th>
-                                <th>Expiry Date</th>
-                                <th>Cost</th>
+                                <th>Total Price</th>
                             </tr>
                         </table>
                     </div>
@@ -102,7 +104,20 @@ export default function PurchaseForm() {
                         className={classes.btn}>
                         Add More Item
                     </button>
-                    <div className={classes.gridThree}>
+
+                    <div className={classes.inputbox}>
+                        <textarea
+                            id="note"
+                            name="note"
+                            type="text"
+                            value={note}
+                            onChange={(e) => setNote(e.target.value)}
+                            required
+                            rows={2}
+                        />
+                        <label htmlFor="note">Note</label>
+                    </div>
+                    <div className={classes.gridFour}>
                         <div className={classes.inputbox}>
                             <input
                                 id="total"
@@ -112,9 +127,19 @@ export default function PurchaseForm() {
                                 onChange={(e) => setTotalAmount(parseInt(e.target.value))}
                                 required
                             />
-                            <label htmlFor="totalAmount">
-                                Subtotal <span>*</span>
-                            </label>
+                            <label htmlFor="totalAmount">Subtotal</label>
+                        </div>
+                        <div className={classes.inputbox}>
+                            <input id="paidAmount" name="paidAmount" type="number" required />
+                            <label htmlFor="paidAmount">Vat</label>
+                        </div>
+                        <div className={classes.inputbox}>
+                            <input id="paidAmount" name="paidAmount" type="number" required />
+                            <label htmlFor="paidAmount">Discount</label>
+                        </div>
+                        <div className={classes.inputbox}>
+                            <input id="paidAmount" name="paidAmount" type="number" required />
+                            <label htmlFor="paidAmount">Total Price</label>
                         </div>
                         <div className={classes.inputbox}>
                             <input
@@ -141,19 +166,6 @@ export default function PurchaseForm() {
                             <label htmlFor="dueAmount">Due amount</label>
                         </div>
                     </div>
-                    <div className={classes.inputbox}>
-                        <textarea
-                            id="note"
-                            name="note"
-                            type="text"
-                            value={note}
-                            onChange={(e) => setNote(e.target.value)}
-                            required
-                            rows={2}
-                        />
-                        <label htmlFor="note">Note</label>
-                    </div>
-
                     <button type="submit" className={classes.button}>
                         Submit
                     </button>

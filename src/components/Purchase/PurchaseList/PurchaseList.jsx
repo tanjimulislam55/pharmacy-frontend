@@ -20,7 +20,7 @@ export default function PurchaseList({ purchases }) {
                     </button>
                 </form>
                 <button className={classes.button}>
-                    <Link to="./purchaseform">+ New Purchase</Link>
+                    <Link to="./purchaseform">+ New Order</Link>
                 </button>
             </div>
 
@@ -31,7 +31,6 @@ export default function PurchaseList({ purchases }) {
                     <th>Due Amount</th>
                     <th>Paid Amount</th>
                     <th>Note</th>
-                    <th>User Id</th>
                     <th>Action</th>
                 </tr>
                 {purchases &&
@@ -42,7 +41,6 @@ export default function PurchaseList({ purchases }) {
                             <td data-title="">{purchase.due_amount}</td>
                             <td data-title="">{purchase.paid_amount}</td>
                             <td data-title="">{purchase.note}</td>
-                            <td data-title="">{purchase.user_id}</td>
                             <td className="select">
                                 <Link className={classes.icon} to="#">
                                     <FontAwesomeIcon icon={faEdit} />

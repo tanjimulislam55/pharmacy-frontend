@@ -3,6 +3,7 @@
     position: fixed;
     height: 100vh;
     width: 15%;
+    /* animation: unHide 300ms; */
 }
 
 .sidebar .logo {
@@ -35,15 +36,43 @@
     margin: 0 0 0 10%;
     position: relative;
 }
-
-.sidebar ul li a:hover {
-    color: var(--secondary);
+.active {
+    /* color: var(--secondary) !important; */
+    position: relative;
+}
+.active::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 15px;
+    background: transparent;
+    right: -1px;
+    top: -15px;
+    border-radius: 0 0 50px 0;
+    box-shadow: 0 5px 0 0 #fff;
+    display: block !important;
+}
+.active::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 15px;
+    background: transparent;
+    right: -1px;
+    bottom: -15px;
+    border-radius: 0 50px 0 0;
+    box-shadow: 0 -5px 0 0 #fff;
+    display: block !important;
+}
+.sidebar ul li a:hover,
+.active {
+    color: var(--secondary) !important;
     background: var(--white);
     border-radius: 50px 0 0 50px;
 }
-
-.sidebar ul li a:hover .icon {
-    color: var(--secondary);
+.sidebar ul li a:hover .icon,
+.active .icon {
+    color: var(--secondary) !important;
 }
 
 .sidebar ul li a::before {
@@ -92,6 +121,7 @@
     position: fixed;
     height: 100vh;
     width: 5%;
+    animation: hide 300ms;
 }
 
 .sidebarHide ul li a .icon {
@@ -136,4 +166,22 @@
 
 .sidebarHide ul li a:hover .icon {
     color: var(--secondary);
+}
+
+@keyframes hide {
+    from {
+        width: 15%;
+    }
+    to {
+        width: 5%;
+    }
+}
+
+@keyframes unHide {
+    from {
+        width: 5%;
+    }
+    to {
+        width: 15%;
+    }
 }

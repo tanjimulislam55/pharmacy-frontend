@@ -3,6 +3,7 @@ import classes from './BillLines.module.css'
 
 export default function BillLines({ billLine, i, total, setTotal }) {
     const [medicines, setMedicines] = useState([])
+    const [cost, setCost] = useState()
 
     const auth = JSON.parse(localStorage.getItem('auth'))
     const token = auth.token
@@ -75,6 +76,12 @@ export default function BillLines({ billLine, i, total, setTotal }) {
                                 onBlur={(e) => handleBlur(e)}
                                 required
                             />
+                        </td>
+                        <td>
+                            <input id="vat" name="vat" type="number" />
+                        </td>
+                        <td>
+                            <input id="discount" name="discount" type="number" />
                         </td>
                         <td>
                             <input
