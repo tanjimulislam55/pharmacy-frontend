@@ -2,10 +2,41 @@ import { useEffect, useState } from 'react'
 import classes from './PurchaseLines.module.css'
 
 export default function PurchaseLines({ purchaseLine, lineIndex, total, setTotal }) {
+    const [manufacturers, setManufacturers] = useState([])
     const [medicines, setMedicines] = useState([])
 
     const auth = JSON.parse(localStorage.getItem('auth'))
     const token = auth.token
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/manufacturers`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            const data = await response.json()
+            setManufacturers(data)
+        }
+        return fetchData()
+    }, [token])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/manufacturers`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            const data = await response.json()
+            setManufacturers(data)
+        }
+        return fetchData()
+    }, [token])
 
     useEffect(() => {
         const controller = new AbortController()
@@ -38,6 +69,20 @@ export default function PurchaseLines({ purchaseLine, lineIndex, total, setTotal
                                 onChange={(e) => (purchaseLine.medicine_id = parseInt(e.target.value))}
                                 id="medicines">
                                 <option value="">Select</option>
+                                {manufacturers &&
+                                    manufacturers.map((manufacturer, i) => (
+                                        <option key={i} value={manufacturer.id}>
+                                            {manufacturer.name}
+                                        </option>
+                                    ))}
+                            </select>
+                        </td>
+                        <td>
+                            <select
+                                className={classes.option}
+                                onChange={(e) => (purchaseLine.medicine_id = parseInt(e.target.value))}
+                                id="medicines">
+                                <option value="">Select</option>
                                 {medicines &&
                                     medicines.map((medicine, i) => (
                                         <option key={i} value={medicine.id}>
@@ -45,6 +90,15 @@ export default function PurchaseLines({ purchaseLine, lineIndex, total, setTotal
                                         </option>
                                     ))}
                             </select>
+                        </td>
+                        <td>
+                            <input id="lastMonthSales" name="lastMonthSales" type="text" />
+                        </td>
+                        <td>
+                            <input id="currentStock" name="currentStock" type="text" />
+                        </td>
+                        <td>
+                            <input id="suggestedStock" name="sugegestedStock" type="text" />
                         </td>
                         <td>
                             <input
@@ -63,26 +117,6 @@ export default function PurchaseLines({ purchaseLine, lineIndex, total, setTotal
                                 type="text"
                                 value={purchaseLine.buying_price}
                                 onChange={(e) => (purchaseLine.buying_price = parseInt(e.target.value))}
-                                required
-                            />
-                        </td>
-                        <td>
-                            <input
-                                id="sellingPrice"
-                                name="sellingPrice"
-                                type="text"
-                                value={purchaseLine.selling_price}
-                                onChange={(e) => (purchaseLine.selling_price = parseInt(e.target.value))}
-                                required
-                            />
-                        </td>
-                        <td>
-                            <input
-                                id="expiryDate"
-                                name="expiryDate"
-                                type="date"
-                                value={purchaseLine.expiry_date}
-                                onChange={(date) => (purchaseLine.expiry_date = date.target.value)}
                                 required
                             />
                         </td>
