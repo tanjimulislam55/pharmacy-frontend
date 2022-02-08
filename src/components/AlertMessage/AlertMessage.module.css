@@ -1,0 +1,10 @@
+.text {
+    width: 200px;
+    margin: 20px auto;
+    padding: 6px;
+    background-color: rgb(204, 51, 24);
+    border-radius: 4px;
+    color: #fff;
+    text-align: center;
+    font-size: 12px;
+}
