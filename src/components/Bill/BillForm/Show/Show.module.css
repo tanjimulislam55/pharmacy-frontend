@@ -1,0 +1,55 @@
+.tableContainer .tableMain select {
+    width: 16em;
+    font-size: 12px;
+    background-color: var(--white);
+    outline: none;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 2px;
+    color: var(--dark-grey);
+}
+
+.tableContainer .selectBox .option:hover option,
+.tableContainer .selectBox .option:focus option {
+    color: var(--secondary);
+}
+
+.tableContainer .tableMain {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 2px 4px;
+}
+
+.tableRow td {
+    position: relative;
+    border-radius: 0.25em;
+}
+
+.tableRow td {
+    border-color: var(--light);
+    border: 1px solid var(--light);
+    padding: 4px;
+}
+
+.tableMain .tableRow input {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 6px;
+    font-size: 12px;
+}
+
+.tableMain .tableRow input::placeholder {
+    color: var(--dark);
+    font-size: 12px;
+}
+
+.tableMain .text {
+    font-size: 14px;
+    color: var(--secondary);
+    padding: 10px;
+}
+
+.tableMain th span {
+    color: var(--red);
+}
