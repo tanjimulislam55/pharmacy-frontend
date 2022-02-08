@@ -20,6 +20,8 @@ import {
     Login,
     Registration,
     Manufacturer,
+    Grn,
+    Setting,
 } from './pages'
 import ProtectedRoute from './routes/ProtectedRoute'
 
@@ -46,9 +48,11 @@ function App() {
                             <Route path="expense" element={<Expense />} />
                             <Route path="purchase" element={<Purchase />} />
                             <Route path="purchase/purchaseform" element={<PurchaseForm />} />
+                            <Route path="grn" element={<Grn />} />
                             <Route path="reports" element={<Report />} />
                             <Route path="accounts" element={<Admin />} />
                             <Route path="manufacturer" element={<Manufacturer />} />
+                            <Route path="settings" element={<Setting />} />
                         </Route>
                     </Routes>
                 </UserInfo.Provider>
