@@ -31,11 +31,11 @@
     padding: 4px;
 }
 
-.tableMain input {
+.tableMain .tableRow input {
     width: 100%;
     border: none;
     outline: none;
-    margin-left: 6px;
+    padding: 6px;
     font-size: 12px;
 }
 
@@ -47,4 +47,26 @@
 
 .tableMain th span {
     color: var(--red);
+}
+
+.tableContainer .button {
+    background-color: var(--secondary);
+    border: none;
+    padding: 10px 30px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 2px;
+    cursor: pointer;
+    color: var(--white);
+    display: block;
+}
+
+.tableContainer .button a {
+    text-decoration: none;
+    color: var(--white);
+}
+
+.tableContainer .button:hover {
+    opacity: 0.8;
+    transition: 0.5s;
 }
