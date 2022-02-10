@@ -9,8 +9,8 @@ export default function Chart() {
         <div className={classes.graphWrapper}>
             <div className={classes.graphBox}>
                 <select className={classes.select}>
+                    <option value="">Daily</option>
                     <option value="">Monthly</option>
-                    <option value="">Yearly</option>
                 </select>
                 <LineChart />
             </div>
