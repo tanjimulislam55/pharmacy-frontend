@@ -149,3 +149,8 @@
 .formWrapper .tableMain th span {
     color: var(--red);
 }
+
+.formWrapper .boxBorder {
+    width: 100%;
+    border: 1px solid var(--dark);
+}
