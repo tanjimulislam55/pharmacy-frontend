@@ -3,7 +3,7 @@ import classes from './BillLines.module.css'
 
 export default function BillLines({ billLine, i, total, setTotal }) {
     const [medicines, setMedicines] = useState([])
-    const [cost, setCost] = useState()
+    const [render, setRender] = useState(false)
 
     const auth = JSON.parse(localStorage.getItem('auth'))
     const token = auth.token
@@ -29,13 +29,25 @@ export default function BillLines({ billLine, i, total, setTotal }) {
     }, [token])
 
     const handleBlur = (e) => {
-        console.log(e)
+        // e.preventDefault()
         if (billLine.quantity && billLine.price) {
-            total = billLine.qty * billLine.price
-            setTotal((total) => (total[i] = total))
+            let cost = billLine.quantity * billLine.price
+            setTotal((total) => (total = cost))
+            setRender((prev) => !prev)
+            console.log('TotalBlur', cost)
         }
     }
 
+    // const handleFocus = (e) => {
+    //     console.log(e)
+    //     if (billLine.quantity && billLine.price) {
+    //         let cost = billLine.quantity * billLine.price
+    //         setTotal((total) => (total = cost))
+    //         setRender((prev) => !prev)
+    //         console.log('TotalFocus', cost)
+    //     }
+    // }
+    console.log('Total-----------------', total)
     return (
         <div className={classes.tableContainer}>
             <div key={i}>
@@ -60,9 +72,10 @@ export default function BillLines({ billLine, i, total, setTotal }) {
                                 id="billQuantiy"
                                 name="billQuantiy"
                                 type="number"
-                                value={billLine.quantity}
+                                placeholder={billLine.quantity}
                                 onChange={(e) => (billLine.quantity = parseInt(e.target.value))}
-                                onBlur={handleBlur}
+                                onBlur={(e) => handleBlur(e)}
+                                // onFocus={(e) => handleFocus(e)}
                                 required
                             />
                         </td>
@@ -71,9 +84,10 @@ export default function BillLines({ billLine, i, total, setTotal }) {
                                 id="billPrice"
                                 name="billPrice"
                                 type="number"
-                                value={billLine.price}
+                                placeholder={billLine.price}
                                 onChange={(e) => (billLine.price = parseInt(e.target.value))}
                                 onBlur={(e) => handleBlur(e)}
+                                // onFocus={(e) => handleFocus(e)}
                                 required
                             />
                         </td>
@@ -88,9 +102,11 @@ export default function BillLines({ billLine, i, total, setTotal }) {
                                 id="billCost"
                                 name="billCost"
                                 type="number"
-                                value={billLine.cost}
+                                // placeholder={total}
+                                value={total}
                                 onChange={(e) => (billLine.cost = parseInt(e.target.value))}
                                 onBlur={(e) => handleBlur(e)}
+                                // onFocus={(e) => handleFocus(e)}
                                 required
                             />
                         </td>
