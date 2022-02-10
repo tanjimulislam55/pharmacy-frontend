@@ -1,6 +1,7 @@
 import {
     faBriefcaseMedical,
     faChartLine,
+    faClipboard,
     faCog,
     faDatabase,
     faHandHoldingUsd,
@@ -44,6 +45,11 @@ export default function Sidebar() {
             text: 'Purchase',
             endpoint: 'purchase',
             icon: <FontAwesomeIcon icon={faShoppingBag} title="Purchase" />,
+        },
+        {
+            text: 'Grn',
+            endpoint: 'grn',
+            icon: <FontAwesomeIcon icon={faClipboard} title="Purchase" />,
         },
         {
             text: 'Manufacturer',

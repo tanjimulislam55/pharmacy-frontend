@@ -132,7 +132,6 @@
 
 .sidebarHide .logo {
     height: 70px;
-    border: 1px solid var(--light);
     display: flex;
     align-items: center;
     justify-content: center;
