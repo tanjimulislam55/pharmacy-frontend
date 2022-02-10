@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Auth } from '../../../contexts/allContex'
+import AlertMessage from '../../AlertMessage/AlertMessage'
 import classes from './Registration.module.css'
 
 export default function Registration({ setOpenRegistration, setOpenLogin }) {
@@ -13,7 +14,8 @@ export default function Registration({ setOpenRegistration, setOpenLogin }) {
     const [gender, setGender] = useState('')
     const [password, setPassword] = useState('')
     const [cfpPassword, setCfpPassword] = useState('')
-    const [alert, setAlert] = useState([])
+
+    const [alert, setAlert] = useState(false)
 
     const { stateAuth } = useContext(Auth)
     const history = useNavigate()
@@ -24,9 +26,18 @@ export default function Registration({ setOpenRegistration, setOpenLogin }) {
         e.preventDefault()
 
         if (password !== cfpPassword) {
-            setAlert([...alert, 'Password not matched!'])
-            return
+            setAlert(true)
+            setTimeout(function () {
+                setAlert(false)
+            }, 3000)
         }
+
+        // if (gender === '') {
+        //     setAlert(true)
+        //     setTimeout(function () {
+        //         setAlert(false)
+        //     }, 5000)
+        // }
 
         let registerId = await fetch(`${api}/users/new`, {
             headers: {
@@ -144,6 +155,8 @@ export default function Registration({ setOpenRegistration, setOpenLogin }) {
                     </div>
                 </div>
             </div>
+            {alert && <AlertMessage data={{ text: "Password didn't match!" }} />}
+            {/* {alert && <AlertMessage data={{ text2: 'Gender Field Empty!' }} />} */}
         </div>
     )
 }
