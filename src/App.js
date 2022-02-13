@@ -20,6 +20,9 @@ import {
     Login,
     Registration,
     Manufacturer,
+    Grn,
+    Setting,
+    LandingPage,
 } from './pages'
 import ProtectedRoute from './routes/ProtectedRoute'
 
@@ -32,8 +35,8 @@ function App() {
             <Auth.Provider value={{ stateAuth, dispatchAuth }}>
                 <UserInfo.Provider value={{ stateUser, dispatchUser }}>
                     <Routes>
-                        <Route path="/login" element={<Login />} />
                         <Route path="/registration" element={<Registration />} />
+                        <Route path="/login" element={<Login />} />
 
                         <Route path="/*" element={<ProtectedRoute />}>
                             <Route path="" element={<Home />} />
@@ -46,9 +49,12 @@ function App() {
                             <Route path="expense" element={<Expense />} />
                             <Route path="purchase" element={<Purchase />} />
                             <Route path="purchase/purchaseform" element={<PurchaseForm />} />
+                            <Route path="grn" element={<Grn />} />
                             <Route path="reports" element={<Report />} />
                             <Route path="accounts" element={<Admin />} />
                             <Route path="manufacturer" element={<Manufacturer />} />
+                            <Route path="settings" element={<Setting />} />
+                            <Route path="landingpage" element={<LandingPage />} />
                         </Route>
                     </Routes>
                 </UserInfo.Provider>

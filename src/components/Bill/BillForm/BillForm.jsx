@@ -1,9 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import BillLines from '../BillLines/BillLines'
+import Add from './Add/Add'
 import classes from './BillForm.module.css'
+import Show from './Show/Show'
 
 export default function BillForm() {
+    const [array, setArray] = useState([])
+    const [id, setId] = useState(1)
+
     const [user, setUser] = useState()
     // const [date, setDate] = useState('')
     const [note, setNote] = useState('')
@@ -64,23 +69,49 @@ export default function BillForm() {
             },
             invoice_order_line_in: billLines,
         }
-
+        console.log('details')
         console.log(details)
-        fetch(`${process.env.REACT_APP_API_URL}/invoices/new`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify(details),
-        })
-        navigate('/bill')
+        // fetch(`${process.env.REACT_APP_API_URL}/invoices/new`, {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         Authorization: `Bearer ${token}`,
+        //     },
+        //     body: JSON.stringify(details),
+        // })
+        // navigate('/bill')
     }
-
+    console.log(array)
     return (
         <div className={classes.wrapper}>
             <div className={classes.formWrapper}>
                 <p>Add Invoice</p>
+
+                <div className={classes.tableContainer}>
+                    <table className={classes.tableMain}>
+                        <tr className={classes.tableRow}>
+                            <th>
+                                Select Medicines <span>*</span>
+                            </th>
+                            <th>
+                                Quantity <span>*</span>
+                            </th>
+                            <th>
+                                Unit Price <span>*</span>
+                            </th>
+                            <th>Tax</th>
+                            <th>Discount</th>
+                            <th>Total Cost</th>
+                        </tr>
+                    </table>
+                </div>
+                <Add id={id} setId={setId} array={array} setArray={setArray} />
+
+                <br />
+                <h5>Order List:</h5>
+                <div className={classes.boxBorder}>
+                    <Show array={array} setArray={setArray} />
+                </div>
 
                 <form className={classes.item} onSubmit={handleSubmit}>
                     {/* <div className={classes.gridThree}>
@@ -154,6 +185,7 @@ export default function BillForm() {
                         className={classes.btn}>
                         Add More Item
                     </button>
+                    <br />
                     <div className={classes.inputbox}>
                         <textarea
                             id="note"
@@ -166,7 +198,7 @@ export default function BillForm() {
                         />
                         <label htmlFor="note">Note</label>
                     </div>
-                    <div className={classes.gridFour}>
+                    {/* <div className={classes.gridFour}>
                         <div className={classes.inputbox}>
                             <input
                                 id="subTotal"
@@ -224,7 +256,7 @@ export default function BillForm() {
                             />
                             <label htmlFor="paidAmount">Due amount</label>
                         </div>
-                    </div>
+                    </div> */}
 
                     <button type="submit" className={classes.button}>
                         Submit
