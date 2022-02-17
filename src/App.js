@@ -21,6 +21,7 @@ import {
     Registration,
     Manufacturer,
     Grn,
+    GrnForm,
     Setting,
     LandingPage,
 } from './pages'
@@ -51,6 +52,7 @@ function App() {
                             <Route path="purchase" element={<Purchase />} />
                             <Route path="purchase/purchaseform" element={<PurchaseForm />} />
                             <Route path="grn" element={<Grn />} />
+                            <Route path="grn/grnform" element={<GrnForm />} />
                             <Route path="reports" element={<Report />} />
                             <Route path="accounts" element={<Admin />} />
                             <Route path="manufacturer" element={<Manufacturer />} />
