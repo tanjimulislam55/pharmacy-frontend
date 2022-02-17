@@ -20,7 +20,7 @@ export default function Grn({ grns }) {
                     </button>
                 </form>
                 <button className={classes.button}>
-                    <Link to="">+ Add New GRN</Link>
+                    <Link to="./grnform">+ Add New GRN</Link>
                 </button>
             </div>
 
@@ -32,16 +32,23 @@ export default function Grn({ grns }) {
                     <th>Medicine</th>
                     <th>Order Quantity</th>
                     <th>Received Quantity</th>
-                    <th>Total Price</th>
+                    <th>Total Amount</th>
+                    <th>Paid Amount</th>
+                    <th>Action</th>
                 </tr>
                 {grns &&
                     grns.map((grn) => (
                         <tr className={classes.tableRow} key={grn.id}>
-                            <td data-title="">{grn.id}</td>
-                            <td data-title="">1</td>
-                            <td data-title="">Square</td>
-                            <td data-title="">{grn.paid_amount}</td>
-                            <td data-title="">{grn.note}</td>
+                            <td>{grn.id}</td>
+                            <td>1</td>
+                            <td>Square</td>
+                            <td>Paricel</td>
+                            <td>20</td>
+                            <td>20</td>
+                            <td>100</td>
+                            <td>90</td>
+                            {/* <td>{grn.note}</td> */}
+
                             <td className="select">
                                 <Link className={classes.icon} to="#">
                                     <FontAwesomeIcon icon={faEdit} />
