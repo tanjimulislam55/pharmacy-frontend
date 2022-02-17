@@ -42,6 +42,7 @@ export default function MedicineList({ medicines, manufacturers, setIsOpenForm }
                     <th>Generic Name</th>
                     <th>Dosage Form</th>
                     <th>Strength</th>
+                    <th>Unit Price (TK)</th>
                     <th>Manufacturer</th>
                 </tr>
                 {medicines &&
@@ -56,6 +57,7 @@ export default function MedicineList({ medicines, manufacturers, setIsOpenForm }
                                 <td data-title="generic_name">{filteredMedicine.generic_name}</td>
                                 <td data-title="dosage_form">{filteredMedicine.dosage_form}</td>
                                 <td data-title="strength">{filteredMedicine.strength}</td>
+                                <td data-title="unit_price">{filteredMedicine.unit_price}</td>
                                 <td data-title="manufacturer">
                                     {getName(manufacturers, filteredMedicine.manufacturer_id)}
                                 </td>

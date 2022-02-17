@@ -8,15 +8,18 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    /* background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-        url("./pharmacy.jpg") no-repeat center; */
+    /* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/bg4.jpg') no-repeat center; */
+    background-image: url('../img/bg.jpg');
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .container {
-    margin-top: 70px;
     background-color: var(--white);
     border-radius: 10px;
-    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 1px 2px var(--light);
     position: relative;
     overflow: hidden;
     width: 780px;
@@ -186,4 +189,18 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px;
+}
+
+.wrapper .logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 24px;
+    color: var(--secondary);
+    font-weight: 620;
+    margin: 30px 30px;
+}
+
+.wrapper .logo:hover {
+    color: var(--light-secondary);
 }

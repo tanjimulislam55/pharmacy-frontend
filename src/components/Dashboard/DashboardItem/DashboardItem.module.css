@@ -18,28 +18,17 @@
 .dashContainer > .dashBox:nth-child(4) {
     background: var(--secondary);
 }
+
 .dashContainer > .dashBox:nth-child(5) {
-    background: var(--blue);
-}
-.dashContainer > .dashBox:nth-child(6) {
-    background: var(--deep-primary);
-}
-.dashContainer > .dashBox:nth-child(7) {
-    background: var(--primary);
-}
-.dashContainer > .dashBox:nth-child(8) {
-    background: var(--secondary);
-}
-.dashContainer > .dashBox:nth-child(9) {
     background: var(--light-secondary);
 }
-.dashContainer > .dashBox:nth-child(10) {
+.dashContainer > .dashBox:nth-child(6) {
     background: var(--green);
 }
-.dashContainer > .dashBox:nth-child(11) {
+.dashContainer > .dashBox:nth-child(7) {
     background: var(--red);
 }
-.dashContainer > .dashBox:nth-child(12) {
+.dashContainer > .dashBox:nth-child(8) {
     background: var(--red);
 }
 
@@ -51,10 +40,14 @@
     min-height: 6em;
 }
 
+.dashContainer .dashBox div:nth-child(3) {
+    margin-top: 10px;
+}
+
 .dashContainer .dashBox .itemNumber {
     position: relative;
-    font-weight: 500;
-    font-size: 1.5em;
+    font-weight: 550;
+    font-size: 1.4em;
     color: var(--white);
 }
 
@@ -66,7 +59,7 @@
 }
 
 .dashContainer .dashBox .itemIcon {
-    font-size: 1.4em;
+    font-size: 1.6em;
     color: var(--white);
     position: absolute;
     right: 20px;

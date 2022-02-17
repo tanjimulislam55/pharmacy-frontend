@@ -1,10 +1,12 @@
 .text {
+    position: relative;
     width: 200px;
-    margin: 20px auto;
+    margin: 10px auto;
     padding: 6px;
-    background-color: rgb(204, 51, 24);
+    background-color: var(--deep-red);
     border-radius: 4px;
-    color: #fff;
+    color: var(--white);
     text-align: center;
     font-size: 12px;
+    z-index: 1000;
 }

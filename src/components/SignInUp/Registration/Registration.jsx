@@ -7,11 +7,9 @@ import AlertMessage from '../../AlertMessage/AlertMessage'
 import classes from './Registration.module.css'
 
 export default function Registration({ setOpenRegistration, setOpenLogin }) {
-    const [fName, setFname] = useState('')
-    const [lName, setLname] = useState('')
+    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
-    const [gender, setGender] = useState('')
     const [password, setPassword] = useState('')
     const [cfpPassword, setCfpPassword] = useState('')
 
@@ -47,11 +45,9 @@ export default function Registration({ setOpenRegistration, setOpenLogin }) {
             dataType: 'json',
             method: 'POST',
             body: JSON.stringify({
-                first_name: fName,
-                last_name: lName,
+                full_name: name,
                 email,
                 phone,
-                gender,
                 password,
             }),
         })
@@ -76,11 +72,14 @@ export default function Registration({ setOpenRegistration, setOpenLogin }) {
     return (
         <div>
             <div className={classes.wrapper}>
+                <Link to="/" className={classes.logo}>
+                    E-Pharmacy
+                </Link>
                 <div className={classes.container}>
                     <div className={`${classes.formContainer} ${classes.signUp}`}>
                         <form onSubmit={(e) => handleSubmit(e)}>
                             <h2>Create Account</h2>
-                            <div className={classes.socialGroup}>
+                            {/* <div className={classes.socialGroup}>
                                 <Link to="#" class={classes.social}>
                                     <FontAwesomeIcon icon={faFacebookF} />
                                 </Link>
@@ -91,42 +90,30 @@ export default function Registration({ setOpenRegistration, setOpenLogin }) {
                                     <FontAwesomeIcon icon={faGoogle} />
                                 </Link>
                             </div>
-                            <span>or use your email for registration</span>
-                            <div className={classes.grid}>
-                                <input
-                                    placeholder="First Name"
-                                    type="text"
-                                    value={fName}
-                                    onChange={(e) => setFname(e.target.value)}
-                                />
-                                <input
-                                    placeholder="Last Name"
-                                    type="text"
-                                    value={lName}
-                                    onChange={(e) => setLname(e.target.value)}
-                                />
-                            </div>
+                            <span>or use your email for registration</span> */}
+                            {/* <div className={classes.grid}> */}
+                            <input
+                                placeholder="Full Name"
+                                type="text"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                            />
+
+                            {/* </div> */}
                             <input
                                 placeholder="Email"
                                 type="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
-                            <div className={classes.grid}>
-                                <input
-                                    placeholder="Phone"
-                                    type="text"
-                                    value={phone}
-                                    onChange={(e) => setPhone(e.target.value)}
-                                />
-
-                                <input
-                                    placeholder="Gender"
-                                    type="text"
-                                    value={gender}
-                                    onChange={(e) => setGender(e.target.value)}
-                                />
-                            </div>
+                            {/* <div className={classes.grid}> */}
+                            <input
+                                placeholder="Phone"
+                                type="text"
+                                value={phone}
+                                onChange={(e) => setPhone(e.target.value)}
+                            />
+                            {/* </div> */}
                             <input
                                 placeholder="Password"
                                 type="password"
@@ -154,8 +141,8 @@ export default function Registration({ setOpenRegistration, setOpenLogin }) {
                         </div>
                     </div>
                 </div>
+                {alert && <AlertMessage data={{ text: "Password didn't match!" }} />}
             </div>
-            {alert && <AlertMessage data={{ text: "Password didn't match!" }} />}
             {/* {alert && <AlertMessage data={{ text2: 'Gender Field Empty!' }} />} */}
         </div>
     )

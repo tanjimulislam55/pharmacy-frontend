@@ -28,12 +28,11 @@ export default function Add({ array, setArray, id, setId }) {
                         <td>
                             <input type="number" onChange={(e) => setLine({ ...line, cost: e.target.value })} />
                         </td>
-
-                        <button className={classes.button} type="submit">
-                            Add More
-                        </button>
                     </tr>
                 </table>
+                <button className={classes.button} type="submit">
+                    Add More
+                </button>
             </div>
         </form>
     )

@@ -44,9 +44,8 @@ export default function StockList({ stocks, medicines }) {
                     <th>Brand Name</th>
                     <th>Generic Name</th>
                     <th>In Stock</th>
-                    <th>Last Transacted Quantity</th>
-                    <th>Last Transacted Date</th>
-                    <th>Unit Price</th>
+                    <th>Last Purchase Quantity</th>
+                    <th>Last Purchase Date</th>
                     <th>Action</th>
                 </tr>
                 {(stocks, medicines) &&
@@ -62,13 +61,12 @@ export default function StockList({ stocks, medicines }) {
                                     {get_matched_stock(stocks, filteredMedicine.id)?.in_stock}
                                 </td>
                                 <td data-title="last_transacted_quantity">
-                                    {get_matched_stock(stocks, filteredMedicine.id)?.last_transacted_quantity}
+                                    {get_matched_stock(stocks, filteredMedicine.id)?.last_purchased_quantity}
                                 </td>
                                 <td data-title="last_transacted_date">
                                     {(e) => formattedDate(e, filteredMedicine.id)}
-                                    {get_matched_stock(stocks, filteredMedicine.id)?.last_transacted_date}
+                                    {get_matched_stock(stocks, filteredMedicine.id)?.last_date_of_purchase}
                                 </td>
-                                <td data-title="unit_price">{filteredMedicine.unit_price}</td>
                                 <td className="select">
                                     <Link className={classes.icon} to="#">
                                         <FontAwesomeIcon icon={faEdit} />
