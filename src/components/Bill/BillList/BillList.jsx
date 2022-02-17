@@ -32,52 +32,41 @@ export default function BillList({ bills }) {
                 </button>
             </div>
 
-            <div className={classes.tableMain}>
-                <div className={classes.container}>
-                    <div className={classes.head}>ID</div>
-                    <div className={classes.head}>Total Amount</div>
-                    <div className={classes.head}>Paid Amount</div>
-                    <div className={classes.head}>Due Amount</div>
-                    <div className={classes.head}>Vat</div>
-                    <div className={classes.head}>Discount</div>
-                    <div className={classes.head}>Billing Date</div>
-                    <div className={classes.head}>Action</div>
-                </div>
+            <table className={classes.tableMain}>
+                <tr className={classes.tableRow}>
+                    <th>ID</th>
+                    <th>Total Amount</th>
+                    <th>Paid Amount</th>
+                    <th>Due Amount</th>
+                    <th>Discount</th>
+                    <th>Billing Date</th>
+                    <th>Action</th>
+                </tr>
 
                 {bills &&
                     bills.map((bill) => (
-                        <>
-                            <div
-                                onClick={() => handlePopup(bill.bill_lines)}
-                                key={bill.id}
-                                className={classes.containerItem}>
-                                <div className={classes.item}>{bill.id}</div>
-                                <div className={classes.item}>{bill.total_amount}</div>
-                                <div className={classes.item}>{bill.paid_amount}</div>
-                                <div className={classes.item}>{bill.due_amount}</div>
-                                <div className={classes.item}>{bill.vat}</div>
-                                <div className={classes.item}>{bill.discount}</div>
-                                <div className={classes.item}>{bill.created_at}</div>
-                                <div className={classes.item}>
-                                    <Link className={classes.icon} to="#">
-                                        <FontAwesomeIcon icon={faEdit} />
-                                    </Link>
-                                    <Link className={classes.icon} to="#">
-                                        <FontAwesomeIcon icon={faTrash} />
-                                    </Link>
-                                </div>
-                                {popup & (billLines[0]?.bill_id === bill.id) ? (
-                                    <CollapseList billLines={billLines} />
-                                ) : null}
-                            </div>
-                        </>
+                        <tr className={classes.tableRow} key={bill.id} onClick={() => handlePopup(bill.bill_lines)}>
+                            <td>{bill.id}</td>
+                            <td>{bill.total_amount}</td>
+                            <td>{bill.paid_amount}</td>
+                            <td>{bill.due_amount}</td>
+                            <td>{bill.discount}</td>
+                            <td>{bill.created_at}</td>
+                            <td>
+                                <Link className={classes.icon} to="#">
+                                    <FontAwesomeIcon icon={faEdit} />
+                                </Link>
+                                <Link className={classes.icon} to="#">
+                                    <FontAwesomeIcon icon={faTrash} />
+                                </Link>
+                            </td>
+                            {popup & (billLines[0]?.bill_id === bill.id) ? (
+                                <CollapseList billLines={billLines} />
+                            ) : null}
+                        </tr>
                     ))}
-                <Pagination
-                    setStartIdx={setStartIdx}
-                    setEndIdx={setEndIdx}
-                    page={bills.filter((bill) => bill.id).length}
-                />
-            </div>
+            </table>
+            <Pagination setStartIdx={setStartIdx} setEndIdx={setEndIdx} page={bills.filter((bill) => bill.id).length} />
         </div>
     )
 }
