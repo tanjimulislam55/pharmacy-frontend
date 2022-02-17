@@ -22,7 +22,7 @@ export default function LandingPage() {
             </div>
             <div className={classes.body}>
                 <div className={classes.bodyBox}>
-                    <h2>Welcome to E-Pharmacy</h2>
+                    <h2>Welcome to Smart Pharmacy Manager</h2>
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga doloremque, ipsum dolor quod quasi
                         distinctio omnis? Natus vero officia molestias.
