@@ -32,13 +32,24 @@
     padding: 4px;
 }
 
-.tableMain input {
-    width: 100%;
+.tableMain input,
+.tableMain label {
+    position: relative;
+    width: 99%;
     border: none;
     outline: none;
     font-size: 12px;
     margin-left: 6px;
     color: var(--dark-grey);
+    background-color: transparent;
+}
+
+.tableRow td:nth-child(3),
+.tableRow td:nth-child(4),
+.tableRow td:nth-child(5),
+.tableRow td:nth-child(7),
+.tableRow td:nth-child(8) {
+    background-color: var(--light);
 }
 
 .tableMain .text {

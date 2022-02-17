@@ -34,12 +34,12 @@ export default function Grn({ grns }) {
                     <th>Received Quantity</th>
                     <th>Total Price</th>
                 </tr>
-                {/* {grns &&
+                {grns &&
                     grns.map((grn) => (
                         <tr className={classes.tableRow} key={grn.id}>
                             <td data-title="">{grn.id}</td>
-                            <td data-title="">{grn.total_amount}</td>
-                            <td data-title="">{grn.due_amount}</td>
+                            <td data-title="">1</td>
+                            <td data-title="">Square</td>
                             <td data-title="">{grn.paid_amount}</td>
                             <td data-title="">{grn.note}</td>
                             <td className="select">
@@ -51,9 +51,9 @@ export default function Grn({ grns }) {
                                 </Link>
                             </td>
                         </tr>
-                    ))} */}
+                    ))}
             </table>
-            {/* <Pagination setStartIdx={setStartIdx} setEndIdx={setEndIdx} page={grns.filter((grn) => grn.id).length} /> */}
+            <Pagination setStartIdx={setStartIdx} setEndIdx={setEndIdx} page={grns.filter((grn) => grn.id).length} />
         </div>
     )
 }

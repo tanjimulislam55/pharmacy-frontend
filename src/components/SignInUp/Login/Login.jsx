@@ -8,7 +8,7 @@ import classes from './Login.module.css'
 export default function Login({ setOpenRegistration, setOpenLogin }) {
     const { stateAuth, dispatchAuth } = useContext(Auth)
 
-    const history = useNavigate()
+    const navigate = useNavigate()
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -47,16 +47,19 @@ export default function Login({ setOpenRegistration, setOpenLogin }) {
     }
 
     if (stateAuth.auth) {
-        history('/')
+        navigate('/dashboard')
     }
 
     return (
         <div className={classes.wrapper}>
+            <Link to="/" className={classes.logo}>
+                E-Pharmacy
+            </Link>
             <div className={classes.container} id="container">
                 <div className={`${classes.formContainer} ${classes.signIn}`}>
                     <form onSubmit={(e) => handleSubmit(e)}>
                         <h2>Sign in</h2>
-                        <div className={classes.socialGroup}>
+                        {/* <div className={classes.socialGroup}>
                             <Link to="#" class={classes.social}>
                                 <FontAwesomeIcon icon={faFacebookF} />
                             </Link>
@@ -67,7 +70,7 @@ export default function Login({ setOpenRegistration, setOpenLogin }) {
                                 <FontAwesomeIcon icon={faGoogle} />
                             </Link>
                         </div>
-                        <span>or use your account</span>
+                        <span>or use your account</span> */}
                         <input
                             placeholder="Email"
                             name="username"

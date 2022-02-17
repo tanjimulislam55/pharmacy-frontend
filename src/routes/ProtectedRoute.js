@@ -20,7 +20,7 @@ export default function ProtectedRoute() {
             })
 
             let log = await logFetch.json()
-            console.log(log)
+            // console.log(log)
             dispatchUser({ type: 'set', payload: log })
         }
         if (stateAuth.auth === true) {
@@ -28,5 +28,5 @@ export default function ProtectedRoute() {
         }
     }, [stateAuth, dispatchUser, api])
 
-    return stateAuth.auth === true ? <Outlet /> : <Navigate to="/login" />
+    return stateAuth.auth === true ? <Outlet /> : <Navigate to="/" />
 }

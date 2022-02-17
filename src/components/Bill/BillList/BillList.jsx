@@ -38,6 +38,9 @@ export default function BillList({ bills }) {
                     <div className={classes.head}>Total Amount</div>
                     <div className={classes.head}>Paid Amount</div>
                     <div className={classes.head}>Due Amount</div>
+                    <div className={classes.head}>Vat</div>
+                    <div className={classes.head}>Discount</div>
+                    <div className={classes.head}>Billing Date</div>
                     <div className={classes.head}>Action</div>
                 </div>
 
@@ -52,8 +55,9 @@ export default function BillList({ bills }) {
                                 <div className={classes.item}>{bill.total_amount}</div>
                                 <div className={classes.item}>{bill.paid_amount}</div>
                                 <div className={classes.item}>{bill.due_amount}</div>
-                                {/* <div className={classes.item}>{bill.billing_date}</div> */}
-                                <div className={classes.item}>2022-02-05</div>
+                                <div className={classes.item}>{bill.vat}</div>
+                                <div className={classes.item}>{bill.discount}</div>
+                                <div className={classes.item}>{bill.created_at}</div>
                                 <div className={classes.item}>
                                     <Link className={classes.icon} to="#">
                                         <FontAwesomeIcon icon={faEdit} />

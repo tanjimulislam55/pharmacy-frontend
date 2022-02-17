@@ -35,11 +35,12 @@ function App() {
             <Auth.Provider value={{ stateAuth, dispatchAuth }}>
                 <UserInfo.Provider value={{ stateUser, dispatchUser }}>
                     <Routes>
+                        <Route path="/" element={<LandingPage />} />
                         <Route path="/registration" element={<Registration />} />
                         <Route path="/login" element={<Login />} />
 
                         <Route path="/*" element={<ProtectedRoute />}>
-                            <Route path="" element={<Home />} />
+                            <Route path="dashboard" element={<Home />} />
                             <Route path="medicine" element={<Medicine />} />
                             <Route path="vendor" element={<Vendor />} />
                             <Route path="customer" element={<Customer />} />
@@ -54,7 +55,6 @@ function App() {
                             <Route path="accounts" element={<Admin />} />
                             <Route path="manufacturer" element={<Manufacturer />} />
                             <Route path="settings" element={<Setting />} />
-                            <Route path="landingpage" element={<LandingPage />} />
                         </Route>
                     </Routes>
                 </UserInfo.Provider>
