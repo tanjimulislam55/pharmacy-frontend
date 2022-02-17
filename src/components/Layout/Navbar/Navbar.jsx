@@ -23,10 +23,10 @@ const Navbar = () => {
                     <Link to="#">
                         <FontAwesomeIcon icon={faLayerGroup} title="Stock Info" />
                     </Link>
-                    <Link to="/landingpage">
+                    <Link to="#">
                         <FontAwesomeIcon icon={faUserCircle} title="Profile" />
                     </Link>
-                    <Link to="/login" onClick={() => dispatchAuth({ type: 'remove' })}>
+                    <Link to="/" onClick={() => dispatchAuth({ type: 'remove' })}>
                         <FontAwesomeIcon icon={faSignOutAlt} title="Logout" />
                     </Link>
                 </div>
