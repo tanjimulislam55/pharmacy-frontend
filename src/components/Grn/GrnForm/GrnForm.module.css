@@ -1,0 +1,205 @@
+.wrapper {
+    box-sizing: border-box;
+    background-color: var(--white);
+}
+
+.formWrapper {
+    width: 95%;
+    margin: 10px auto;
+    box-shadow: 0 0 2px var(--grey2);
+    padding: 20px;
+    border-radius: 2px;
+}
+
+.formWrapper p {
+    margin: 0 0 30px;
+    padding: 0;
+    color: var(--secondary);
+    text-align: center;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.formWrapper .inputbox {
+    position: relative;
+}
+
+.formWrapper .inputbox input,
+.formWrapper .inputbox textarea,
+.formWrapper .inputbox select {
+    width: 100%;
+    padding: 10px 0px;
+    font-size: 12px;
+    color: var(--dark-grey);
+    border: 1px solid var(--light);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    outline: none;
+    margin-bottom: 10px;
+    padding-left: 6px;
+}
+
+.formWrapper .inputbox select {
+    background-color: var(--white);
+}
+
+.formWrapper .inputbox label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 12px 10px;
+    font-size: 12px;
+    color: var(--dark-grey);
+    pointer-events: none;
+    transition: 0.2s;
+}
+
+.formWrapper .inputbox input:focus + label,
+.formWrapper .inputbox input:valid + label {
+    top: -32px;
+    left: -8px;
+    color: var(--secondary);
+    font-size: 14px;
+}
+
+.formWrapper .inputbox textarea:focus + label,
+.formWrapper .inputbox textarea:valid + label {
+    top: -32px;
+    left: -8px;
+    color: var(--secondary);
+    font-size: 14px;
+}
+
+.formWrapper .inputbox textarea {
+    margin-top: 30px;
+}
+
+.formWrapper .button {
+    background-color: var(--secondary);
+    padding: 10px 20px;
+    color: var(--white);
+    font-size: 16px;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 0.5s;
+    margin: 0 auto;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 2px;
+    width: 20em;
+    display: block;
+    margin-top: 2em;
+    cursor: pointer;
+}
+
+.formWrapper .button:hover {
+    opacity: 0.8;
+}
+
+.formWrapper .btn {
+    border: none;
+    padding: 6px 14px;
+    margin: 6px 2px;
+    background-color: var(--green);
+    border-radius: 2px;
+    color: var(--white);
+    cursor: pointer;
+    font-size: 12px;
+    margin-bottom: 3em;
+}
+
+.formWrapper .btn:hover {
+    opacity: 0.8;
+}
+
+.formWrapper .btnPaid {
+    float: right;
+    padding: 4px 10px;
+    font-size: 12px;
+    background-color: yellow;
+    border-radius: 4px;
+}
+
+.formWrapper .gridTwo {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 4em;
+}
+
+.formWrapper .gridThree {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 4em;
+}
+
+.formWrapper .gridFour {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 2em;
+}
+
+.inputbox span {
+    color: var(--red);
+}
+
+/* Table */
+.tableContainer .tableMain {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 2px 4px;
+}
+
+.tableRow th {
+    position: relative;
+    font-size: 12px;
+    text-align: center;
+    border: 1px solid var(--light-grey);
+    color: var(--dark);
+    padding: 10px;
+    font-weight: 500;
+}
+
+.tableMain th span {
+    color: var(--red);
+}
+
+.tableRow td {
+    position: relative;
+    border-radius: 0.25em;
+}
+
+.tableRow td {
+    border-color: var(--light);
+    border: 1px solid var(--light);
+    padding: 4px;
+}
+
+.tableMain input,
+.tableMain label {
+    position: relative;
+    width: 99%;
+    border: none;
+    outline: none;
+    font-size: 12px;
+    margin-left: 6px;
+    color: var(--dark-grey);
+    background-color: transparent;
+}
+
+.tableRow td:nth-child(2),
+.tableRow td:nth-child(3),
+.tableRow td:nth-child(4),
+.tableRow td:nth-child(7) {
+    background-color: var(--light);
+}
+
+.tableMain .text {
+    font-size: 14px;
+    color: var(--secondary);
+    padding: 10px;
+}
+
+.tableMain th span {
+    color: var(--red);
+}
