@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { today, firstDay, lastDay } from '../../utils/date'
 import Chart from '../Chart/Chart'
 import DashboardItem from './DashboardItem/DashboardItem'
 
@@ -15,18 +16,89 @@ export default function Dashboard() {
     const token = auth.token
     const api = process.env.REACT_APP_API_URL
 
-    //Today's date
-    let date = new Date()
-    let day = ('0' + date.getDate()).slice(-2)
-    let month = ('0' + (date.getMonth() + 1)).slice(-2)
-    let year = date.getFullYear()
-    let today = `${year}-${month}-${day}`
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch(
+                `${api}/invoices/get_sum_filtered_by_datetime/?from_datetime=${today}T00%3A00%3A01&till_datetime=${today}%2023%3A59%3A59`,
+                {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
+            const data = await response.json()
+            setInvoiceInfo(data)
+        }
+        fetchData()
+        return () => {
+            fetchData()
+        }
+    }, [token, api])
 
-    //Current month
-    let fDay = new Date(date.getFullYear(), date.getMonth(), 1).toISOString()
-    let lDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).toISOString()
-    let firstDay = fDay.slice(0, 10)
-    let lastDay = lDay.slice(0, 10)
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch(
+                `${api}/invoices/get_sum_filtered_by_datetime/?from_datetime=${firstDay}T00%3A00%3A01&till_datetime=${lastDay}%2023%3A59%3A59`,
+                {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
+            const data = await response.json()
+            setInvoiceInfoMonthly(data)
+        }
+        fetchData()
+        return () => {
+            fetchData()
+        }
+    }, [token, api])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch(
+                `${api}/grns/get_sum_filtered_by_datetime/?from_datetime=${today}T00%3A00%3A01&till_datetime=${today}%2023%3A59%3A59`,
+                {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
+            const data = await response.json()
+            setPurchaseInfo(data)
+        }
+        fetchData()
+        return () => {
+            fetchData()
+        }
+    }, [token, api])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch(
+                `${api}/grns/get_sum_filtered_by_datetime/?from_datetime=${firstDay}T00%3A00%3A01&till_datetime=${lastDay}%2023%3A59%3A59`,
+                {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
+            const data = await response.json()
+            setPurchaseInfoMonthly(data)
+        }
+        fetchData()
+        return () => {
+            fetchData()
+        }
+    }, [token, api])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -48,88 +120,21 @@ export default function Dashboard() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch(
-                `${api}/invoices/get_sum_filtered_by_datetime/?from_datetime=${today}T00%3A00%3A01&till_datetime=${today}%2023%3A59%3A59`,
-                {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            )
+            const response = await fetch(`${api}/medicines/get_medicine_costs_of_stock`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+            })
             const data = await response.json()
-            setInvoiceInfo(data)
+            setStockValue(data)
         }
         fetchData()
         return () => {
             fetchData()
         }
-    }, [token, api, today])
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await fetch(
-                `${api}/invoices/get_sum_filtered_by_datetime/?from_datetime=${firstDay}T00%3A00%3A01&till_datetime=${lastDay}%2023%3A59%3A59`,
-                {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            )
-            const data = await response.json()
-            setInvoiceInfoMonthly(data)
-            console.log('val monthly', data)
-        }
-        fetchData()
-        return () => {
-            fetchData()
-        }
-    }, [token, api, firstDay, lastDay])
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await fetch(
-                `${api}/grns/get_sum_filtered_by_datetime/?from_datetime=${today}T00%3A00%3A01&till_datetime=${today}%2023%3A59%3A59`,
-                {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            )
-            const data = await response.json()
-            setPurchaseInfo(data)
-        }
-        fetchData()
-        return () => {
-            fetchData()
-        }
-    }, [token, api, today])
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await fetch(
-                `${api}/grns/get_sum_filtered_by_datetime/?from_datetime=${firstDay}T00%3A00%3A01&till_datetime=${lastDay}%2023%3A59%3A59`,
-                {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            )
-            const data = await response.json()
-            setPurchaseInfoMonthly(data)
-        }
-        fetchData()
-        return () => {
-            fetchData()
-        }
-    }, [token, api, firstDay, lastDay])
+    }, [token, api])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -142,24 +147,6 @@ export default function Dashboard() {
             })
             const data = await response.json()
             setExpiredInfo(data)
-        }
-        fetchData()
-        return () => {
-            fetchData()
-        }
-    }, [token, api])
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await fetch(`${api}/medicines/get_medicine_costs_of_stock`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-            const data = await response.json()
-            setStockValue(data)
         }
         fetchData()
         return () => {
