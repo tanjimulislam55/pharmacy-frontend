@@ -69,7 +69,7 @@ export default function PurchaseForm() {
     return (
         <div className={classes.wrapper}>
             <div className={classes.formWrapper}>
-                <p>Add Order</p>
+                <p>Purchase Order (PO)</p>
 
                 <form className={classes.item} onSubmit={handleSubmit}>
                     <div className={classes.tableContainer}>
