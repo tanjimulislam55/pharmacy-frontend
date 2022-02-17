@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import PurchaseLines from '../PurchaseLines/PurchaseLines'
 import classes from './PurchaseForm.module.css'
 
@@ -11,6 +11,7 @@ export default function PurchaseForm() {
     const [paidAmount, setPaidAmount] = useState()
     const [dueAmount, setDueAmount] = useState()
     const [total, setTotal] = useState([])
+    const [manufacturerId, setManufacturerId] = useState()
 
     const [purchaseLines, setPurchaseLines] = useState([{}])
     const auth = JSON.parse(localStorage.getItem('auth'))
@@ -37,6 +38,11 @@ export default function PurchaseForm() {
         }
     }, [token])
 
+    // const handleBlur = (e) =>{
+    //     if (totalAmount && paidAmount) {
+    //         let due = totalAmount - pai
+    //     }
+    // }
     const handleSubmit = (e) => {
         e.preventDefault()
         const details = {
@@ -49,7 +55,7 @@ export default function PurchaseForm() {
             },
             purchase_order_line_in: purchaseLines,
         }
-        fetch(`${process.env.REACT_APP_API_URL}/purchases/new`, {
+        fetch(`${process.env.REACT_APP_API_URL}/purchases/new/?manufacturer_id=${manufacturerId}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -57,7 +63,7 @@ export default function PurchaseForm() {
             },
             body: JSON.stringify(details),
         })
-        navigate('/purchase')
+        // navigate('/purchase')
     }
 
     return (
@@ -96,6 +102,8 @@ export default function PurchaseForm() {
                             total={total}
                             setTotal={setTotal}
                             totalAmountPerMedicine={totalAmountPerMedicine}
+                            manufacturerId={manufacturerId}
+                            setManufacturerId={setManufacturerId}
                         />
                     ))}
                     <button
@@ -112,34 +120,23 @@ export default function PurchaseForm() {
                             type="text"
                             value={note}
                             onChange={(e) => setNote(e.target.value)}
-                            required
+                            placeholder="Note if any"
                             rows={2}
                         />
-                        <label htmlFor="note">Note</label>
+                        {/* <label htmlFor="note">Note</label> */}
                     </div>
-                    <div className={classes.gridFour}>
+                    <div className={classes.gridThree}>
                         <div className={classes.inputbox}>
                             <input
-                                id="total"
-                                name="Total"
+                                id="totalAmount"
+                                name="totalAmount"
                                 type="number"
                                 value={totalAmount}
                                 onChange={(e) => setTotalAmount(parseInt(e.target.value))}
+                                placeholder="Total Amount"
                                 required
                             />
-                            <label htmlFor="totalAmount">Subtotal</label>
-                        </div>
-                        <div className={classes.inputbox}>
-                            <input id="paidAmount" name="paidAmount" type="number" required />
-                            <label htmlFor="paidAmount">Vat</label>
-                        </div>
-                        <div className={classes.inputbox}>
-                            <input id="paidAmount" name="paidAmount" type="number" required />
-                            <label htmlFor="paidAmount">Discount</label>
-                        </div>
-                        <div className={classes.inputbox}>
-                            <input id="paidAmount" name="paidAmount" type="number" required />
-                            <label htmlFor="paidAmount">Total Price</label>
+                            {/* <label htmlFor="paidAmount">Total Price</label> */}
                         </div>
                         <div className={classes.inputbox}>
                             <input
@@ -148,11 +145,12 @@ export default function PurchaseForm() {
                                 type="number"
                                 value={paidAmount}
                                 onChange={(e) => setPaidAmount(parseInt(e.target.value))}
+                                placeholder="Paid Amount"
                                 required
                             />
-                            <label htmlFor="paidAmount">
+                            {/* <label htmlFor="paidAmount">
                                 Paid amount <span>*</span>
-                            </label>
+                            </label> */}
                         </div>
                         <div className={classes.inputbox}>
                             <input
@@ -161,11 +159,14 @@ export default function PurchaseForm() {
                                 type="number"
                                 value={dueAmount}
                                 onChange={(e) => setDueAmount(parseInt(e.target.value))}
-                                required
+                                placeholder="Due Amount"
                             />
-                            <label htmlFor="dueAmount">Due amount</label>
+                            {/* <label htmlFor="dueAmount">Due amount</label> */}
                         </div>
                     </div>
+                    <Link to="#" className={classes.btnPaid}>
+                        Full Paid
+                    </Link>
                     <button type="submit" className={classes.button}>
                         Submit
                     </button>
