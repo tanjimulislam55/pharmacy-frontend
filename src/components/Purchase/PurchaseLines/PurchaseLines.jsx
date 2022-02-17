@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import classes from './PurchaseLines.module.css'
 
-export default function PurchaseLines({ purchaseLine, lineIndex, total, setTotal }) {
+export default function PurchaseLines({ purchaseLine, lineIndex, total, setTotal, manufacturerId, setManufacturerId }) {
     const [manufacturers, setManufacturers] = useState([])
     const [medicines, setMedicines] = useState([])
 
@@ -66,7 +66,7 @@ export default function PurchaseLines({ purchaseLine, lineIndex, total, setTotal
                         <td>
                             <select
                                 className={classes.option}
-                                onChange={(e) => (purchaseLine.medicine_id = parseInt(e.target.value))}
+                                onChange={(e) => setManufacturerId(parseInt(e.target.value))}
                                 id="medicines">
                                 <option value="">Select</option>
                                 {manufacturers &&
@@ -111,24 +111,10 @@ export default function PurchaseLines({ purchaseLine, lineIndex, total, setTotal
                             />
                         </td>
                         <td>
-                            <input
-                                id="buyingPrice"
-                                name="buyingPrice"
-                                type="text"
-                                value={purchaseLine.buying_price}
-                                onChange={(e) => (purchaseLine.buying_price = parseInt(e.target.value))}
-                                required
-                            />
+                            <input id="price" name="price" type="text" />
                         </td>
                         <td>
-                            <input
-                                id="cost"
-                                name="cost"
-                                type="text"
-                                value={purchaseLine.cost}
-                                onChange={(e) => (purchaseLine.cost = e.target.value)}
-                                required
-                            />
+                            <input id="totalPrice" name="totalPrice" type="text" />
                         </td>
                     </tr>
                 </table>
