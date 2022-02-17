@@ -29,7 +29,7 @@ export default function BillLines({ billLine, i, total, setTotal }) {
     }, [token])
 
     const handleBlur = (e) => {
-        // e.preventDefault()
+        e.preventDefault()
         if (billLine.quantity && billLine.price) {
             let cost = billLine.quantity * billLine.price
             setTotal((total) => (total = cost))
@@ -91,9 +91,7 @@ export default function BillLines({ billLine, i, total, setTotal }) {
                                 required
                             />
                         </td>
-                        <td>
-                            <input id="vat" name="vat" type="number" />
-                        </td>
+
                         <td>
                             <input id="discount" name="discount" type="number" />
                         </td>

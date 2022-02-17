@@ -7,6 +7,7 @@
     padding: 4px 10px;
     border-radius: 2px;
     color: var(--dark-grey);
+    width: 100%;
 }
 
 .tableContainer .selectBox .option:hover option,
@@ -18,6 +19,7 @@
     width: 100%;
     border-collapse: separate;
     border-spacing: 2px 4px;
+    table-layout: fixed;
 }
 
 .tableRow td {
