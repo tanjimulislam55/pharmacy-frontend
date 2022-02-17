@@ -99,7 +99,6 @@ export default function BillForm() {
                             <th>
                                 Unit Price <span>*</span>
                             </th>
-                            <th>Tax</th>
                             <th>Discount</th>
                             <th>Total Cost</th>
                         </tr>
@@ -163,7 +162,6 @@ export default function BillForm() {
                                 <th>
                                     Unit Price <span>*</span>
                                 </th>
-                                <th>Tax</th>
                                 <th>Discount</th>
                                 <th>Total Cost</th>
                             </tr>
@@ -198,7 +196,7 @@ export default function BillForm() {
                         />
                         <label htmlFor="note">Note</label>
                     </div>
-                    {/* <div className={classes.gridFour}>
+                    <div className={classes.gridFour}>
                         <div className={classes.inputbox}>
                             <input
                                 id="subTotal"
@@ -209,16 +207,7 @@ export default function BillForm() {
                             />
                             <label htmlFor="subTotal">Subtotal</label>
                         </div>
-                        <div className={classes.inputbox}>
-                            <input
-                                id="vat"
-                                name="vat"
-                                type="number"
-                                onChange={(e) => setVat(e.target.value)}
-                                required
-                            />
-                            <label htmlFor="subTotal">Vat</label>
-                        </div>
+
                         <div className={classes.inputbox}>
                             <input
                                 id="discount"
@@ -256,7 +245,7 @@ export default function BillForm() {
                             />
                             <label htmlFor="paidAmount">Due amount</label>
                         </div>
-                    </div> */}
+                    </div>
 
                     <button type="submit" className={classes.button}>
                         Submit
