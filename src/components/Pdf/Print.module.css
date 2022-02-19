@@ -1,0 +1,15 @@
+.body {
+    box-sizing: border-box;
+    background-color: var(--light);
+}
+
+.button {
+    display: block;
+    padding: 10px 20px;
+    margin: 0px auto;
+    border-radius: 2px;
+    border: none;
+    color: var(--white);
+    background-color: var(--secondary);
+    cursor: pointer;
+}
