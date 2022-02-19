@@ -16,6 +16,9 @@ export default function Dashboard() {
     const token = auth.token
     const api = process.env.REACT_APP_API_URL
 
+    // let date = new Date()
+    // const today = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch(
@@ -35,7 +38,7 @@ export default function Dashboard() {
         return () => {
             fetchData()
         }
-    }, [token, api])
+    }, [token, api, today])
 
     useEffect(() => {
         const fetchData = async () => {
