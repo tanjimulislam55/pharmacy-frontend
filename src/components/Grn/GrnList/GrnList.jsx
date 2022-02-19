@@ -30,25 +30,24 @@ export default function Grn({ grns }) {
                     <th>Order ID</th>
                     <th>Manufacturer</th>
                     <th>Medicine</th>
-                    <th>Order Quantity</th>
+                    {/* <th>Order Quantity</th> */}
                     <th>Received Quantity</th>
-                    <th>Total Amount</th>
-                    <th>Paid Amount</th>
+                    <th>Depo Price</th>
+                    <th>Total</th>
+                    <th>Expiry Date</th>
                     <th>Action</th>
                 </tr>
                 {grns &&
                     grns.map((grn) => (
                         <tr className={classes.tableRow} key={grn.id}>
                             <td>{grn.id}</td>
-                            <td>1</td>
-                            <td>Square</td>
-                            <td>Paricel</td>
-                            <td>20</td>
-                            <td>20</td>
-                            <td>100</td>
-                            <td>90</td>
-                            {/* <td>{grn.note}</td> */}
-
+                            <td>{grn.purchase_id}</td>
+                            <td>{grn.manufacturer_id}</td>
+                            <td>{grn.medicine_id}</td>
+                            <td>{grn.quantity}</td>
+                            <td>{grn.depo_price}</td>
+                            <td>{grn.cost}</td>
+                            <td>{grn.expiry_date}</td>
                             <td className="select">
                                 <Link className={classes.icon} to="#">
                                     <FontAwesomeIcon icon={faEdit} />
