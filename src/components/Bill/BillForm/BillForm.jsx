@@ -10,16 +10,13 @@ export default function BillForm() {
     const [id, setId] = useState(1)
 
     const [user, setUser] = useState()
-    // const [date, setDate] = useState('')
     const [note, setNote] = useState('')
 
-    const [discount, setDiscount] = useState()
-    const [vat, setVat] = useState()
     const [totalAmountPerMedicine, setTotalAmountPerMedicine] = useState()
-    const [subTotal, setSubTotal] = useState()
+    const [discount, setDiscount] = useState()
+    const [total, setTotal] = useState()
     const [paidAmount, setPaidAmount] = useState()
     const [dueAmount, setDueAmount] = useState()
-    const [total, setTotal] = useState([])
 
     const [billLines, setBillLines] = useState([{}])
     const auth = JSON.parse(localStorage.getItem('auth'))
@@ -57,37 +54,36 @@ export default function BillForm() {
         click()
         const details = {
             invoice_order_in: {
-                total_amount: subTotal,
+                comment: note,
+                total_amount: total,
+                discount: discount,
+                vat: 0,
                 paid_amount: paidAmount,
                 due_amount: dueAmount,
-                comment: note,
-                discount: discount,
-                vat: vat,
-                customer_id: null,
+                // customer_id: 1,
                 user_id: user.id,
-                // billing_date: date,
             },
             invoice_order_line_in: billLines,
         }
         console.log('details')
         console.log(details)
-        // fetch(`${process.env.REACT_APP_API_URL}/invoices/new`, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         Authorization: `Bearer ${token}`,
-        //     },
-        //     body: JSON.stringify(details),
-        // })
-        // navigate('/bill')
+        fetch(`${process.env.REACT_APP_API_URL}/invoices/new`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(details),
+        })
+        navigate('/bill')
     }
-    console.log(array)
+    // console.log(array)
     return (
         <div className={classes.wrapper}>
             <div className={classes.formWrapper}>
                 <p>Add Invoice</p>
 
-                <div className={classes.tableContainer}>
+                {/* <div className={classes.tableContainer}>
                     <table className={classes.tableMain}>
                         <tr className={classes.tableRow}>
                             <th>
@@ -110,7 +106,7 @@ export default function BillForm() {
                 <h5>Order List:</h5>
                 <div className={classes.boxBorder}>
                     <Show array={array} setArray={setArray} />
-                </div>
+                </div> */}
 
                 <form className={classes.item} onSubmit={handleSubmit}>
                     {/* <div className={classes.gridThree}>
@@ -192,19 +188,12 @@ export default function BillForm() {
                             value={note}
                             onChange={(e) => setNote(e.target.value)}
                             rows={2}
-                            required
+                            placeholder="Note if any"
                         />
-                        <label htmlFor="note">Note</label>
                     </div>
-                    <div className={classes.gridFour}>
+                    <div className={classes.gridFive}>
                         <div className={classes.inputbox}>
-                            <input
-                                id="subTotal"
-                                name="subTotal"
-                                type="number"
-                                onChange={(e) => setSubTotal(e.target.value)}
-                                required
-                            />
+                            <input id="subTotal" name="subTotal" type="number" required />
                             <label htmlFor="subTotal">Subtotal</label>
                         </div>
 
@@ -213,13 +202,19 @@ export default function BillForm() {
                                 id="discount"
                                 name="discount"
                                 type="number"
-                                onChange={(e) => setDiscount(e.target.value)}
+                                onChange={(e) => setDiscount(parseInt(e.target.value))}
                                 required
                             />
                             <label htmlFor="subTotal">Discount</label>
                         </div>
                         <div className={classes.inputbox}>
-                            <input id="discount" name="discount" type="number" required />
+                            <input
+                                id="discount"
+                                name="discount"
+                                type="number"
+                                onChange={(e) => setTotal(parseInt(e.target.value))}
+                                required
+                            />
                             <label htmlFor="totalPrice">Total Price</label>
                         </div>
 
@@ -228,7 +223,7 @@ export default function BillForm() {
                                 id="paidAmount"
                                 name="paidAmount"
                                 type="number"
-                                onChange={(e) => setPaidAmount(e.target.value)}
+                                onChange={(e) => setPaidAmount(parseInt(e.target.value))}
                                 required
                             />
                             <label htmlFor="paidAmount">
@@ -240,7 +235,7 @@ export default function BillForm() {
                                 id="dueAmount"
                                 name="dueAmount"
                                 type="number"
-                                onChange={(e) => setDueAmount(e.target.value)}
+                                onChange={(e) => setDueAmount(parseInt(e.target.value))}
                                 required
                             />
                             <label htmlFor="paidAmount">Due amount</label>

@@ -4,6 +4,9 @@ import classes from './BillLines.module.css'
 export default function BillLines({ billLine, i, total, setTotal }) {
     const [medicines, setMedicines] = useState([])
     const [render, setRender] = useState(false)
+    const [searched, setSearched] = useState('')
+    // console.log(medicines)
+    console.log(searched)
 
     const auth = JSON.parse(localStorage.getItem('auth'))
     const token = auth.token
@@ -11,14 +14,18 @@ export default function BillLines({ billLine, i, total, setTotal }) {
     useEffect(() => {
         const controller = new AbortController()
         const fetchData = async () => {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/medicines`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`,
-                },
-            })
+            const response = await fetch(
+                `${process.env.REACT_APP_API_URL}/medicines/search/brand_name/?skip=0&limit=10&name_str=${searched}`,
+                {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            )
             const data = await response.json()
+            // setMedicines((prev) => [...prev, data])
             setMedicines(data)
         }
         fetchData()
@@ -26,17 +33,17 @@ export default function BillLines({ billLine, i, total, setTotal }) {
             fetchData()
             controller.abort()
         }
-    }, [token])
+    }, [token, searched])
 
-    const handleBlur = (e) => {
-        e.preventDefault()
-        if (billLine.quantity && billLine.price) {
-            let cost = billLine.quantity * billLine.price
-            setTotal((total) => (total = cost))
-            setRender((prev) => !prev)
-            console.log('TotalBlur', cost)
-        }
-    }
+    // const handleBlur = (e) => {
+    //     e.preventDefault()
+    //     if (billLine.quantity && billLine.price) {
+    //         let cost = billLine.quantity * billLine.price
+    //         setTotal((total) => (total = cost))
+    //         setRender((prev) => !prev)
+    //         // console.log('TotalBlur', cost)
+    //     }
+    // }
 
     // const handleFocus = (e) => {
     //     console.log(e)
@@ -47,7 +54,7 @@ export default function BillLines({ billLine, i, total, setTotal }) {
     //         console.log('TotalFocus', cost)
     //     }
     // }
-    console.log('Total-----------------', total)
+    // console.log('Total-----------------', total)
     return (
         <div className={classes.tableContainer}>
             <div key={i}>
@@ -67,6 +74,11 @@ export default function BillLines({ billLine, i, total, setTotal }) {
                                     ))}
                             </select>
                         </td>
+                        {/* <td>
+                            {medicines && medicines.filter((medicine) => medicine.brand_name)}
+                            
+                            <input onChange={(e) => setSearched(e.target.value)} value={searched} />
+                        </td> */}
                         <td>
                             <input
                                 id="billQuantiy"
@@ -74,7 +86,7 @@ export default function BillLines({ billLine, i, total, setTotal }) {
                                 type="number"
                                 placeholder={billLine.quantity}
                                 onChange={(e) => (billLine.quantity = parseInt(e.target.value))}
-                                onBlur={(e) => handleBlur(e)}
+                                // onBlur={(e) => handleBlur(e)}
                                 // onFocus={(e) => handleFocus(e)}
                                 required
                             />
@@ -84,16 +96,22 @@ export default function BillLines({ billLine, i, total, setTotal }) {
                                 id="billPrice"
                                 name="billPrice"
                                 type="number"
-                                placeholder={billLine.price}
-                                onChange={(e) => (billLine.price = parseInt(e.target.value))}
-                                onBlur={(e) => handleBlur(e)}
+                                placeholder={billLine.unit_price}
+                                onChange={(e) => (billLine.unit_price = parseInt(e.target.value))}
+                                // onBlur={(e) => handleBlur(e)}
                                 // onFocus={(e) => handleFocus(e)}
                                 required
                             />
                         </td>
 
                         <td>
-                            <input id="discount" name="discount" type="number" />
+                            <input
+                                id="discount"
+                                name="discount"
+                                type="number"
+                                placeholder={billLine.discount}
+                                onChange={(e) => (billLine.discount = parseInt(e.target.value))}
+                            />
                         </td>
                         <td>
                             <input
@@ -101,9 +119,9 @@ export default function BillLines({ billLine, i, total, setTotal }) {
                                 name="billCost"
                                 type="number"
                                 // placeholder={total}
-                                value={total}
+                                // value={total}
                                 onChange={(e) => (billLine.cost = parseInt(e.target.value))}
-                                onBlur={(e) => handleBlur(e)}
+                                // onBlur={(e) => handleBlur(e)}
                                 // onFocus={(e) => handleFocus(e)}
                                 required
                             />

@@ -126,6 +126,12 @@
     grid-column-gap: 2em;
 }
 
+.formWrapper .gridFive {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 2em;
+}
+
 .inputbox span {
     color: var(--red);
 }
