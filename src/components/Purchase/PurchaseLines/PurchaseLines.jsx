@@ -2,41 +2,10 @@ import { useEffect, useState } from 'react'
 import classes from './PurchaseLines.module.css'
 
 export default function PurchaseLines({ purchaseLine, lineIndex, total, setTotal, manufacturerId, setManufacturerId }) {
-    const [manufacturers, setManufacturers] = useState([])
     const [medicines, setMedicines] = useState([])
 
     const auth = JSON.parse(localStorage.getItem('auth'))
     const token = auth.token
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/manufacturers`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-            const data = await response.json()
-            setManufacturers(data)
-        }
-        return fetchData()
-    }, [token])
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/manufacturers`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-            const data = await response.json()
-            setManufacturers(data)
-        }
-        return fetchData()
-    }, [token])
 
     useEffect(() => {
         const controller = new AbortController()
@@ -66,20 +35,6 @@ export default function PurchaseLines({ purchaseLine, lineIndex, total, setTotal
                         <td>
                             <select
                                 className={classes.option}
-                                onChange={(e) => setManufacturerId(parseInt(e.target.value))}
-                                id="medicines">
-                                <option value="">Select</option>
-                                {manufacturers &&
-                                    manufacturers.map((manufacturer, i) => (
-                                        <option key={i} value={manufacturer.id}>
-                                            {manufacturer.name}
-                                        </option>
-                                    ))}
-                            </select>
-                        </td>
-                        <td>
-                            <select
-                                className={classes.option}
                                 onChange={(e) => (purchaseLine.medicine_id = parseInt(e.target.value))}
                                 id="medicines">
                                 <option value="">Select</option>
@@ -92,13 +47,13 @@ export default function PurchaseLines({ purchaseLine, lineIndex, total, setTotal
                             </select>
                         </td>
                         <td>
-                            <input id="lastMonthSales" name="lastMonthSales" type="text" />
+                            {/* <input id="lastMonthSales" name="lastMonthSales" type="text" /> */} <label></label>
                         </td>
                         <td>
-                            <input id="currentStock" name="currentStock" type="text" />
+                            {/* <input id="currentStock" name="currentStock" type="text" /> */} <label></label>
                         </td>
                         <td>
-                            <input id="suggestedStock" name="sugegestedStock" type="text" />
+                            {/* <input id="suggestedStock" name="sugegestedStock" type="text" /> */} <label></label>
                         </td>
                         <td>
                             <input

@@ -11,9 +11,11 @@ export default function PurchaseForm() {
     const [paidAmount, setPaidAmount] = useState()
     const [dueAmount, setDueAmount] = useState()
     const [total, setTotal] = useState([])
+    const [manufacturers, setManufacturers] = useState([])
     const [manufacturerId, setManufacturerId] = useState()
 
     const [purchaseLines, setPurchaseLines] = useState([{}])
+
     const auth = JSON.parse(localStorage.getItem('auth'))
     const token = auth.token
     const navigate = useNavigate()
@@ -43,6 +45,22 @@ export default function PurchaseForm() {
     //         let due = totalAmount - pai
     //     }
     // }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/manufacturers/`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            const data = await response.json()
+            setManufacturers(data)
+        }
+        return fetchData()
+    }, [token])
+
     const handleSubmit = (e) => {
         e.preventDefault()
         const details = {
@@ -50,12 +68,13 @@ export default function PurchaseForm() {
                 total_amount: totalAmount,
                 paid_amount: paidAmount,
                 due_amount: dueAmount,
-                note,
+                note: note,
                 user_id: user.id,
+                manufacturer_id: manufacturerId,
             },
             purchase_order_line_in: purchaseLines,
         }
-        fetch(`${process.env.REACT_APP_API_URL}/purchases/new/?manufacturer_id=${manufacturerId}`, {
+        fetch(`${process.env.REACT_APP_API_URL}/purchases/new`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -72,12 +91,24 @@ export default function PurchaseForm() {
                 <p>Purchase Order (PO)</p>
 
                 <form className={classes.item} onSubmit={handleSubmit}>
+                    <div className={classes.select}>
+                        <select
+                            className={classes.option}
+                            onChange={(e) => setManufacturerId(parseInt(e.target.value))}
+                            id="vendors">
+                            <option value="">Select Manufacturer</option>
+                            {manufacturers &&
+                                manufacturers.map((manufacturer, i) => (
+                                    <option key={i} value={manufacturer.id}>
+                                        {manufacturer.name}
+                                    </option>
+                                ))}
+                        </select>
+                    </div>
+
                     <div className={classes.tableContainer}>
                         <table className={classes.tableMain}>
                             <tr className={classes.tableRow}>
-                                <th>
-                                    Manufacturer<span>*</span>
-                                </th>
                                 <th>
                                     Medicine<span>*</span>
                                 </th>
@@ -102,8 +133,8 @@ export default function PurchaseForm() {
                             total={total}
                             setTotal={setTotal}
                             totalAmountPerMedicine={totalAmountPerMedicine}
-                            manufacturerId={manufacturerId}
-                            setManufacturerId={setManufacturerId}
+                            // manufacturerId={manufacturerId}
+                            // setManufacturerId={setManufacturerId}
                         />
                     ))}
                     <button

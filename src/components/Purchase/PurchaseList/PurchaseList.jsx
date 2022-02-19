@@ -27,6 +27,7 @@ export default function PurchaseList({ purchases }) {
             <table className={classes.tableMain}>
                 <tr className={classes.tableRow}>
                     <th>ID</th>
+                    <th>Manufacturer</th>
                     <th>Total Amount</th>
                     <th>Due Amount</th>
                     <th>Paid Amount</th>
@@ -36,11 +37,12 @@ export default function PurchaseList({ purchases }) {
                 {purchases &&
                     purchases.map((purchase) => (
                         <tr className={classes.tableRow} key={purchase.id}>
-                            <td data-title="">{purchase.id}</td>
-                            <td data-title="">{purchase.total_amount}</td>
-                            <td data-title="">{purchase.due_amount}</td>
-                            <td data-title="">{purchase.paid_amount}</td>
-                            <td data-title="">{purchase.note}</td>
+                            <td>{purchase.id}</td>
+                            <td>{purchase.manufacturer_id}</td>
+                            <td>{purchase.total_amount}</td>
+                            <td>{purchase.due_amount}</td>
+                            <td>{purchase.paid_amount}</td>
+                            <td>{purchase.note}</td>
                             <td className="select">
                                 <Link className={classes.icon} to="#">
                                     <FontAwesomeIcon icon={faEdit} />
