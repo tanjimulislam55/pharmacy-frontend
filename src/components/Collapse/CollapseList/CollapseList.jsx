@@ -35,8 +35,10 @@ export default function CollapseList({ billLines }) {
                     <div key={billLine.id} className={classes.containerItem}>
                         <div className={classes.item}>{billLine.id}</div>
                         {medicines && <div className={classes.item}>{getName(medicines, billLine?.medicine_id)}</div>}
-                        <div className={classes.item}>{billLine.price}</div>
-                        <div className={classes.item}>{billLine.qty}</div>
+                        <div className={classes.item}>{billLine.quantity}</div>
+                        <div className={classes.item}>{billLine.unit_price}</div>
+                        <div className={classes.item}>{billLine.discount}</div>
+                        <div className={classes.item}>{billLine.cost}</div>
                     </div>
                 ))}
         </>
