@@ -1,5 +1,6 @@
 import { useReducer } from 'react'
 import { Routes, Route } from 'react-router-dom'
+import { Print } from './components/Pdf/Print'
 import { Auth, UserInfo } from './contexts/allContex'
 import { authReducer, authState } from './contexts/reducer/authReducer'
 import { userReducer, userState } from './contexts/reducer/userReducer'
@@ -39,6 +40,7 @@ function App() {
                         <Route path="/" element={<LandingPage />} />
                         <Route path="/registration" element={<Registration />} />
                         <Route path="/login" element={<Login />} />
+                        <Route path="/pdf" element={<Print />} />
 
                         <Route path="/*" element={<ProtectedRoute />}>
                             <Route path="dashboard" element={<Home />} />
