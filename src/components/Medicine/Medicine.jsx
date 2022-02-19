@@ -73,7 +73,7 @@ export default function Medicine() {
             },
             body: JSON.stringify(details),
         })
-        navigate('./medicine')
+        navigate('medicine')
     }
 
     return (

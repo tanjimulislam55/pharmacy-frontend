@@ -81,7 +81,7 @@ export default function MedicineForm({
                             className={classes.option}
                             onChange={(e) => setManufacturerId(parseInt(e.target.value))}
                             id="vendors">
-                            <option value="">Select Vendor</option>
+                            <option value="">Select Manufacturer</option>
                             {manufacturers.map((manufacturer, i) => (
                                 <option key={i} value={manufacturer.id}>
                                     {manufacturer.name}
