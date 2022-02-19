@@ -28,31 +28,16 @@ export default function ManufacturerList({ manufacturers, setOpenForm }) {
                 <tr className={classes.tableRow}>
                     <th>ID</th>
                     <th>Manufacturer Name</th>
-                    <th>Established</th>
-                    <th>Total Brands</th>
-                    <th>Total Generics</th>
-                    <th>Market Share</th>
+                    <th>Trade</th>
+                    <th>Trade History</th>
                     <th>Growth</th>
-                    <th>Action</th>
                 </tr>
                 {manufacturers &&
                     manufacturers.map((manufacturer) => (
                         <tr className={classes.tableRow} key={manufacturer.id}>
-                            <td data-title="">{manufacturer.id}</td>
-                            <td data-title="">{manufacturer.name}</td>
-                            <td data-title="">{manufacturer.established_in}</td>
-                            <td data-title="">{manufacturer.total_brands}</td>
-                            <td data-title="">{manufacturer.total_generics}</td>
-                            <td data-title="">{manufacturer.market_share}</td>
-                            <td data-title="">{manufacturer.growth}</td>
-                            <td className="select">
-                                <Link className={classes.icon} to="#">
-                                    <FontAwesomeIcon icon={faEdit} />
-                                </Link>
-                                <Link className={classes.icon} to="#">
-                                    <FontAwesomeIcon icon={faTrash} />
-                                </Link>
-                            </td>
+                            <td>{manufacturer.id}</td>
+                            <td>{manufacturer.name}</td>
+                            <td>{manufacturer.growth}</td>
                         </tr>
                     ))}
             </table>
