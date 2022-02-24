@@ -4,13 +4,6 @@ import classes from './ManufacturerForm.module.css'
 
 export default function ManufacturerForm({ setOpenForm }) {
     const [name, setName] = useState('')
-    const [brand, setBrand] = useState('')
-    const [generic, setGeneric] = useState('')
-    const [headquarter, setHeadquater] = useState('')
-    const [contact, setContact] = useState([])
-    const [establish, setEstablish] = useState('')
-    const [share, setShare] = useState('')
-    const [growth, setGrowth] = useState('')
 
     const navigate = useNavigate()
     const auth = JSON.parse(localStorage.getItem('auth'))
@@ -20,15 +13,8 @@ export default function ManufacturerForm({ setOpenForm }) {
         e.preventDefault()
         const details = {
             name: name,
-            total_brands: brand,
-            total_generics: generic,
-            headquarter: headquarter,
-            contact_list: contact.split(', '),
-            established_in: establish,
-            market_share: share,
-            growth: growth,
         }
-        fetch(`${process.env.REACT_APP_API_URL}/manufacturers/new`, {
+        let submit = fetch(`${process.env.REACT_APP_API_URL}/manufacturers/new`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -36,7 +22,9 @@ export default function ManufacturerForm({ setOpenForm }) {
             },
             body: JSON.stringify(details),
         })
-        navigate('/manufacturer')
+        if (submit.ok) {
+            navigate('/manufacturer')
+        }
     }
 
     return (
@@ -57,76 +45,6 @@ export default function ManufacturerForm({ setOpenForm }) {
                             required
                         />
                         <label htmlFor="">Manufacturer Name</label>
-                    </div>
-                    <div className={classes.inputbox}>
-                        <input
-                            onChange={(e) => setBrand(e.target.value)}
-                            value={brand}
-                            type="text"
-                            name="brand"
-                            required
-                        />
-                        <label htmlFor="">Total Brands</label>
-                    </div>
-                    <div className={classes.inputbox}>
-                        <input
-                            onChange={(e) => setGeneric(e.target.value)}
-                            value={generic}
-                            type="text"
-                            name="generic"
-                            required
-                        />
-                        <label htmlFor="">Total Generics</label>
-                    </div>
-                    <div className={classes.inputbox}>
-                        <input
-                            onChange={(e) => setHeadquater(e.target.value)}
-                            value={headquarter}
-                            type="text"
-                            name="headquater"
-                            required
-                        />
-                        <label htmlFor="">Headquater</label>
-                    </div>
-                    <div className={classes.inputbox}>
-                        <input
-                            onChange={(e) => setContact(e.target.value)}
-                            value={contact}
-                            type="text"
-                            name="contact"
-                            required
-                        />
-                        <label htmlFor="">Contact</label>
-                    </div>
-                    <div className={classes.inputbox}>
-                        <input
-                            onChange={(e) => setEstablish(e.target.value)}
-                            value={establish}
-                            type="text"
-                            name="establish"
-                            required
-                        />
-                        <label htmlFor="">Established</label>
-                    </div>
-                    <div className={classes.inputbox}>
-                        <input
-                            onChange={(e) => setShare(e.target.value)}
-                            value={share}
-                            type="text"
-                            name="share"
-                            required
-                        />
-                        <label htmlFor="">Market Share</label>
-                    </div>
-                    <div className={classes.inputbox}>
-                        <input
-                            onChange={(e) => setGrowth(e.target.value)}
-                            value={growth}
-                            type="text"
-                            name="growth"
-                            required
-                        />
-                        <label htmlFor="">Growth</label>
                     </div>
 
                     <button type="submit" className={classes.button}>

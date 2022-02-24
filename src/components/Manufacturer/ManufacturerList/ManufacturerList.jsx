@@ -14,7 +14,14 @@ export default function ManufacturerList({ manufacturers, setOpenForm }) {
         <div className={classes.tableContainer}>
             <div className={classes.wrapper}>
                 <form action="">
-                    <input className={classes.searchField} type="text" placeholder="Search" name="search" />
+                    <input
+                        className={classes.searchField}
+                        type="text"
+                        placeholder="Search"
+                        name="search"
+                        value={searched}
+                        onChange={(e) => setSearched(e.target.value)}
+                    />
                     <button className={classes.searchButton} type="submit">
                         <FontAwesomeIcon icon={faSearch} />
                     </button>
@@ -33,13 +40,15 @@ export default function ManufacturerList({ manufacturers, setOpenForm }) {
                     <th>Growth</th>
                 </tr>
                 {manufacturers &&
-                    manufacturers.map((manufacturer) => (
-                        <tr className={classes.tableRow} key={manufacturer.id}>
-                            <td>{manufacturer.id}</td>
-                            <td>{manufacturer.name}</td>
-                            <td>{manufacturer.growth}</td>
-                        </tr>
-                    ))}
+                    manufacturers
+                        .filter((manu) => manu.name.toLowerCase().includes(searched))
+                        .map((manufacturer) => (
+                            <tr className={classes.tableRow} key={manufacturer.id}>
+                                <td>{manufacturer.id}</td>
+                                <td>{manufacturer.name}</td>
+                                <td>{manufacturer.growth}</td>
+                            </tr>
+                        ))}
             </table>
             <Pagination
                 setStartIdx={setStartIdx}
