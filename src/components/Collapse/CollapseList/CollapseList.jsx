@@ -6,13 +6,13 @@ export default function CollapseList({ billLines }) {
 
     const getName = (elements, id) => {
         const item = elements.find((element) => element.id === id)
-        return item.name
+        return item.brand_name
     }
     console.log(billLines)
     useEffect(() => {
         const controller = new AbortController()
         const fetchData = async () => {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/medicines`)
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/medicines/`)
             const data = await response.json()
             setMedicines(data)
         }
