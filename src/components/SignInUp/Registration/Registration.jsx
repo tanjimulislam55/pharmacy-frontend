@@ -7,16 +7,22 @@ import AlertMessage from '../../AlertMessage/AlertMessage'
 import classes from './Registration.module.css'
 
 export default function Registration({ setOpenRegistration, setOpenLogin }) {
-    const [name, setName] = useState('')
+    const [fullName, setFullName] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
     const [password, setPassword] = useState('')
     const [cfpPassword, setCfpPassword] = useState('')
 
+    const [pharmacyName, setPharmacyName] = useState('')
+    const [tradeLicense, setTradeLicense] = useState('')
+    const [address, setAddress] = useState('')
+    const [subDistrict, setSubDistrict] = useState('')
+    const [district, setDistrict] = useState('')
+
     const [alert, setAlert] = useState(false)
 
     const { stateAuth } = useContext(Auth)
-    const history = useNavigate()
+    const navigate = useNavigate()
 
     const api = process.env.REACT_APP_API_URL
 
@@ -30,13 +36,6 @@ export default function Registration({ setOpenRegistration, setOpenLogin }) {
             }, 3000)
         }
 
-        // if (gender === '') {
-        //     setAlert(true)
-        //     setTimeout(function () {
-        //         setAlert(false)
-        //     }, 5000)
-        // }
-
         let registerId = await fetch(`${api}/users/new`, {
             headers: {
                 Accept: 'application/json',
@@ -45,10 +44,19 @@ export default function Registration({ setOpenRegistration, setOpenLogin }) {
             dataType: 'json',
             method: 'POST',
             body: JSON.stringify({
-                full_name: name,
-                email,
-                phone,
-                password,
+                user_in: {
+                    full_name: fullName,
+                    email,
+                    phone,
+                    password,
+                },
+                pharmacy_in: {
+                    name: pharmacyName,
+                    trade_license: tradeLicense,
+                    area: address,
+                    sub_district: subDistrict,
+                    district: district,
+                },
             }),
         })
 
@@ -61,13 +69,13 @@ export default function Registration({ setOpenRegistration, setOpenLogin }) {
         // }
 
         if (registerId.ok) {
-            history('/login')
+            navigate('/login')
         }
     }
 
     // Redirect if login
     if (stateAuth.auth) {
-        history('/')
+        navigate('/')
     }
     return (
         <div>
@@ -91,44 +99,94 @@ export default function Registration({ setOpenRegistration, setOpenLogin }) {
                                 </Link>
                             </div>
                             <span>or use your email for registration</span> */}
-                            {/* <div className={classes.grid}> */}
+
                             <input
                                 placeholder="Full Name"
                                 type="text"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
+                                value={fullName}
+                                onChange={(e) => setFullName(e.target.value)}
+                                required
                             />
 
-                            {/* </div> */}
+                            <div className={classes.grid}>
+                                <input
+                                    placeholder="Email"
+                                    type="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                />
+
+                                <input
+                                    placeholder="Phone"
+                                    type="text"
+                                    value={phone}
+                                    onChange={(e) => setPhone(e.target.value)}
+                                    required
+                                />
+                            </div>
+
                             <input
-                                placeholder="Email"
-                                type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                            {/* <div className={classes.grid}> */}
-                            <input
-                                placeholder="Phone"
+                                placeholder="Pharmacy Name"
                                 type="text"
-                                value={phone}
-                                onChange={(e) => setPhone(e.target.value)}
+                                value={pharmacyName}
+                                onChange={(e) => setPharmacyName(e.target.value)}
+                                required
                             />
-                            {/* </div> */}
+
+                            <input
+                                placeholder="Trade License"
+                                type="text"
+                                value={tradeLicense}
+                                onChange={(e) => setTradeLicense(e.target.value)}
+                                required
+                            />
+
+                            <input
+                                placeholder="Address"
+                                type="text"
+                                value={address}
+                                onChange={(e) => setAddress(e.target.value)}
+                                required
+                            />
+
+                            <div className={classes.grid}>
+                                <input
+                                    placeholder="City/District"
+                                    type="text"
+                                    value={district}
+                                    onChange={(e) => setDistrict(e.target.value)}
+                                    required
+                                />
+                                <input
+                                    placeholder="Area/Upazila "
+                                    type="text"
+                                    value={subDistrict}
+                                    onChange={(e) => setSubDistrict(e.target.value)}
+                                    required
+                                />
+                            </div>
+
                             <input
                                 placeholder="Password"
                                 type="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
+                                required
                             />
+
                             <input
                                 placeholder="Confirm Password"
                                 type="password"
                                 value={cfpPassword}
                                 onChange={(e) => setCfpPassword(e.target.value)}
+                                required
                             />
+
                             <button type="submit">Sign Up</button>
                         </form>
                     </div>
+
                     <div className={classes.overlayContainer}>
                         <div className={classes.overlay}>
                             <div className={`${classes.overlayPanel} ${classes.overlayLeft}`}>
