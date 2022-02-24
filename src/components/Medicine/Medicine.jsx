@@ -14,14 +14,16 @@ export default function Medicine() {
     const [manufacturerId, setManufacturerId] = useState()
 
     const [isOpenForm, setIsOpenForm] = useState(false)
+
     const auth = JSON.parse(localStorage.getItem('auth'))
     const token = auth.token
+    const api = process.env.REACT_APP_API_URL
 
     const navigate = useNavigate()
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/manufacturers`, {
+            const response = await fetch(`${api}/manufacturers`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -32,12 +34,12 @@ export default function Medicine() {
             setManufacturers(data)
         }
         return fetchData()
-    }, [token])
+    }, [token, api])
 
     useEffect(() => {
         const controller = new AbortController()
         const fetchData = async () => {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/medicines`, {
+            const response = await fetch(`${api}/medicines`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -52,7 +54,7 @@ export default function Medicine() {
             fetchData()
             controller.abort()
         }
-    }, [token])
+    }, [token, api])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -73,7 +75,7 @@ export default function Medicine() {
             },
             body: JSON.stringify(details),
         })
-        navigate('medicine')
+        navigate('/medicine')
     }
 
     return (

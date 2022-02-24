@@ -6,8 +6,8 @@ import classes from './MedicineList.module.css'
 
 export default function MedicineList({ medicines, manufacturers, setIsOpenForm }) {
     const getName = (elements, id) => {
-        const item = elements.find((element) => element.id === id)
-        return item?.name
+        const items = elements.find((element) => element.id === id)
+        return items
     }
 
     const [searched, setSearched] = useState('')
@@ -45,10 +45,14 @@ export default function MedicineList({ medicines, manufacturers, setIsOpenForm }
                     <th>Unit Price (TK)</th>
                     <th>Manufacturer</th>
                 </tr>
-                {medicines &&
-                    manufacturers &&
+                {(medicines, manufacturers) &&
                     medicines
-                        .filter((medicine) => medicine.brand_name.toLowerCase().includes(searched))
+                        .filter(
+                            (medicine) =>
+                                medicine.brand_name.toLowerCase().includes(searched) ||
+                                medicine.generic_name.toLowerCase().includes(searched) ||
+                                medicine.dosage_form.toLowerCase().includes(searched)
+                        )
                         .splice(startIdx, endIdx)
                         .map((filteredMedicine) => (
                             <tr key={filteredMedicine.id} className={classes.tableRow}>
@@ -59,7 +63,7 @@ export default function MedicineList({ medicines, manufacturers, setIsOpenForm }
                                 <td data-title="strength">{filteredMedicine.strength}</td>
                                 <td data-title="unit_price">{filteredMedicine.unit_price}</td>
                                 <td data-title="manufacturer">
-                                    {getName(manufacturers, filteredMedicine.manufacturer_id)}
+                                    {getName(manufacturers, filteredMedicine.manufacturer_id)?.name}
                                 </td>
                             </tr>
                         ))}
