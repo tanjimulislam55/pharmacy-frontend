@@ -50,7 +50,11 @@ export default function StockList({ stocks, medicines }) {
                 </tr>
                 {(stocks, medicines) &&
                     medicines
-                        .filter((medicine) => medicine.brand_name.toLowerCase().includes(searched))
+                        .filter(
+                            (medicine) =>
+                                medicine.brand_name.toLowerCase().includes(searched) ||
+                                medicine.generic_name.toLowerCase().includes(searched)
+                        )
                         .splice(startIdx, endIdx)
                         .map((filteredMedicine) => (
                             <tr className={classes.tableRow}>
