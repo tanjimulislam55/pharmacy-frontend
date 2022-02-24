@@ -82,7 +82,7 @@ export default function PurchaseForm() {
             },
             body: JSON.stringify(details),
         })
-        // navigate('/purchase')
+        navigate('/purchase')
     }
 
     return (
@@ -112,15 +112,13 @@ export default function PurchaseForm() {
                                 <th>
                                     Medicine<span>*</span>
                                 </th>
-                                <th>Last Month Sales</th>
                                 <th>Current Stock</th>
+                                <th>Last 30days Sales</th>
                                 <th>Suggested Quantity</th>
                                 <th>
                                     Final Quantity<span>*</span>
                                 </th>
-                                <th>
-                                    Price<span>*</span>
-                                </th>
+                                <th>Depo Price</th>
                                 <th>Total Price</th>
                             </tr>
                         </table>
