@@ -108,6 +108,18 @@
     opacity: 0.8;
 }
 
+.formWrapper .btnPaid {
+    display: block;
+    width: 4.6em;
+    margin: 10px auto;
+    padding: 4px 10px;
+    font-size: 12px;
+    background-color: yellow;
+    border-radius: 4px;
+    color: var(--dark);
+    text-align: center;
+}
+
 .formWrapper .gridTwo {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

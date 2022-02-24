@@ -1,28 +1,43 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import BillLines from '../BillLines/BillLines'
-import Add from './Add/Add'
 import classes from './BillForm.module.css'
-import Show from './Show/Show'
+
+// import Show from './Show/Show'
+// import Add from './Add/Add'
+
+const getDatafromLS = () => {
+    const data = localStorage.getItem('pages')
+    if (data) {
+        return JSON.parse(data)
+    } else {
+        return []
+    }
+}
 
 export default function BillForm() {
-    const [array, setArray] = useState([])
+    const [array, setArray] = useState()
     const [id, setId] = useState(1)
-
     const [user, setUser] = useState()
     const [note, setNote] = useState('')
+    const [customer, setCustomer] = useState('Walking Customer')
+    const [mobile, setMobile] = useState(`01XXX-XXXXXX`)
+    const [address, setAddress] = useState('Dhaka')
 
     const [totalAmountPerMedicine, setTotalAmountPerMedicine] = useState()
     const [discount, setDiscount] = useState()
     const [total, setTotal] = useState()
     const [paidAmount, setPaidAmount] = useState()
     const [dueAmount, setDueAmount] = useState()
-
     const [billLines, setBillLines] = useState([{}])
+
     const auth = JSON.parse(localStorage.getItem('auth'))
     const token = auth.token
 
-    const navigate = useNavigate()
+    const [pages, setPages] = useState(getDatafromLS())
+    const [openButton, setOpenButton] = useState(false)
+
+    // const navigate = useNavigate()
 
     useEffect(() => {
         const controller = new AbortController()
@@ -44,14 +59,8 @@ export default function BillForm() {
         }
     }, [token])
 
-    const click = () => {
-        console.log(billLines)
-        console.log(total)
-    }
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        click()
         const details = {
             invoice_order_in: {
                 comment: note,
@@ -62,22 +71,32 @@ export default function BillForm() {
                 due_amount: dueAmount,
                 // customer_id: 1,
                 user_id: user.id,
+                customer,
+                mobile,
+                address,
             },
             invoice_order_line_in: billLines,
         }
-        console.log('details')
-        console.log(details)
-        fetch(`${process.env.REACT_APP_API_URL}/invoices/new`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify(details),
-        })
-        navigate('/bill')
+
+        // fetch(`${process.env.REACT_APP_API_URL}/invoices/new`, {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         Authorization: `Bearer ${token}`,
+        //     },
+        //     body: JSON.stringify(details),
+        // })
+        setPages([...pages, details])
     }
-    // console.log(array)
+
+    // saving data
+    useEffect(() => {
+        localStorage.setItem('pages', JSON.stringify(pages))
+    }, [pages])
+
+    const result = billLines.reduce((amount, currentValue) => (amount = amount + currentValue.total), 0)
+    // console.log('res', result)
+
     return (
         <div className={classes.wrapper}>
             <div className={classes.formWrapper}>
@@ -109,58 +128,39 @@ export default function BillForm() {
                 </div> */}
 
                 <form className={classes.item} onSubmit={handleSubmit}>
-                    {/* <div className={classes.gridThree}>
-                        <div className={classes.inputbox}>
-                            <input id="subTotal" name="subTotal" type="text" required />
-                            <label htmlFor="subTotal">
-                                Customer Name <span>*</span>
-                            </label>
-                        </div>
-                        <div className={classes.inputbox}>
-                            <input id="subTotal" name="subTotal" type="text" required />
-                            <label htmlFor="subTotal">
-                                Customer Email <span>*</span>
-                            </label>
-                        </div>
-                        <div className={classes.inputbox}>
-                            <input id="subTotal" name="subTotal" type="number" required />
-                            <label htmlFor="subTotal">
-                                Customer Mobile <span>*</span>
-                            </label>
-                        </div>
-                    </div>
                     <div className={classes.gridThree}>
                         <div className={classes.inputbox}>
-                            <input id="subTotal" name="subTotal" type="text" required />
-                            <label htmlFor="subTotal">
-                                Doctor Name <span>*</span>
-                            </label>
+                            <input type="text" value={customer} onChange={(e) => setCustomer(e.target.value)} />
+                            <label>Customer Name:</label>
                         </div>
-                        <div className={classes.inputbox}>
-                            <input id="date" name="date" type="date" required />
-                        </div>
-                        <div className={classes.inputbox}>
-                            <select>
-                                <option value="">Cash</option>
-                            </select>
-                        </div>
-                    </div> */}
 
+                        <div className={classes.inputbox}>
+                            <input type="text" value={mobile} onChange={(e) => setMobile(e.target.value)} />
+                            <label>Customer Mobile:</label>
+                        </div>
+
+                        <div className={classes.inputbox}>
+                            <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} />
+                            <label>Customer Address:</label>
+                        </div>
+                    </div>
                     <div className={classes.tableContainer}>
                         <table className={classes.tableMain}>
-                            <tr className={classes.tableRow}>
-                                <th>
-                                    Select Medicines <span>*</span>
-                                </th>
-                                <th>
-                                    Quantity <span>*</span>
-                                </th>
-                                <th>
-                                    Unit Price <span>*</span>
-                                </th>
-                                <th>Discount</th>
-                                <th>Total Cost</th>
-                            </tr>
+                            <thead>
+                                <tr className={classes.tableRow}>
+                                    <th>
+                                        Medicines <span>*</span>
+                                    </th>
+                                    <th>
+                                        Quantity <span>*</span>
+                                    </th>
+                                    <th>
+                                        Unit Price <span>*</span>
+                                    </th>
+                                    <th>Discount</th>
+                                    <th>Total Cost</th>
+                                </tr>
+                            </thead>
                         </table>
                     </div>
                     {billLines.map((billLine, i) => (
@@ -173,6 +173,7 @@ export default function BillForm() {
                             totalAmountPerMedicine={totalAmountPerMedicine}
                         />
                     ))}
+
                     <button
                         onClick={() => setBillLines((prev) => prev.concat({}))}
                         type="button"
@@ -193,7 +194,7 @@ export default function BillForm() {
                     </div>
                     <div className={classes.gridFive}>
                         <div className={classes.inputbox}>
-                            <input id="subTotal" name="subTotal" type="number" required />
+                            <input id="subTotal" name="subTotal" type="number" required min={0} value={result} />
                             <label htmlFor="subTotal">Subtotal</label>
                         </div>
 
@@ -204,16 +205,18 @@ export default function BillForm() {
                                 type="number"
                                 onChange={(e) => setDiscount(parseInt(e.target.value))}
                                 required
+                                min={0}
                             />
                             <label htmlFor="subTotal">Discount</label>
                         </div>
                         <div className={classes.inputbox}>
                             <input
-                                id="discount"
-                                name="discount"
+                                id="total"
+                                name="total"
                                 type="number"
                                 onChange={(e) => setTotal(parseInt(e.target.value))}
                                 required
+                                min={0}
                             />
                             <label htmlFor="totalPrice">Total Price</label>
                         </div>
@@ -225,6 +228,7 @@ export default function BillForm() {
                                 type="number"
                                 onChange={(e) => setPaidAmount(parseInt(e.target.value))}
                                 required
+                                min={0}
                             />
                             <label htmlFor="paidAmount">
                                 Paid amount <span>*</span>
@@ -237,15 +241,20 @@ export default function BillForm() {
                                 type="number"
                                 onChange={(e) => setDueAmount(parseInt(e.target.value))}
                                 required
+                                min={0}
                             />
                             <label htmlFor="paidAmount">Due amount</label>
                         </div>
                     </div>
-
-                    <button type="submit" className={classes.button}>
+                    <button type="submit" className={classes.button} onClick={() => setOpenButton(true)}>
                         Submit
                     </button>
                 </form>
+                {openButton && (
+                    <Link to="/pdf" className={classes.btnPaid}>
+                        Print
+                    </Link>
+                )}
             </div>
         </div>
     )
