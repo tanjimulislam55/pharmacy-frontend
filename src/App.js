@@ -40,9 +40,9 @@ function App() {
                         <Route path="/" element={<LandingPage />} />
                         <Route path="/registration" element={<Registration />} />
                         <Route path="/login" element={<Login />} />
-                        <Route path="/pdf" element={<Print />} />
 
                         <Route path="/*" element={<ProtectedRoute />}>
+                            <Route path="pdf" element={<Print />} />
                             <Route path="dashboard" element={<Home />} />
                             <Route path="medicine" element={<Medicine />} />
                             <Route path="vendor" element={<Vendor />} />
