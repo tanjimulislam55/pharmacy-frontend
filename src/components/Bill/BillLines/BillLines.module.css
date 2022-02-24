@@ -34,11 +34,12 @@
 }
 
 .tableMain input {
-    width: 100%;
+    width: 98%;
     border: none;
     outline: none;
     margin-left: 6px;
     font-size: 12px;
+    background-color: transparent;
 }
 
 .tableMain .text {
@@ -49,4 +50,23 @@
 
 .tableMain th span {
     color: var(--red);
+}
+
+.options {
+    width: 288px;
+    font-size: 12px;
+    opacity: 0.8;
+    cursor: pointer;
+    /* border: 1px solid var(--dark-grey); */
+    padding: 4px;
+}
+
+.options:hover {
+    color: var(--white);
+    background-color: var(--secondary);
+    z-index: 100;
+}
+
+.lightTd {
+    background-color: var(--light);
 }
