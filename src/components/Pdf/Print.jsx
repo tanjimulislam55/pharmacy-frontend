@@ -8,6 +8,9 @@ export const Print = () => {
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
     })
+    function clearPage() {
+        localStorage.removeItem('pages')
+    }
 
     return (
         <div className={classes.body}>

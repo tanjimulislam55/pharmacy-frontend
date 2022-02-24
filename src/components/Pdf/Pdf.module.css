@@ -72,7 +72,7 @@ a {
 }
 
 .name {
-    font-size: 1.4em;
+    font-size: 1.2em;
     font-weight: normal;
 }
 
@@ -173,4 +173,10 @@ a {
 
 .notices .notice {
     font-size: 1em;
+}
+
+.note {
+    margin-top: 50px;
+    text-align: center;
+    font-style: italic;
 }
