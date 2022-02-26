@@ -70,6 +70,7 @@ export default function MedicineList({ medicines, manufacturers, setIsOpenForm }
                         .map((filteredMedicine) =>
                             manufacturers
                                 .filter((manufacturer) => manufacturer.name.toLowerCase().includes(search))
+                                .splice(startIdx, endIdx)
                                 .map((manufacturer) =>
                                     manufacturer.id === filteredMedicine.manufacturer_id ? (
                                         <tr key={filteredMedicine.id} className={classes.tableRow}>
@@ -80,8 +81,7 @@ export default function MedicineList({ medicines, manufacturers, setIsOpenForm }
                                             <td data-title="strength">{filteredMedicine.strength}</td>
                                             <td data-title="unit_price">{filteredMedicine.unit_price}</td>
                                             <td data-title="manufacturer">
-                                                {/* {getName(manufacturers, filteredMedicine.manufacturer_id)?.name} */}
-                                                {manufacturer.name}
+                                                {getName(manufacturers, filteredMedicine.manufacturer_id)?.name}
                                             </td>
                                         </tr>
                                     ) : null
@@ -92,8 +92,10 @@ export default function MedicineList({ medicines, manufacturers, setIsOpenForm }
                 setStartIdx={setStartIdx}
                 setEndIdx={setEndIdx}
                 page={
-                    medicines &&
-                    medicines.filter((medicine) => medicine.brand_name.toLowerCase().includes(searched)).length
+                    (medicines &&
+                        medicines.filter((medicine) => medicine.brand_name.toLowerCase().includes(searched)).length) ||
+                    medicines.filter((medicine) => medicine.generic_name.toLowerCase().includes(searched)).length ||
+                    medicines.filter((medicine) => medicine.dosage_form.toLowerCase().includes(searched)).length
                 }
             />
         </div>
