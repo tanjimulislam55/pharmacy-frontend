@@ -45,3 +45,51 @@ export default function Stock() {
 
     return <div>{medicines && stocks && <StockList stocks={stocks} medicines={medicines} />}</div>
 }
+
+/* {filteredMedicine.id === stock.medicine_id ? (
+                                        <td>{get_matched_stock(stocks, filteredMedicine.id)?.id}</td>
+                                    ) : (
+                                        ''
+                                    )}
+                                    {filteredMedicine.id === stock.medicine_id ? (
+                                        <td>{filteredMedicine.brand_name}</td>
+                                    ) : (
+                                        ''
+                                    )}
+                                    {filteredMedicine.id === stock.medicine_id ? (
+                                        <td>{filteredMedicine.generic_name}</td>
+                                    ) : (
+                                        ''
+                                    )}
+                                    {filteredMedicine.id === stock.medicine_id ? (
+                                        <td>{get_matched_stock(stocks, filteredMedicine.id)?.in_stock}</td>
+                                    ) : null}
+                                    {filteredMedicine.id === stock.medicine_id ? (
+                                        <td>
+                                            {get_matched_stock(stocks, filteredMedicine.id)?.last_purchased_quantity}
+                                        </td>
+                                    ) : (
+                                        ''
+                                    )}
+
+                                    {filteredMedicine.id === stock.medicine_id ? (
+                                        <td>
+                                            {(e) => formattedDate(e, filteredMedicine.id)}
+                                            {get_matched_stock(stocks, filteredMedicine.id)?.last_date_of_purchase}
+                                        </td>
+                                    ) : (
+                                        ''
+                                    )}
+
+                                    {filteredMedicine.id === stock.medicine_id ? (
+                                        <td className="select">
+                                            <Link className={classes.icon} to="#">
+                                                <FontAwesomeIcon icon={faEdit} />
+                                            </Link>
+                                            <Link className={classes.icon} to="#">
+                                                <FontAwesomeIcon icon={faTrash} />
+                                            </Link>
+                                        </td>
+                                    ) : (
+                                        ''
+                                    )} */
