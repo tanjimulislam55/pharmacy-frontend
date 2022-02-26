@@ -56,31 +56,37 @@ export default function StockList({ stocks, medicines }) {
                                 medicine.generic_name.toLowerCase().includes(searched)
                         )
                         .splice(startIdx, endIdx)
-                        .map((filteredMedicine, i) => (
-                            <tr className={classes.tableRow} key={i}>
-                                <td data-title="stock_id">{get_matched_stock(stocks, filteredMedicine.id)?.id}</td>
-                                <td data-title="brand_name">{filteredMedicine.brand_name}</td>
-                                <td data-title="generic_name">{filteredMedicine.generic_name}</td>
-                                <td data-title="in_stock">
-                                    {get_matched_stock(stocks, filteredMedicine.id)?.in_stock}
-                                </td>
-                                <td data-title="last_transacted_quantity">
-                                    {get_matched_stock(stocks, filteredMedicine.id)?.last_purchased_quantity}
-                                </td>
-                                <td data-title="last_transacted_date">
-                                    {(e) => formattedDate(e, filteredMedicine.id)}
-                                    {get_matched_stock(stocks, filteredMedicine.id)?.last_date_of_purchase}
-                                </td>
-                                <td className="select">
-                                    <Link className={classes.icon} to="#">
-                                        <FontAwesomeIcon icon={faEdit} />
-                                    </Link>
-                                    <Link className={classes.icon} to="#">
-                                        <FontAwesomeIcon icon={faTrash} />
-                                    </Link>
-                                </td>
-                            </tr>
-                        ))}
+                        .map((filteredMedicine) =>
+                            stocks.map((s) =>
+                                s.medicine_id === filteredMedicine.id ? (
+                                    <tr className={classes.tableRow} key={s.medicine_id}>
+                                        <td data-title="stock_id">
+                                            {get_matched_stock(stocks, filteredMedicine.id)?.id}
+                                        </td>
+                                        <td data-title="brand_name">{filteredMedicine.brand_name}</td>
+                                        <td data-title="generic_name">{filteredMedicine.generic_name}</td>
+                                        <td data-title="in_stock">
+                                            {get_matched_stock(stocks, filteredMedicine.id)?.in_stock}
+                                        </td>
+                                        <td data-title="last_transacted_quantity">
+                                            {get_matched_stock(stocks, filteredMedicine.id)?.last_purchased_quantity}
+                                        </td>
+                                        <td data-title="last_transacted_date">
+                                            {(e) => formattedDate(e, filteredMedicine.id)}
+                                            {get_matched_stock(stocks, filteredMedicine.id)?.last_date_of_purchase}
+                                        </td>
+                                        <td className="select">
+                                            <Link className={classes.icon} to="#">
+                                                <FontAwesomeIcon icon={faEdit} />
+                                            </Link>
+                                            <Link className={classes.icon} to="#">
+                                                <FontAwesomeIcon icon={faTrash} />
+                                            </Link>
+                                        </td>
+                                    </tr>
+                                ) : null
+                            )
+                        )}
             </table>
             <Pagination
                 setStartIdx={setStartIdx}
