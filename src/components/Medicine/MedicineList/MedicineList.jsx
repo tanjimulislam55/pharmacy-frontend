@@ -11,6 +11,7 @@ export default function MedicineList({ medicines, manufacturers, setIsOpenForm }
     }
 
     const [searched, setSearched] = useState('')
+    const [search, setSearch] = useState('')
     const [startIdx, setStartIdx] = useState(0)
     const [endIdx, setEndIdx] = useState(10)
 
@@ -29,9 +30,21 @@ export default function MedicineList({ medicines, manufacturers, setIsOpenForm }
                     <button className={classes.searchButton} type="submit">
                         <FontAwesomeIcon icon={faSearch} />
                     </button>
+                    <span className={classes.spanGap}></span>
+                    <input
+                        onChange={(e) => setSearch(e.target.value)}
+                        value={search}
+                        className={classes.searchField}
+                        type="text"
+                        placeholder="Search medicine by manufacturer"
+                        name="search"
+                    />
+                    <button className={classes.searchButton} type="submit">
+                        <FontAwesomeIcon icon={faSearch} />
+                    </button>
                 </form>
                 <button className={classes.button} onClick={() => setIsOpenForm(true)}>
-                    + Add Medicine
+                    + Add Medicines
                 </button>
             </div>
 
@@ -54,19 +67,26 @@ export default function MedicineList({ medicines, manufacturers, setIsOpenForm }
                                 medicine.dosage_form.toLowerCase().includes(searched)
                         )
                         .splice(startIdx, endIdx)
-                        .map((filteredMedicine) => (
-                            <tr key={filteredMedicine.id} className={classes.tableRow}>
-                                <td data-title="id">{filteredMedicine.id}</td>
-                                <td data-title="brand_name">{filteredMedicine.brand_name}</td>
-                                <td data-title="generic_name">{filteredMedicine.generic_name}</td>
-                                <td data-title="dosage_form">{filteredMedicine.dosage_form}</td>
-                                <td data-title="strength">{filteredMedicine.strength}</td>
-                                <td data-title="unit_price">{filteredMedicine.unit_price}</td>
-                                <td data-title="manufacturer">
-                                    {getName(manufacturers, filteredMedicine.manufacturer_id)?.name}
-                                </td>
-                            </tr>
-                        ))}
+                        .map((filteredMedicine) =>
+                            manufacturers
+                                .filter((manufacturer) => manufacturer.name.toLowerCase().includes(search))
+                                .map((manufacturer) =>
+                                    manufacturer.id === filteredMedicine.manufacturer_id ? (
+                                        <tr key={filteredMedicine.id} className={classes.tableRow}>
+                                            <td data-title="id">{filteredMedicine.id}</td>
+                                            <td data-title="brand_name">{filteredMedicine.brand_name}</td>
+                                            <td data-title="generic_name">{filteredMedicine.generic_name}</td>
+                                            <td data-title="dosage_form">{filteredMedicine.dosage_form}</td>
+                                            <td data-title="strength">{filteredMedicine.strength}</td>
+                                            <td data-title="unit_price">{filteredMedicine.unit_price}</td>
+                                            <td data-title="manufacturer">
+                                                {/* {getName(manufacturers, filteredMedicine.manufacturer_id)?.name} */}
+                                                {manufacturer.name}
+                                            </td>
+                                        </tr>
+                                    ) : null
+                                )
+                        )}
             </table>
             <Pagination
                 setStartIdx={setStartIdx}
