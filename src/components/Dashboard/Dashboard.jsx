@@ -120,15 +120,23 @@ export default function Dashboard() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch(`${api}/medicines/get_medicine_costs_of_stock`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-            const data = await response.json()
-            setStockValue(data)
+            try {
+                const response = await fetch(`${api}/medicines/get_medicine_costs_of_stock`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    },
+                })
+                const data = await response.json()
+                if (response.status === 404) {
+                    setStockValue({ value: 0 })
+                } else {
+                    setStockValue(data)
+                }
+            } catch {
+                setStockValue({ value: 0 })
+            }
         }
         fetchData()
         return () => {
