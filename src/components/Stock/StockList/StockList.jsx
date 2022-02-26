@@ -46,35 +46,41 @@ export default function StockList({ stocks, medicines }) {
                     <th>In Stock</th>
                     <th>Last Purchase Quantity</th>
                     <th>Last Purchase Date</th>
+                    <th>Time</th>
                     <th>Action</th>
                 </tr>
+
                 {(stocks, medicines) &&
-                    medicines
-                        .filter(
-                            (medicine) =>
-                                medicine.brand_name.toLowerCase().includes(searched) ||
-                                medicine.generic_name.toLowerCase().includes(searched)
-                        )
-                        .splice(startIdx, endIdx)
-                        .map((filteredMedicine) =>
-                            stocks.map((s) =>
-                                s.medicine_id === filteredMedicine.id ? (
-                                    <tr className={classes.tableRow} key={s.medicine_id}>
+                    stocks.map((stock) =>
+                        medicines
+                            .filter(
+                                (medicine) =>
+                                    medicine.brand_name.toLowerCase().includes(searched) ||
+                                    medicine.generic_name.toLowerCase().includes(searched)
+                            )
+                            .splice(startIdx, endIdx)
+                            .map((medicine) =>
+                                stock.medicine_id === medicine.id ? (
+                                    <tr className={classes.tableRow} key={medicine.id}>
                                         <td data-title="stock_id">
-                                            {get_matched_stock(stocks, filteredMedicine.id)?.id}
+                                            {/* {get_matched_stock(stocks, filteredMedicine.id)?.id} */}
+                                            {stock.id}
                                         </td>
-                                        <td data-title="brand_name">{filteredMedicine.brand_name}</td>
-                                        <td data-title="generic_name">{filteredMedicine.generic_name}</td>
+                                        <td data-title="brand_name">{medicine.brand_name}</td>
+                                        <td data-title="generic_name">{medicine.generic_name}</td>
                                         <td data-title="in_stock">
-                                            {get_matched_stock(stocks, filteredMedicine.id)?.in_stock}
+                                            {/* {get_matched_stock(stocks, filteredMedicine.id)?.in_stock} */}
+                                            {stock.in_stock}
                                         </td>
                                         <td data-title="last_transacted_quantity">
-                                            {get_matched_stock(stocks, filteredMedicine.id)?.last_purchased_quantity}
+                                            {/* {get_matched_stock(stocks, filteredMedicine.id)?.last_purchased_quantity} */}
+                                            {stock.last_purchased_quantity}
                                         </td>
                                         <td data-title="last_transacted_date">
-                                            {(e) => formattedDate(e, filteredMedicine.id)}
-                                            {get_matched_stock(stocks, filteredMedicine.id)?.last_date_of_purchase}
+                                            {/* {get_matched_stock(stocks, filteredMedicine.id)?.last_date_of_purchase} */}
+                                            {stock.last_date_of_purchase.slice(0, 10)}
                                         </td>
+                                        <td>{stock.last_date_of_purchase.slice(11, 16)}</td>
                                         <td className="select">
                                             <Link className={classes.icon} to="#">
                                                 <FontAwesomeIcon icon={faEdit} />
@@ -86,14 +92,15 @@ export default function StockList({ stocks, medicines }) {
                                     </tr>
                                 ) : null
                             )
-                        )}
+                    )}
             </table>
             <Pagination
                 setStartIdx={setStartIdx}
                 setEndIdx={setEndIdx}
                 page={
-                    medicines &&
-                    medicines.filter((medicine) => medicine.brand_name.toLowerCase().includes(searched)).length
+                    (medicines &&
+                        medicines.filter((medicine) => medicine.brand_name.toLowerCase().includes(searched)).length) ||
+                    medicines.filter((medicine) => medicine.generic_name.toLowerCase().includes(searched)).length
                 }
             />
         </div>
