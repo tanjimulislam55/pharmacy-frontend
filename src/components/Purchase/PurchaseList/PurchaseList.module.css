@@ -85,13 +85,15 @@
 }
 
 .tableContainer .searchButton {
-    background-color: var(--white);
+    position: absolute;
+    background-color: transparent;
     padding: 10px;
     border: none;
-    border-radius: 2px;
     cursor: pointer;
     font-size: 12px;
-    margin-left: 2px;
+    margin-top: 2px;
+    margin-left: -36px;
+    opacity: 0.4;
 }
 
 .tableContainer .searchButton:hover {
