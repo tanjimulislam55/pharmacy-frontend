@@ -40,6 +40,7 @@ export default function BillList({ bills }) {
                     <th>Due Amount</th>
                     <th>Discount</th>
                     <th>Billing Date</th>
+                    <th>Time</th>
                     <th>Action</th>
                 </tr>
 
@@ -51,7 +52,8 @@ export default function BillList({ bills }) {
                             <td>{bill.paid_amount}</td>
                             <td>{bill.due_amount}</td>
                             <td>{bill.discount}</td>
-                            <td>{bill.created_at}</td>
+                            <td>{bill.created_at.slice(0, 10)}</td>
+                            <td>{bill.created_at.slice(11, 16)}</td>
                             <td>
                                 <Link className={classes.icon} to="#">
                                     <FontAwesomeIcon icon={faEdit} />
