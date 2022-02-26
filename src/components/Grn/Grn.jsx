@@ -11,15 +11,19 @@ export default function Grn() {
     useEffect(() => {
         const controller = new AbortController()
         const fetchData = async () => {
-            const response = await fetch(`${api}/grns/`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-            const data = await response.json()
-            setGrns(data)
+            try {
+                const response = await fetch(`${api}/grns/`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    },
+                })
+                const data = await response.json()
+                setGrns(data)
+            } catch (e) {
+                setGrns([])
+            }
         }
         fetchData()
         return () => {

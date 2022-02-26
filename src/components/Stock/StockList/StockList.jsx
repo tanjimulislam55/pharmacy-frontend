@@ -56,8 +56,8 @@ export default function StockList({ stocks, medicines }) {
                                 medicine.generic_name.toLowerCase().includes(searched)
                         )
                         .splice(startIdx, endIdx)
-                        .map((filteredMedicine) => (
-                            <tr className={classes.tableRow}>
+                        .map((filteredMedicine, i) => (
+                            <tr className={classes.tableRow} key={i}>
                                 <td data-title="stock_id">{get_matched_stock(stocks, filteredMedicine.id)?.id}</td>
                                 <td data-title="brand_name">{filteredMedicine.brand_name}</td>
                                 <td data-title="generic_name">{filteredMedicine.generic_name}</td>
