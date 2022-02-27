@@ -157,6 +157,7 @@ export default function BillForm() {
                                     <th>
                                         Unit Price <span>*</span>
                                     </th>
+                                    <th>MRP (tk)</th>
                                     <th>Discount</th>
                                     <th>Total Cost</th>
                                 </tr>
@@ -192,7 +193,11 @@ export default function BillForm() {
                             placeholder="Note if any"
                         />
                     </div>
-                    <div className={classes.gridFive}>
+                    <div className={classes.gridSix}>
+                        <div className={classes.inputbox}>
+                            <input id="mrp" name="mrp" type="number" required min={0} value={result} />
+                            <label htmlFor="subTotal">MRP</label>
+                        </div>
                         <div className={classes.inputbox}>
                             <input id="subTotal" name="subTotal" type="number" required min={0} value={result} />
                             <label htmlFor="subTotal">Subtotal</label>
