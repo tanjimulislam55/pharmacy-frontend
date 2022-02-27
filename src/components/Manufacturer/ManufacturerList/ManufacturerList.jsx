@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { Pagination } from '../../../components'
 import classes from './ManufacturerList.module.css'
 
-export default function ManufacturerList({ manufacturers, setOpenForm }) {
+export default function ManufacturerList({ manufacturers, trades, tradeHistories, setOpenForm }) {
     const [searched, setSearched] = useState('')
     const [startIdx, setStartIdx] = useState(0)
     const [endIdx, setEndIdx] = useState(10)
@@ -17,7 +17,7 @@ export default function ManufacturerList({ manufacturers, setOpenForm }) {
                     <input
                         className={classes.searchField}
                         type="text"
-                        placeholder="Search"
+                        placeholder="Search manufacturer"
                         name="search"
                         value={searched}
                         onChange={(e) => setSearched(e.target.value)}
@@ -35,9 +35,10 @@ export default function ManufacturerList({ manufacturers, setOpenForm }) {
                 <tr className={classes.tableRow}>
                     <th>ID</th>
                     <th>Manufacturer Name</th>
-                    <th>Trade</th>
-                    <th>Trade History</th>
-                    <th>Growth</th>
+                    <th>Purchase Amount</th>
+                    <th>Closing Balance</th>
+                    <th>Outstanding Amount</th>
+                    <th>Overdue Amount</th>
                 </tr>
                 {manufacturers &&
                     manufacturers

@@ -4,6 +4,8 @@ import ManufacturerList from './ManufacturerList/ManufacturerList'
 
 export default function Manufacturer() {
     const [manufacturers, setManufacturers] = useState([])
+    const [trades, setTrades] = useState([])
+    const [tradeHistories, setTradeHistories] = useState([])
     const [openForm, setOpenForm] = useState(false)
 
     const auth = JSON.parse(localStorage.getItem('auth'))
@@ -28,10 +30,16 @@ export default function Manufacturer() {
             controller.abort()
         }
     }, [token])
+
     return (
         <div>
             {openForm && <ManufacturerForm setOpenForm={setOpenForm} />}
-            <ManufacturerList setOpenForm={setOpenForm} manufacturers={manufacturers} />
+            <ManufacturerList
+                setOpenForm={setOpenForm}
+                manufacturers={manufacturers}
+                // trades={trades}
+                // tradeHistories={tradeHistories}
+            />
         </div>
     )
 }
