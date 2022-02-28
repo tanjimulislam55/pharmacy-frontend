@@ -37,7 +37,7 @@ export default function BillLines({ billLines, setBillLines, index }) {
     const changeData1 = (v) => {
         let mainData = billLines
         mainData[index].quantity = v
-        mainData[index].mrp = mainData[index].slot1 * mainData[index].slot2
+        mainData[index].mrp = mainData[index].quantity * mainData[index].unit_price
         mainData[index].total = mainData[index].mrp - mainData[index].mrp * 0.05
         setBillLines([...mainData])
     }
@@ -45,7 +45,7 @@ export default function BillLines({ billLines, setBillLines, index }) {
     const changeData2 = (v) => {
         let mainData = billLines
         mainData[index].unit_price = v
-        mainData[index].mrp = mainData[index].slot1 * mainData[index].slot2
+        mainData[index].mrp = mainData[index].quantity * mainData[index].unit_price
         mainData[index].total = mainData[index].mrp - mainData[index].mrp * 0.05
         setBillLines([...mainData])
     }
@@ -100,7 +100,7 @@ export default function BillLines({ billLines, setBillLines, index }) {
                             <td>
                                 <input
                                     type="number"
-                                    value={billLines[index].slot1}
+                                    value={billLines[index].quantity}
                                     onChange={(e) => changeData1(parseInt(e.target.value))}
                                     // onBlur={(e) => handleBlur(e)}
                                     required
@@ -113,7 +113,7 @@ export default function BillLines({ billLines, setBillLines, index }) {
                                     // value={search.unit_price}
                                     // onChange={(e) => (billLine.unit_price = parseInt(e.target.value))}
                                     // onBlur={(e) => handleBlur(e)}
-                                    value={billLines[index].slot2}
+                                    value={billLines[index].unit_price}
                                     onChange={(e) => changeData2(parseInt(e.target.value))}
                                     required
                                     min={0}
