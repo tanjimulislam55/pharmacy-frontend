@@ -3,18 +3,31 @@ import { Link, useNavigate } from 'react-router-dom'
 import PurchaseLines from '../PurchaseLines/PurchaseLines'
 import classes from './PurchaseForm.module.css'
 
+const getDatafromLS = () => {
+    const data = localStorage.getItem('purchase')
+    if (data) {
+        return JSON.parse(data)
+    } else {
+        return []
+    }
+}
+
 export default function PurchaseForm() {
     const [user, setUser] = useState()
     const [note, setNote] = useState('')
-    const [totalAmountPerMedicine, setTotalAmountPerMedicine] = useState()
-    const [totalAmount, setTotalAmount] = useState()
-    const [paidAmount, setPaidAmount] = useState()
-    const [dueAmount, setDueAmount] = useState()
-    const [total, setTotal] = useState([])
+
+    let [subTotal, setSubTotal] = useState(0.0)
+    let [discount, setDiscount] = useState()
+    let [totalAmount, setTotalAmount] = useState([])
+    let [paidAmount, setPaidAmount] = useState()
+    let [dueAmount, setDueAmount] = useState()
     const [manufacturers, setManufacturers] = useState([])
     const [manufacturerId, setManufacturerId] = useState()
+    const [render, setRender] = useState()
 
     const [purchaseLines, setPurchaseLines] = useState([{}])
+    const [purchasePdf, setPurchasePdf] = useState(getDatafromLS())
+    const [openButton, setOpenButton] = useState(false)
 
     const auth = JSON.parse(localStorage.getItem('auth'))
     const token = auth.token
@@ -40,12 +53,6 @@ export default function PurchaseForm() {
         }
     }, [token])
 
-    // const handleBlur = (e) =>{
-    //     if (totalAmount && paidAmount) {
-    //         let due = totalAmount - pai
-    //     }
-    // }
-
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch(`${process.env.REACT_APP_API_URL}/manufacturers/`, {
@@ -65,6 +72,8 @@ export default function PurchaseForm() {
         e.preventDefault()
         const details = {
             purchase_order_in: {
+                sub_total: subTotal,
+                discount: discount,
                 total_amount: totalAmount,
                 paid_amount: paidAmount,
                 due_amount: dueAmount,
@@ -74,15 +83,34 @@ export default function PurchaseForm() {
             },
             purchase_order_line_in: purchaseLines,
         }
-        fetch(`${process.env.REACT_APP_API_URL}/purchases/new`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify(details),
-        })
-        navigate('/purchase')
+        // fetch(`${process.env.REACT_APP_API_URL}/purchases/new`, {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         Authorization: `Bearer ${token}`,
+        //     },
+        //     body: JSON.stringify(details),
+        // })
+        setPurchasePdf([...purchasePdf, details])
+
+        // navigate('/purchase')
+    }
+
+    useEffect(() => {
+        localStorage.setItem('purchase', JSON.stringify(purchasePdf))
+    }, [purchasePdf])
+
+    purchaseLines.forEach((item) => (subTotal = subTotal + item.cost))
+
+    const handleBlur = (e) => {
+        totalAmount = subTotal
+        totalAmount = totalAmount - totalAmount * (discount / 100)
+        setRender((prev) => !prev)
+        setTotalAmount(totalAmount)
+
+        dueAmount = totalAmount - paidAmount
+        setRender((prev) => !prev)
+        setDueAmount(dueAmount)
     }
 
     return (
@@ -123,16 +151,12 @@ export default function PurchaseForm() {
                             </tr>
                         </table>
                     </div>
-                    {purchaseLines.map((purchaseLine, idx) => (
+                    {purchaseLines.map((billLine, i) => (
                         <PurchaseLines
-                            purchaseLine={purchaseLine}
-                            key={idx}
-                            lineIndex={idx}
-                            total={total}
-                            setTotal={setTotal}
-                            totalAmountPerMedicine={totalAmountPerMedicine}
-                            // manufacturerId={manufacturerId}
-                            // setManufacturerId={setManufacturerId}
+                            purchaseLines={purchaseLines}
+                            setPurchaseLines={setPurchaseLines}
+                            key={i}
+                            index={i}
                         />
                     ))}
                     <button
@@ -141,11 +165,10 @@ export default function PurchaseForm() {
                         className={classes.btn}>
                         Add More Item
                     </button>
+                    <br />
 
                     <div className={classes.inputbox}>
                         <textarea
-                            id="note"
-                            name="note"
                             type="text"
                             value={note}
                             onChange={(e) => setNote(e.target.value)}
@@ -154,14 +177,34 @@ export default function PurchaseForm() {
                         />
                         {/* <label htmlFor="note">Note</label> */}
                     </div>
-                    <div className={classes.gridThree}>
+                    <div className={classes.gridFive}>
                         <div className={classes.inputbox}>
                             <input
-                                id="totalAmount"
-                                name="totalAmount"
+                                type="number"
+                                value={subTotal}
+                                onChange={(e) => setSubTotal(parseInt(e.target.value))}
+                                placeholder="SubTotal"
+                                required
+                            />
+                            {/* <label htmlFor="paidAmount">Total Price</label> */}
+                        </div>
+                        <div className={classes.inputbox}>
+                            <input
+                                type="number"
+                                value={discount}
+                                onChange={(e) => setDiscount(parseInt(e.target.value))}
+                                onBlur={(e) => handleBlur(e)}
+                                placeholder="Discont (%)"
+                                required
+                            />
+                            {/* <label htmlFor="paidAmount">Total Price</label> */}
+                        </div>
+                        <div className={classes.inputbox}>
+                            <input
                                 type="number"
                                 value={totalAmount}
                                 onChange={(e) => setTotalAmount(parseInt(e.target.value))}
+                                onBlur={(e) => handleBlur(e)}
                                 placeholder="Total Amount"
                                 required
                             />
@@ -169,11 +212,10 @@ export default function PurchaseForm() {
                         </div>
                         <div className={classes.inputbox}>
                             <input
-                                id="paidAmount"
-                                name="paidAmount"
                                 type="number"
                                 value={paidAmount}
                                 onChange={(e) => setPaidAmount(parseInt(e.target.value))}
+                                onBlur={(e) => handleBlur(e)}
                                 placeholder="Paid Amount"
                                 required
                             />
@@ -183,11 +225,10 @@ export default function PurchaseForm() {
                         </div>
                         <div className={classes.inputbox}>
                             <input
-                                id="due"
-                                name="Due"
                                 type="number"
                                 value={dueAmount}
                                 onChange={(e) => setDueAmount(parseInt(e.target.value))}
+                                onBlur={(e) => handleBlur(e)}
                                 placeholder="Due Amount"
                             />
                             {/* <label htmlFor="dueAmount">Due amount</label> */}
@@ -196,10 +237,15 @@ export default function PurchaseForm() {
                     <Link to="#" className={classes.btnPaid}>
                         Full Paid
                     </Link>
-                    <button type="submit" className={classes.button}>
+                    <button type="submit" className={classes.button} onClick={() => setOpenButton(true)}>
                         Submit
                     </button>
                 </form>
+                {openButton && (
+                    <Link to="/purchase_pdf" className={classes.btnPdf}>
+                        Print
+                    </Link>
+                )}
             </div>
         </div>
     )

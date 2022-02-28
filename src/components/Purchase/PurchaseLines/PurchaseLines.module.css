@@ -62,3 +62,17 @@
 .tableMain th span {
     color: var(--red);
 }
+
+.options {
+    width: 288px;
+    font-size: 12px;
+    opacity: 0.8;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.options:hover {
+    color: var(--white);
+    background-color: var(--secondary);
+    z-index: 100;
+}

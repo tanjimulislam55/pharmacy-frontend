@@ -4,10 +4,10 @@ import classes from './BillLines.module.css'
 export default function BillLines({ billLines, setBillLines, index }) {
     const [medicines, setMedicines] = useState([])
     const [search, setSearch] = useState('')
+    const [searchResults, setSearchResults] = useState([])
     const [searchId, setSearchId] = useState()
     const [unitPrice, setUnitPrice] = useState()
-    const [searchResults, setSearchResults] = useState([])
-    const [discount, setDiscount] = useState(0)
+    const [discount, setDiscount] = useState()
     const [totalCost, setTotalCost] = useState()
 
     const auth = JSON.parse(localStorage.getItem('auth'))
@@ -129,7 +129,7 @@ export default function BillLines({ billLines, setBillLines, index }) {
                                     name="discount"
                                     type="number"
                                     value={discount}
-                                    placeholder={discount}
+                                    placeholder="%"
                                     onChange={(e) => setDiscount(parseInt(e.target.value))}
                                     onBlur={(e) => setBillLines([...billLines])}
                                     min={0}
@@ -140,10 +140,11 @@ export default function BillLines({ billLines, setBillLines, index }) {
                                     id="billCost"
                                     name="billCost"
                                     type="number"
-                                    value={billLines[index].cost}
-                                    onChange={(e) => (billLines.cost = parseInt(e.target.value))}
+                                    value={totalCost}
+                                    onChange={(e) => (billLines.cost = parseFloat(e.target.value))}
                                     required
                                     min={0}
+                                    step={'any'}
                                 />
                             </td>
                         </tr>

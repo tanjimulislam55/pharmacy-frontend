@@ -26,8 +26,8 @@ export default function BillForm() {
 
     // const [totalAmountPerMedicine, setTotalAmountPerMedicine] = useState()
     const [render, setRender] = useState()
-    let [totalMrp, setTotalMrp] = useState(0)
-    let [subTotal, setSubTotal] = useState(0)
+    let [totalMrp, setTotalMrp] = useState(0.0)
+    let [subTotal, setSubTotal] = useState(0.0)
     let [discount, setDiscount] = useState()
     let [total, setTotal] = useState()
     let [paidAmount, setPaidAmount] = useState()
@@ -205,7 +205,6 @@ export default function BillForm() {
                             // totalAmountPerMedicine={totalAmountPerMedicine}
                         />
                     ))}
-
                     <button
                         onClick={() => setBillLines((prev) => prev.concat({}))}
                         type="button"
@@ -230,9 +229,10 @@ export default function BillForm() {
                                 id="mrp"
                                 type="number"
                                 value={totalMrp}
-                                onChange={(e) => setTotalMrp(parseInt(e.target.value))}
+                                onChange={(e) => setTotalMrp(parseFloat(e.target.value))}
                                 required
                                 min={0}
+                                step={'any'}
                             />
                             <label htmlFor="subTotal">Total MRP</label>
                         </div>
@@ -241,9 +241,10 @@ export default function BillForm() {
                                 id="subTotal"
                                 type="number"
                                 value={subTotal}
-                                onChange={(e) => setSubTotal(parseInt(e.target.value))}
+                                onChange={(e) => setSubTotal(parseFloat(e.target.value))}
                                 required
                                 min={0}
+                                step={'any'}
                             />
                             <label htmlFor="subTotal">Subtotal</label>
                         </div>
@@ -258,6 +259,7 @@ export default function BillForm() {
                                 onBlur={(e) => handleBlur(e)}
                                 required
                                 min={0}
+                                step={'any'}
                             />
                             <label htmlFor="subTotal">Discount</label>
                         </div>
@@ -267,10 +269,11 @@ export default function BillForm() {
                                 name="total"
                                 type="number"
                                 value={total}
-                                onChange={(e) => setTotal(parseInt(e.target.value))}
+                                onChange={(e) => setTotal(parseFloat(e.target.value))}
                                 onBlur={(e) => handleBlur(e)}
                                 required
                                 min={0}
+                                step={'any'}
                             />
                             <label htmlFor="totalPrice">Total Price</label>
                         </div>
@@ -285,6 +288,7 @@ export default function BillForm() {
                                 onBlur={(e) => handleBlur(e)}
                                 required
                                 min={0}
+                                step={'any'}
                             />
                             <label htmlFor="paidAmount">
                                 Paid amount <span>*</span>
@@ -300,6 +304,7 @@ export default function BillForm() {
                                 onBlur={(e) => handleBlur(e)}
                                 required
                                 min={0}
+                                step={'any'}
                             />
                             <label htmlFor="paidAmount">Due amount</label>
                         </div>

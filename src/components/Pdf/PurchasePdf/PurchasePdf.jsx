@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useState } from 'react/cjs/react.development'
 import Logo from '../Logo/logo.png'
-import classes from './InvoicePdf.module.css'
+import classes from './PurchasePdf.module.css'
 
 let date = new Date()
 let day = ('0' + date.getDate()).slice(-2)
@@ -13,16 +13,22 @@ const invoiceNo = Math.floor(1000 + Math.random() * 9000)
 
 export const Pdf = React.forwardRef((props, ref) => {
     const [medicines, setMedicines] = useState([])
+    const [manufacturers, setManufacturers] = useState([])
 
-    const data = JSON.parse(localStorage.getItem('invoice'))
+    const data = JSON.parse(localStorage.getItem('purchase'))
 
     const index = data.length - 1
-    const page = data[index].invoice_order_in
-    const pages = data[index].invoice_order_line_in
+    const page = data[index].purchase_order_in
+    const pages = data[index].purchase_order_line_in
 
     const auth = JSON.parse(localStorage.getItem('auth'))
     const token = auth.token
     let sl = 0
+
+    const getName = (elements, id) => {
+        const items = elements.find((element) => element.id === id)
+        return items
+    }
 
     useEffect(() => {
         const controller = new AbortController()
@@ -36,6 +42,25 @@ export const Pdf = React.forwardRef((props, ref) => {
             })
             const data = await response.json()
             setMedicines(data)
+        }
+        fetchData()
+        return () => {
+            fetchData()
+            controller.abort()
+        }
+    }, [token])
+    useEffect(() => {
+        const controller = new AbortController()
+        const fetchData = async () => {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/manufacturers/`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            const data = await response.json()
+            setManufacturers(data)
         }
         fetchData()
         return () => {
@@ -64,31 +89,30 @@ export const Pdf = React.forwardRef((props, ref) => {
                 <main>
                     <div className={`${classes.details} ${classes.clear}`}>
                         <div className={classes.client}>
-                            <div className={classes.to}>INVOICE TO:</div>
-                            <div className={classes.name}>{page.customer}</div>
-                            <div className={classes.mobile}>{page.mobile}</div>
-                            <div className={classes.address}>{page.address}</div>
+                            <div className={classes.to}>Purchase Order To:</div>
+                            <div className={classes.name}>{getName(manufacturers, page.manufacturer_id)?.name}</div>
+                            <div className={classes.address}>Dhaka</div>
                         </div>
+
                         <div className={classes.invoice}>
-                            <div className={classes.name}>INVOICE: hx-{invoiceNo}</div>
+                            <div className={classes.name}>Purchase No: hx-{invoiceNo}</div>
                             <div className={classes.date}>Date: {today}</div>
                         </div>
                     </div>
                     <table className={classes.tableMain}>
                         <thead>
                             <tr>
-                                <th className={classes.no}>No.</th>
-                                <th className={classes.desc}>Medicine</th>
-                                <th className={classes.desc}>Strength</th>
-                                <th className={classes.desc}>Dosage Form</th>
-                                <th className={classes.unit}>Unit Price (tk)</th>
+                                <th className={classes.no}>Sl No.</th>
+                                <th className={classes.desc}>Description</th>
+                                <th className={classes.unit}>Depo Price (tk)</th>
+                                <th className={classes.qty}>Box</th>
                                 <th className={classes.qty}>Quantity (pcs)</th>
-                                {/* <th className={classes.desc}>Discount</th> */}
-                                <th className={classes.total}>Total (tk)</th>
+                                <th className={classes.desc}>Discount</th>
+                                <th className={classes.total}>Amount (tk)</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {(medicines, pages) &&
+                            {medicines &&
                                 medicines.map((med) =>
                                     pages.map((page) => (
                                         <tr key={page.id}>
@@ -97,41 +121,29 @@ export const Pdf = React.forwardRef((props, ref) => {
                                             ) : (
                                                 ''
                                             )}
-
                                             {med.id === page.medicine_id ? (
                                                 <td className={classes.desc}> {med.brand_name} </td>
                                             ) : (
                                                 ''
                                             )}
-
                                             {med.id === page.medicine_id ? (
-                                                <td className={classes.desc}> {med.strength} </td>
+                                                <td className={classes.desc}> {med.unit_price} </td>
                                             ) : (
                                                 ''
                                             )}
-
-                                            {med.id === page.medicine_id ? (
-                                                <td className={classes.desc}> {med.dosage_form} </td>
-                                            ) : (
-                                                ''
-                                            )}
-                                            {med.id === page.medicine_id ? (
-                                                <td className={classes.desc}> {page.unit_price} </td>
-                                            ) : (
-                                                ''
-                                            )}
+                                            {med.id === page.medicine_id ? <td className={classes.desc}> 10</td> : ''}
                                             {med.id === page.medicine_id ? (
                                                 <td className={classes.desc}> {page.quantity} </td>
                                             ) : (
                                                 ''
                                             )}
-                                            {/* {med.id === page.medicine_id ? (
+                                            {med.id === page.medicine_id ? (
                                                 <td className={classes.desc}>
-                                                    {page.discount} <span>%</span>
+                                                    0 <span>%</span>
                                                 </td>
                                             ) : (
                                                 ''
-                                            )} */}
+                                            )}
                                             {med.id === page.medicine_id ? (
                                                 <td className={classes.desc}> {page.cost} </td>
                                             ) : (
@@ -159,7 +171,7 @@ export const Pdf = React.forwardRef((props, ref) => {
                             </tr>
                             <tr>
                                 <td colSpan="3"></td>
-                                <td colSpan="3">Grand Total:</td>
+                                <td colSpan="3">Total Amount:</td>
                                 <td>
                                     {page.total_amount} <span>tk</span>
                                 </td>
@@ -167,10 +179,12 @@ export const Pdf = React.forwardRef((props, ref) => {
                         </tfoot>
                     </table>
                     <div className={classes.note}>Note : {page.comment}</div>
-                    <div className={classes.text}>Thank you!</div>
+                    {/* <div className={classes.text}>Thank you!</div> */}
+                    <br />
+                    <br />
                     <div className={classes.notices}>
-                        <div>Payment:</div>
-                        <div className={classes.notice}>Cash on delivary</div>
+                        <div>Memo:</div>
+                        <div className={classes.notice}>Term and Conditions: As per agreement</div>
                     </div>
                 </main>
             </div>
