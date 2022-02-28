@@ -102,7 +102,7 @@ export default function BillForm() {
     }, [pages])
 
     billLines.forEach((item) => (totalMrp = totalMrp + item.mrp))
-    billLines.forEach((item) => (subTotal = subTotal + item.total))
+    billLines.forEach((item) => (subTotal = subTotal + item.cost))
 
     const handleBlur = (e) => {
         total = subTotal

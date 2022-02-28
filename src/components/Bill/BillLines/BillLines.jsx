@@ -3,10 +3,12 @@ import classes from './BillLines.module.css'
 
 export default function BillLines({ billLines, setBillLines, index }) {
     const [medicines, setMedicines] = useState([])
-    const [render, setRender] = useState()
-    const [reRender, setReRender] = useState()
     const [search, setSearch] = useState('')
+    const [searchId, setSearchId] = useState()
+    const [unitPrice, setUnitPrice] = useState()
     const [searchResults, setSearchResults] = useState([])
+    const [discount, setDiscount] = useState()
+    const [totalCost, setTotalCost] = useState()
 
     const auth = JSON.parse(localStorage.getItem('auth'))
     const token = auth.token
@@ -34,36 +36,40 @@ export default function BillLines({ billLines, setBillLines, index }) {
         }
     }, [token, search])
 
+    useEffect(() => {
+        let mainData = billLines
+        setTotalCost((mainData[index].cost = mainData[index].mrp - (mainData[index].mrp * discount) / 100))
+        mainData[index].discount = discount
+    }, [discount, billLines, index])
+
     const changeData1 = (v) => {
         let mainData = billLines
         mainData[index].quantity = v
         mainData[index].mrp = mainData[index].quantity * mainData[index].unit_price
-        mainData[index].total = mainData[index].mrp - mainData[index].mrp * 0.05
+        mainData[index].cost = totalCost
         setBillLines([...mainData])
     }
-
     const changeData2 = (v) => {
         let mainData = billLines
         mainData[index].unit_price = v
         mainData[index].mrp = mainData[index].quantity * mainData[index].unit_price
-        mainData[index].total = mainData[index].mrp - mainData[index].mrp * 0.05
+        mainData[index].cost = totalCost
+        mainData[index].medicine_id = searchId
         setBillLines([...mainData])
     }
 
     const handler = (search) => {
         let matches = []
         if (search.length > 0) {
-            matches = medicines.filter((med) =>
-                // const regex = new RegExp(`${search}`, 'gi')
-                // return med.brand_name.match(regex)
-                med.brand_name.toLowerCase().includes(search)
-            )
+            matches = medicines.filter((med) => med.brand_name.toLowerCase().includes(search))
         }
         setSearch(search)
         setSearchResults(matches)
     }
 
     const setHandle = (search) => {
+        setSearchId(search.id)
+        setUnitPrice(search.unit_price)
         setSearch(search)
         setSearchResults([])
     }
@@ -113,6 +119,7 @@ export default function BillLines({ billLines, setBillLines, index }) {
                                     // value={search.unit_price}
                                     // onChange={(e) => (billLine.unit_price = parseInt(e.target.value))}
                                     // onBlur={(e) => handleBlur(e)}
+                                    // value={billLines[index].unit_price}
                                     value={billLines[index].unit_price}
                                     onChange={(e) => changeData2(parseInt(e.target.value))}
                                     required
@@ -134,10 +141,9 @@ export default function BillLines({ billLines, setBillLines, index }) {
                                     id="discount"
                                     name="discount"
                                     type="number"
-                                    placeholder={'5%'}
-                                    // value={billLines[index].discount}
-                                    onChange={(e) => (billLines.discount = parseInt(e.target.value))}
-                                    // onBlur={(e) => handleBlur(e)}
+                                    value={discount}
+                                    onChange={(e) => setDiscount(parseInt(e.target.value))}
+                                    onBlur={(e) => setBillLines([...billLines])}
                                     min={0}
                                 />
                             </td>
@@ -146,8 +152,8 @@ export default function BillLines({ billLines, setBillLines, index }) {
                                     id="billCost"
                                     name="billCost"
                                     type="number"
-                                    value={billLines[index].total}
-                                    onChange={(e) => (billLines.total = parseInt(e.target.value))}
+                                    value={billLines[index].cost}
+                                    onChange={(e) => (billLines.cost = parseInt(e.target.value))}
                                     // value={total}
                                     // onChange={(e) => (billLine.total = parseInt(e.target.value))}
                                     // onBlur={(e) => handleBlur(e)}
