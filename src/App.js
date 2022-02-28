@@ -1,6 +1,6 @@
 import { useReducer } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { Print } from './components/Pdf/Print'
+import { InvoicePrint } from './components/Pdf/InvoicePdf/InvoicePrint'
 import { Auth, UserInfo } from './contexts/allContex'
 import { authReducer, authState } from './contexts/reducer/authReducer'
 import { userReducer, userState } from './contexts/reducer/userReducer'
@@ -42,7 +42,7 @@ function App() {
                         <Route path="/login" element={<Login />} />
 
                         <Route path="/*" element={<ProtectedRoute />}>
-                            <Route path="pdf" element={<Print />} />
+                            <Route path="invoice_pdf" element={<InvoicePrint />} />
                             <Route path="dashboard" element={<Home />} />
                             <Route path="medicine" element={<Medicine />} />
                             <Route path="vendor" element={<Vendor />} />

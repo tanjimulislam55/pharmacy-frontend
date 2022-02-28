@@ -7,7 +7,7 @@ import classes from './BillForm.module.css'
 // import Add from './Add/Add'
 
 const getDatafromLS = () => {
-    const data = localStorage.getItem('pages')
+    const data = localStorage.getItem('invoice')
     if (data) {
         return JSON.parse(data)
     } else {
@@ -73,32 +73,33 @@ export default function BillForm() {
                 vat: 0,
                 paid_amount: paidAmount,
                 due_amount: dueAmount,
-                customer_id: null,
                 user_id: user.id,
+                total_mrp: totalMrp,
+                sub_total: subTotal,
+
+                customer_id: null,
                 customer,
                 mobile,
                 address,
-                totalMrp,
-                subTotal,
             },
             invoice_order_line_in: billLines,
         }
 
-        // fetch(`${process.env.REACT_APP_API_URL}/invoices/new`, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         Authorization: `Bearer ${token}`,
-        //     },
-        //     body: JSON.stringify(details),
-        // })
+        fetch(`${process.env.REACT_APP_API_URL}/invoices/new`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(details),
+        })
         setPages([...pages, details])
-        console.log('valllll', pages)
+        // console.log('value', pages)
     }
 
     // saving data
     useEffect(() => {
-        localStorage.setItem('pages', JSON.stringify(pages))
+        localStorage.setItem('invoice', JSON.stringify(pages))
     }, [pages])
 
     billLines.forEach((item) => (totalMrp = totalMrp + item.mrp))
@@ -308,7 +309,7 @@ export default function BillForm() {
                     </button>
                 </form>
                 {openButton && (
-                    <Link to="/pdf" className={classes.btnPaid}>
+                    <Link to="/invoice_pdf" className={classes.btnPaid}>
                         Print
                     </Link>
                 )}

@@ -1,15 +1,15 @@
 import React, { useRef } from 'react'
 import { useReactToPrint } from 'react-to-print'
-import { Pdf } from './Pdf'
-import classes from './Print.module.css'
+import { Pdf } from './InvoicePdf'
+import classes from './InvoicePrint.module.css'
 
-export const Print = () => {
+export const InvoicePrint = () => {
     const componentRef = useRef()
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
     })
     function clearPage() {
-        localStorage.removeItem('pages')
+        localStorage.removeItem('invoice')
     }
 
     return (

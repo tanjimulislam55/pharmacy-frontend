@@ -33,7 +33,8 @@
     padding: 4px;
 }
 
-.tableMain input {
+.tableMain input,
+.tableMain label {
     width: 98%;
     border: none;
     outline: none;

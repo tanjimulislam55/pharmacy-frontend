@@ -7,7 +7,7 @@ export default function BillLines({ billLines, setBillLines, index }) {
     const [searchId, setSearchId] = useState()
     const [unitPrice, setUnitPrice] = useState()
     const [searchResults, setSearchResults] = useState([])
-    const [discount, setDiscount] = useState()
+    const [discount, setDiscount] = useState(0)
     const [totalCost, setTotalCost] = useState()
 
     const auth = JSON.parse(localStorage.getItem('auth'))
@@ -38,20 +38,14 @@ export default function BillLines({ billLines, setBillLines, index }) {
 
     useEffect(() => {
         let mainData = billLines
-        setTotalCost((mainData[index].cost = mainData[index].mrp - (mainData[index].mrp * discount) / 100))
         mainData[index].discount = discount
+        setTotalCost((mainData[index].cost = mainData[index].mrp - (mainData[index].mrp * discount) / 100))
     }, [discount, billLines, index])
 
-    const changeData1 = (v) => {
+    const changeQuantity = (v) => {
         let mainData = billLines
         mainData[index].quantity = v
-        mainData[index].mrp = mainData[index].quantity * mainData[index].unit_price
-        mainData[index].cost = totalCost
-        setBillLines([...mainData])
-    }
-    const changeData2 = (v) => {
-        let mainData = billLines
-        mainData[index].unit_price = v
+        mainData[index].unit_price = unitPrice
         mainData[index].mrp = mainData[index].quantity * mainData[index].unit_price
         mainData[index].cost = totalCost
         mainData[index].medicine_id = searchId
@@ -101,39 +95,32 @@ export default function BillLines({ billLines, setBillLines, index }) {
                                     placeholder="Search medicine"
                                     value={search.brand_name}
                                     onChange={(e) => handler(e.target.value)}
+                                    required
                                 />
                             </td>
                             <td>
                                 <input
                                     type="number"
                                     value={billLines[index].quantity}
-                                    onChange={(e) => changeData1(parseInt(e.target.value))}
-                                    // onBlur={(e) => handleBlur(e)}
+                                    onChange={(e) => changeQuantity(parseInt(e.target.value))}
                                     required
                                     min={1}
                                 />
                             </td>
                             <td className={classes.lightTd}>
                                 <input
-                                    type="number"
-                                    // value={search.unit_price}
-                                    // onChange={(e) => (billLine.unit_price = parseInt(e.target.value))}
-                                    // onBlur={(e) => handleBlur(e)}
-                                    // value={billLines[index].unit_price}
-                                    value={billLines[index].unit_price}
-                                    onChange={(e) => changeData2(parseInt(e.target.value))}
+                                    type="float"
+                                    value={unitPrice}
+                                    onChange={(e) => setUnitPrice(parseFloat(e.target.value))}
                                     required
                                     min={0}
                                 />
                             </td>
 
                             <td className={classes.lightTd}>
-                                <input
-                                    type="number"
-                                    value={billLines[index].mrp}
-                                    onChange={(e) => (billLines.mrp = parseInt(e.target.value))}
-                                />
-                                {/* <label htmlFor="billLines[index].total">{billLines[index].total}</label> */}
+                                <label htmlFor="billLines[index].mrp" value={billLines[index].mrp}>
+                                    {billLines[index].mrp}
+                                </label>
                             </td>
 
                             <td>
@@ -142,6 +129,7 @@ export default function BillLines({ billLines, setBillLines, index }) {
                                     name="discount"
                                     type="number"
                                     value={discount}
+                                    placeholder={discount}
                                     onChange={(e) => setDiscount(parseInt(e.target.value))}
                                     onBlur={(e) => setBillLines([...billLines])}
                                     min={0}
@@ -154,9 +142,6 @@ export default function BillLines({ billLines, setBillLines, index }) {
                                     type="number"
                                     value={billLines[index].cost}
                                     onChange={(e) => (billLines.cost = parseInt(e.target.value))}
-                                    // value={total}
-                                    // onChange={(e) => (billLine.total = parseInt(e.target.value))}
-                                    // onBlur={(e) => handleBlur(e)}
                                     required
                                     min={0}
                                 />

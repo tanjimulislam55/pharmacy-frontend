@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useState } from 'react/cjs/react.development'
-import Logo from './Logo/logo.png'
-import classes from './Pdf.module.css'
+import Logo from '../Logo/logo.png'
+import classes from './InvoicePdf.module.css'
 
 let date = new Date()
 let day = ('0' + date.getDate()).slice(-2)
@@ -14,9 +14,11 @@ const invoiceNo = Math.floor(1000 + Math.random() * 9000)
 export const Pdf = React.forwardRef((props, ref) => {
     const [medicines, setMedicines] = useState([])
 
-    const data = JSON.parse(localStorage.getItem('pages'))
-    const page = data[0].invoice_order_in
-    const pages = data[0].invoice_order_line_in
+    const data = JSON.parse(localStorage.getItem('invoice'))
+
+    const index = data.length - 1
+    const page = data[index].invoice_order_in
+    const pages = data[index].invoice_order_line_in
 
     const auth = JSON.parse(localStorage.getItem('auth'))
     const token = auth.token
@@ -80,6 +82,7 @@ export const Pdf = React.forwardRef((props, ref) => {
                                 <th className={classes.desc}>Dosage Form</th>
                                 <th className={classes.unit}>Unit Price (tk)</th>
                                 <th className={classes.qty}>Quantity (pcs)</th>
+                                {/* <th className={classes.desc}>Discount</th> */}
                                 <th className={classes.total}>Total (tk)</th>
                             </tr>
                         </thead>
@@ -117,6 +120,13 @@ export const Pdf = React.forwardRef((props, ref) => {
                                             ) : (
                                                 ''
                                             )}
+                                            {/* {med.id === page.medicine_id ? (
+                                                <td className={classes.desc}>
+                                                    {page.discount} <span>%</span>
+                                                </td>
+                                            ) : (
+                                                ''
+                                            )} */}
                                             {med.id === page.medicine_id ? (
                                                 <td className={classes.desc}> {page.cost} </td>
                                             ) : (
@@ -132,14 +142,14 @@ export const Pdf = React.forwardRef((props, ref) => {
                                 <td colSpan="3"></td>
                                 <td colSpan="3">Subtotal:</td>
                                 <td>
-                                    {page.total_amount + page.discount} <span>tk</span>
+                                    {page.subTotal} <span>tk</span>
                                 </td>
                             </tr>
                             <tr>
                                 <td colSpan="3"></td>
                                 <td colSpan="3">Discount:</td>
                                 <td>
-                                    {page.discount} <span>tk</span>
+                                    {page.discount} <span>%</span>
                                 </td>
                             </tr>
                             <tr>
