@@ -36,7 +36,7 @@ export default function BillLines({ billLines, setBillLines, index }) {
 
     const changeData1 = (v) => {
         let mainData = billLines
-        mainData[index].slot1 = v
+        mainData[index].quantity = v
         mainData[index].mrp = mainData[index].slot1 * mainData[index].slot2
         mainData[index].total = mainData[index].mrp - mainData[index].mrp * 0.05
         setBillLines([...mainData])
@@ -44,7 +44,7 @@ export default function BillLines({ billLines, setBillLines, index }) {
 
     const changeData2 = (v) => {
         let mainData = billLines
-        mainData[index].slot2 = v
+        mainData[index].unit_price = v
         mainData[index].mrp = mainData[index].slot1 * mainData[index].slot2
         mainData[index].total = mainData[index].mrp - mainData[index].mrp * 0.05
         setBillLines([...mainData])

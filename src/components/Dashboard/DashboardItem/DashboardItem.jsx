@@ -115,6 +115,21 @@ const DashboardItem = ({
                 <div div className={classes.itemNumber}>
                     {expiredInfo.sum_of_quantity}
                 </div>
+                <div className={classes.itemName}>Near to Expire Stock Quantity</div>
+                <div div className={classes.itemNumber}>
+                    {expiredInfo.sum_of_cost}
+                    <span>৳</span>
+                </div>
+                <div className={classes.itemName}>Near to Expire Stock Value</div>
+
+                <div className={classes.itemIcon}>
+                    <FontAwesomeIcon icon={faHandHoldingUsd} />
+                </div>
+            </div>
+            <div className={classes.dashBox}>
+                <div div className={classes.itemNumber}>
+                    {expiredInfo.sum_of_quantity}
+                </div>
                 <div className={classes.itemName}>Expired Stock Quantity</div>
                 <div div className={classes.itemNumber}>
                     {expiredInfo.sum_of_cost}
