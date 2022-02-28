@@ -33,21 +33,20 @@ export default function ManufacturerList({ manufacturers, trades, tradeHistories
 
             <table className={classes.tableMain}>
                 <tr className={classes.tableRow}>
-                    <th>ID</th>
                     <th>Manufacturer Name</th>
-                    <th>Purchase Amount</th>
                     <th>Closing Balance</th>
                     <th>Outstanding Amount</th>
                     <th>Overdue Amount</th>
                 </tr>
                 {manufacturers &&
                     manufacturers
-                        .filter((manu) => manu.name.toLowerCase().includes(searched))
-                        .map((manufacturer) => (
-                            <tr className={classes.tableRow} key={manufacturer.id}>
-                                <td>{manufacturer.id}</td>
+                        .filter((manufacturer) => manufacturer.name.toLowerCase().includes(searched))
+                        .map((manufacturer, i) => (
+                            <tr className={classes.tableRow} key={i}>
                                 <td>{manufacturer.name}</td>
-                                <td>{manufacturer.growth}</td>
+                                <td>{manufacturer.closing_balance}</td>
+                                <td>{manufacturer.outstanding_amount}</td>
+                                <td>{manufacturer.overdue_amount}</td>
                             </tr>
                         ))}
             </table>

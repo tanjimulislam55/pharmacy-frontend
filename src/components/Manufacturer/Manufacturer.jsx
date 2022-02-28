@@ -14,7 +14,7 @@ export default function Manufacturer() {
     useEffect(() => {
         const controller = new AbortController()
         const fetchData = async () => {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/manufacturers`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/manufacturers/join/trade/`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

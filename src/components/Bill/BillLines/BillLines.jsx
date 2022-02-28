@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react'
 import classes from './BillLines.module.css'
 
-export default function BillLines({ billLine, i, total, setTotal }) {
+export default function BillLines({ billLines, setBillLines, index }) {
     const [medicines, setMedicines] = useState([])
     const [render, setRender] = useState()
     const [reRender, setReRender] = useState()
-    const [discount, setDiscount] = useState(0)
     const [search, setSearch] = useState('')
     const [searchResults, setSearchResults] = useState([])
 
@@ -35,17 +34,33 @@ export default function BillLines({ billLine, i, total, setTotal }) {
         }
     }, [token, search])
 
+    const changeData1 = (v) => {
+        let mainData = billLines
+        mainData[index].slot1 = v
+        mainData[index].mrp = mainData[index].slot1 * mainData[index].slot2
+        mainData[index].total = mainData[index].mrp - mainData[index].mrp * 0.05
+        setBillLines([...mainData])
+    }
+
+    const changeData2 = (v) => {
+        let mainData = billLines
+        mainData[index].slot2 = v
+        mainData[index].mrp = mainData[index].slot1 * mainData[index].slot2
+        mainData[index].total = mainData[index].mrp - mainData[index].mrp * 0.05
+        setBillLines([...mainData])
+    }
+
     const handler = (search) => {
         let matches = []
         if (search.length > 0) {
-            matches = medicines.filter((med) => {
-                const regex = new RegExp(`${search}`, 'gi')
-                return med.brand_name.match(regex)
-            })
+            matches = medicines.filter((med) =>
+                // const regex = new RegExp(`${search}`, 'gi')
+                // return med.brand_name.match(regex)
+                med.brand_name.toLowerCase().includes(search)
+            )
         }
         setSearch(search)
         setSearchResults(matches)
-        console.log('matches', matches)
     }
 
     const setHandle = (search) => {
@@ -53,41 +68,27 @@ export default function BillLines({ billLine, i, total, setTotal }) {
         setSearchResults([])
     }
 
-    const handleBlur = (e) => {
-        e.preventDefault()
-        if (billLine.quantity && search.unit_price) {
-            let cost = billLine.quantity * search.unit_price
-            setTotal((total) => (total = cost))
-            setRender((prev) => !prev)
-
-            let costFinal = cost - discount
-            setTotal((total) => (total = costFinal))
-            setReRender((prev) => !prev)
-            console.log('TotalBlur', cost)
-        }
-    }
-
     return (
         <div className={classes.tableContainer}>
-            <div key={i}>
+            <div>
                 <table className={classes.tableMain}>
                     <tbody>
                         <tr className={classes.tableRow}>
                             {/* <td>
-                            <select
-                                className={classes.option}
-                                onChange={(e) => (billLine.medicine_id = parseInt(e.target.value))}
-                                id="medicines"
-                                required>
-                                <option value="">Select</option>
-                                {medicines &&
-                                    medicines.map((medicine, i) => (
-                                        <option key={i} value={medicine.id}>
-                                            {medicine.brand_name}
-                                        </option>
-                                    ))}
-                            </select>
-                        </td> */}
+                                <select
+                                    className={classes.option}
+                                    // onChange={(e) => (billLine.medicine_id = parseInt(e.target.value))}
+                                    id="medicines"
+                                    required>
+                                    <option value="">Select</option>
+                                    {medicines &&
+                                        medicines.map((medicine, i) => (
+                                            <option key={i} value={medicine.id}>
+                                                {medicine.brand_name}
+                                            </option>
+                                        ))}
+                                </select>
+                            </td> */}
                             <td>
                                 <input
                                     type="text"
@@ -98,30 +99,34 @@ export default function BillLines({ billLine, i, total, setTotal }) {
                             </td>
                             <td>
                                 <input
-                                    id="billQuantiy"
-                                    name="billQuantiy"
                                     type="number"
-                                    placeholder={billLine.quantity}
-                                    onChange={(e) => (billLine.quantity = parseInt(e.target.value))}
-                                    onBlur={(e) => handleBlur(e)}
-                                    // onFocus={(e) => handleFocus(e)}
+                                    value={billLines[index].slot1}
+                                    onChange={(e) => changeData1(parseInt(e.target.value))}
+                                    // onBlur={(e) => handleBlur(e)}
                                     required
                                     min={1}
                                 />
                             </td>
                             <td className={classes.lightTd}>
                                 <input
-                                    id="billPrice"
-                                    name="billPrice"
                                     type="number"
-                                    // placeholder={billLine.unit_price}
-                                    value={search.unit_price}
-                                    onChange={(e) => (billLine.unit_price = parseInt(e.target.value))}
-                                    onBlur={(e) => handleBlur(e)}
-                                    // onFocus={(e) => handleFocus(e)}
+                                    // value={search.unit_price}
+                                    // onChange={(e) => (billLine.unit_price = parseInt(e.target.value))}
+                                    // onBlur={(e) => handleBlur(e)}
+                                    value={billLines[index].slot2}
+                                    onChange={(e) => changeData2(parseInt(e.target.value))}
                                     required
                                     min={0}
                                 />
+                            </td>
+
+                            <td className={classes.lightTd}>
+                                <input
+                                    type="number"
+                                    value={billLines[index].mrp}
+                                    onChange={(e) => (billLines.mrp = parseInt(e.target.value))}
+                                />
+                                {/* <label htmlFor="billLines[index].total">{billLines[index].total}</label> */}
                             </td>
 
                             <td>
@@ -129,9 +134,10 @@ export default function BillLines({ billLine, i, total, setTotal }) {
                                     id="discount"
                                     name="discount"
                                     type="number"
-                                    value={discount}
-                                    onChange={(e) => setDiscount((billLine.discount = parseInt(e.target.value)))}
-                                    onBlur={(e) => handleBlur(e)}
+                                    placeholder={'5%'}
+                                    // value={billLines[index].discount}
+                                    onChange={(e) => (billLines.discount = parseInt(e.target.value))}
+                                    // onBlur={(e) => handleBlur(e)}
                                     min={0}
                                 />
                             </td>
@@ -140,11 +146,11 @@ export default function BillLines({ billLine, i, total, setTotal }) {
                                     id="billCost"
                                     name="billCost"
                                     type="number"
-                                    // placeholder={total}
-                                    value={total}
-                                    onChange={(e) => (billLine.total = parseInt(e.target.value))}
-                                    onBlur={(e) => handleBlur(e)}
-                                    // onFocus={(e) => handleFocus(e)}
+                                    value={billLines[index].total}
+                                    onChange={(e) => (billLines.total = parseInt(e.target.value))}
+                                    // value={total}
+                                    // onChange={(e) => (billLine.total = parseInt(e.target.value))}
+                                    // onBlur={(e) => handleBlur(e)}
                                     required
                                     min={0}
                                 />
@@ -154,7 +160,11 @@ export default function BillLines({ billLine, i, total, setTotal }) {
                 </table>
                 {searchResults &&
                     searchResults.map((medicine, i) => (
-                        <div key={i} onClick={() => setHandle(medicine)} className={classes.options}>
+                        <div
+                            key={i}
+                            onClick={() => setHandle(medicine)}
+                            className={classes.options}
+                            value={medicine.id}>
                             {medicine.brand_name}
                         </div>
                     ))}

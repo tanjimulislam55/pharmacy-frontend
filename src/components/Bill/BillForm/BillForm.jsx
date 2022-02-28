@@ -24,11 +24,14 @@ export default function BillForm() {
     const [mobile, setMobile] = useState(`01XXX-XXXXXX`)
     const [address, setAddress] = useState('Dhaka')
 
-    const [totalAmountPerMedicine, setTotalAmountPerMedicine] = useState()
-    const [discount, setDiscount] = useState()
-    const [total, setTotal] = useState()
-    const [paidAmount, setPaidAmount] = useState()
-    const [dueAmount, setDueAmount] = useState()
+    // const [totalAmountPerMedicine, setTotalAmountPerMedicine] = useState()
+    const [render, setRender] = useState()
+    let [totalMrp, setTotalMrp] = useState(0)
+    let [subTotal, setSubTotal] = useState(0)
+    let [discount, setDiscount] = useState()
+    let [total, setTotal] = useState()
+    let [paidAmount, setPaidAmount] = useState()
+    let [dueAmount, setDueAmount] = useState()
     const [billLines, setBillLines] = useState([{}])
 
     const auth = JSON.parse(localStorage.getItem('auth'))
@@ -61,6 +64,7 @@ export default function BillForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
         const details = {
             invoice_order_in: {
                 comment: note,
@@ -69,11 +73,13 @@ export default function BillForm() {
                 vat: 0,
                 paid_amount: paidAmount,
                 due_amount: dueAmount,
-                // customer_id: 1,
+                customer_id: null,
                 user_id: user.id,
                 customer,
                 mobile,
                 address,
+                totalMrp,
+                subTotal,
             },
             invoice_order_line_in: billLines,
         }
@@ -87,6 +93,7 @@ export default function BillForm() {
         //     body: JSON.stringify(details),
         // })
         setPages([...pages, details])
+        console.log('valllll', pages)
     }
 
     // saving data
@@ -94,8 +101,30 @@ export default function BillForm() {
         localStorage.setItem('pages', JSON.stringify(pages))
     }, [pages])
 
-    const result = billLines.reduce((amount, currentValue) => (amount = amount + currentValue.total), 0)
-    // console.log('res', result)
+    billLines.forEach((item) => (totalMrp = totalMrp + item.mrp))
+    billLines.forEach((item) => (subTotal = subTotal + item.total))
+
+    const handleBlur = (e) => {
+        total = subTotal
+        total = total - total * (discount / 100)
+        setRender((prev) => !prev)
+        setTotal(total)
+
+        dueAmount = total - paidAmount
+        setRender((prev) => !prev)
+        setDueAmount(dueAmount)
+    }
+
+    // let t = 0
+    // billLines.forEach(
+    //     (item) => (t = t + billLines.reduce((amount, currentValue) => (amount = amount + currentValue.total), 0))
+    // )
+    // const result = billLines.reduce((amount, currentValue) => (amount = amount + currentValue.total), 0)
+    // const onBlur = (e) => {
+    //     let totalMrp = 0
+    //     billLines.forEach((value) => (totalMrp = totalMrp + value.total))
+    //     setMrp(...totalMrp)
+    // }
 
     return (
         <div className={classes.wrapper}>
@@ -166,12 +195,13 @@ export default function BillForm() {
                     </div>
                     {billLines.map((billLine, i) => (
                         <BillLines
-                            billLine={billLine}
+                            billLines={billLines}
+                            setBillLines={setBillLines}
                             key={i}
-                            i={i}
-                            total={total}
-                            setTotal={setTotal}
-                            totalAmountPerMedicine={totalAmountPerMedicine}
+                            index={i}
+                            // total={total}
+                            // setTotal={setTotal}
+                            // totalAmountPerMedicine={totalAmountPerMedicine}
                         />
                     ))}
 
@@ -195,11 +225,25 @@ export default function BillForm() {
                     </div>
                     <div className={classes.gridSix}>
                         <div className={classes.inputbox}>
-                            <input id="mrp" name="mrp" type="number" required min={0} value={result} />
-                            <label htmlFor="subTotal">MRP</label>
+                            <input
+                                id="mrp"
+                                type="number"
+                                value={totalMrp}
+                                onChange={(e) => setTotalMrp(parseInt(e.target.value))}
+                                required
+                                min={0}
+                            />
+                            <label htmlFor="subTotal">Total MRP</label>
                         </div>
                         <div className={classes.inputbox}>
-                            <input id="subTotal" name="subTotal" type="number" required min={0} value={result} />
+                            <input
+                                id="subTotal"
+                                type="number"
+                                value={subTotal}
+                                onChange={(e) => setSubTotal(parseInt(e.target.value))}
+                                required
+                                min={0}
+                            />
                             <label htmlFor="subTotal">Subtotal</label>
                         </div>
 
@@ -208,7 +252,9 @@ export default function BillForm() {
                                 id="discount"
                                 name="discount"
                                 type="number"
+                                value={discount}
                                 onChange={(e) => setDiscount(parseInt(e.target.value))}
+                                onBlur={(e) => handleBlur(e)}
                                 required
                                 min={0}
                             />
@@ -219,7 +265,9 @@ export default function BillForm() {
                                 id="total"
                                 name="total"
                                 type="number"
+                                value={total}
                                 onChange={(e) => setTotal(parseInt(e.target.value))}
+                                onBlur={(e) => handleBlur(e)}
                                 required
                                 min={0}
                             />
@@ -231,7 +279,9 @@ export default function BillForm() {
                                 id="paidAmount"
                                 name="paidAmount"
                                 type="number"
+                                value={paidAmount}
                                 onChange={(e) => setPaidAmount(parseInt(e.target.value))}
+                                onBlur={(e) => handleBlur(e)}
                                 required
                                 min={0}
                             />
@@ -244,7 +294,9 @@ export default function BillForm() {
                                 id="dueAmount"
                                 name="dueAmount"
                                 type="number"
+                                value={dueAmount}
                                 onChange={(e) => setDueAmount(parseInt(e.target.value))}
+                                onBlur={(e) => handleBlur(e)}
                                 required
                                 min={0}
                             />

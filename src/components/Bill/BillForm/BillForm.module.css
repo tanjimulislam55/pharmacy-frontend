@@ -102,6 +102,7 @@
     cursor: pointer;
     font-size: 12px;
     margin-bottom: 3em;
+    float: right;
 }
 
 .formWrapper .btn:hover {
