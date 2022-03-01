@@ -26,6 +26,7 @@ import {
     GrnForm,
     Setting,
     LandingPage,
+    SuperAdmin,
 } from './pages'
 import ProtectedRoute from './routes/ProtectedRoute'
 
@@ -61,6 +62,7 @@ function App() {
                             <Route path="accounts" element={<Admin />} />
                             <Route path="manufacturer" element={<Manufacturer />} />
                             <Route path="settings" element={<Setting />} />
+                            <Route path="super_admin" element={<SuperAdmin />} />
                         </Route>
                     </Routes>
                 </UserInfo.Provider>
