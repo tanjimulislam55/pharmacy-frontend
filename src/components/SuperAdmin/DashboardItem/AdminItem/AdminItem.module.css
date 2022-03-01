@@ -1,0 +1,49 @@
+.itemContainer {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 4fr));
+    grid-gap: 20px;
+    padding: 20px 40px;
+}
+
+.itemContainer > .itemBox:nth-child(1) {
+    background: var(--secondary);
+}
+.itemContainer > .itemBox:nth-child(2) {
+    background: var(--light-secondary);
+}
+.itemContainer > .itemBox:nth-child(3) {
+    background: var(--light-secondary);
+}
+.itemContainer > .itemBox:nth-child(4) {
+    background: var(--green);
+}
+
+.itemContainer .itemBox {
+    position: relative;
+    padding: 20px;
+    box-shadow: 0 0 4px var(--light);
+    border-radius: 4px;
+    min-height: 8em;
+}
+
+.itemContainer .itemBox .itemNumber {
+    position: relative;
+    font-size: 2em;
+    color: var(--white);
+}
+
+.itemContainer .itemBox .itemName {
+    font-size: 1.4em;
+    color: var(--white);
+    font-weight: 500;
+}
+
+.itemContainer .itemBox .itemIcon {
+    font-size: 2em;
+    color: var(--white);
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+    opacity: 0.7;
+}

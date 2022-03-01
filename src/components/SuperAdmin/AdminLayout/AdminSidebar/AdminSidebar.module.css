@@ -1,0 +1,195 @@
+.sidebar {
+    /* background-image: linear-gradient(var(--primary), var(--secondary)); */
+    background-color: var(--white);
+    position: fixed;
+    height: 100vh;
+    width: 15%;
+    /* animation: unHide 300ms; */
+}
+
+.sidebar .logo {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar .logo {
+    cursor: pointer;
+    transition: 200ms;
+}
+
+.sidebar .logo img {
+    margin-top: 10px;
+    height: 20px;
+}
+
+.sidebar .logo:hover {
+    transform: scale(1.1);
+}
+
+.sidebar ul {
+    margin: 20px 0 0 0;
+}
+.sidebar ul li a {
+    display: block;
+    padding: 13px 30px;
+    color: var(--dark);
+    font-size: 14px;
+    width: 90%;
+    margin: 0 0 0 10%;
+    position: relative;
+}
+.active {
+    position: relative;
+}
+.active::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 15px;
+    background: transparent;
+    right: -1px;
+    top: -15px;
+    border-radius: 0 0 50px 0;
+    box-shadow: 0 5px 0 0 var(--light);
+    display: block !important;
+}
+.active::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 15px;
+    background: transparent;
+    right: -1px;
+    bottom: -15px;
+    border-radius: 0 50px 0 0;
+    box-shadow: 0 -5px 0 0 var(--light);
+    display: block !important;
+}
+.sidebar ul li a:hover,
+.active {
+    color: var(--secondary) !important;
+    background: var(--light);
+    border-radius: 50px 0 0 50px;
+}
+.sidebar ul li a:hover .icon,
+.active .icon {
+    color: var(--secondary) !important;
+}
+
+.sidebar ul li a::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 15px;
+    background: transparent;
+    right: -1px;
+    top: -15px;
+    border-radius: 0 0 50px 0;
+    box-shadow: 0 5px 0 0 var(--light);
+    display: none;
+}
+.sidebar ul li a::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 15px;
+    background: transparent;
+    right: -1px;
+    bottom: -15px;
+    border-radius: 0 50px 0 0;
+    box-shadow: 0 -5px 0 0 var(--light);
+    display: none;
+}
+
+.sidebar ul li a:hover::before,
+.sidebar ul li a:hover::after {
+    display: block;
+}
+
+.sidebar ul li a .icon {
+    color: var(--dark);
+    padding: 0 5px;
+}
+
+.sidebar ul li .text {
+    margin-left: 15px;
+}
+
+/* ...................................... */
+
+.sidebarHide {
+    /* background-image: linear-gradient(var(--primary), var(--light-secondary)); */
+    background-color: var(--white);
+    position: fixed;
+    height: 100vh;
+    width: 5%;
+    animation: hide 300ms;
+}
+
+.sidebarHide ul li a .icon {
+    color: var(--light);
+    width: 30px;
+    display: inline-block;
+}
+
+.sidebarHide .logo {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebarHide .logo {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--primary);
+    cursor: pointer;
+}
+
+.sidebarHide .logo:hover {
+    color: var(--secondary);
+}
+
+.sidebarHide ul li a {
+    display: block;
+    padding: 13px 30px;
+    color: var(--dark);
+    font-size: 18px;
+}
+
+.sidebarHide ul li .item {
+    margin-left: 15px;
+}
+
+.sidebarHide ul li a:hover {
+    color: var(--secondary);
+    background: var(--white);
+}
+
+.sidebarHide ul li a .icon {
+    color: var(--dark);
+}
+
+.sidebarHide ul li a:hover .icon {
+    color: var(--secondary);
+}
+
+@keyframes hide {
+    from {
+        width: 15%;
+    }
+    to {
+        width: 5%;
+    }
+}
+
+@keyframes unHide {
+    from {
+        width: 5%;
+    }
+    to {
+        width: 15%;
+    }
+}
