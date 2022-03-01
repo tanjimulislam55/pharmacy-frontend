@@ -23,11 +23,11 @@ const DashboardItem = ({
         <div className={classes.dashContainer}>
             <div className={classes.dashBox}>
                 <div className={classes.itemNumber}>
-                    {invoiceInfo.sum_of_total_amount} <span>৳</span>
+                    {invoiceInfo.sum_of_total_mrp} <span>৳</span>
                 </div>
                 <div className={classes.itemName}>Today's Sales</div>
                 <div className={classes.itemNumber}>
-                    {invoiceInfoMonthly.sum_of_total_amount} <span>৳</span>
+                    {invoiceInfoMonthly.sum_of_total_mrp} <span>৳</span>
                 </div>
                 <div className={classes.itemName}>Monthly Sales</div>
 
@@ -68,11 +68,11 @@ const DashboardItem = ({
 
             <div className={classes.dashBox}>
                 <div div className={classes.itemNumber}>
-                    0 <span>৳</span>
+                    {invoiceInfoMonthly.sum_of_total_discount} <span>৳</span>
                 </div>
                 <div className={classes.itemName}>Today's Discount</div>
                 <div div className={classes.itemNumber}>
-                    0 <span>৳</span>
+                    {invoiceInfoMonthly.sum_of_total_discount} <span>৳</span>
                 </div>
                 <div className={classes.itemName}>Monthly Discount</div>
 
