@@ -18,4 +18,6 @@ export { default as Manufacturer } from './Manufacturer'
 export { default as Grn } from './Grn'
 export { default as GrnForm } from './GrnForm'
 export { default as Setting } from './Setting'
+
 export { default as LandingPage } from './LandingPage'
+export { default as SuperAdmin } from './SuperAdmin.jsx'
